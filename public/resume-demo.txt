@@ -1,0 +1,3 @@
+Motus résumé component demo
+
+Replace this demonstration file with your own résumé PDF when you install the component.

@@ -1,0 +1,10 @@
+node_modules/
+dist/
+.vite/
+.impeccable/
+
+.DS_Store
+*.local
+*.log
+.env*
+!.env.example
