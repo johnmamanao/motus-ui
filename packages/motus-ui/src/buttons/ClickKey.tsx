@@ -1,5 +1,3 @@
-'use client';
-
 import { defineSound, ensureReady } from '@web-kits/audio';
 import { ArrowUpRight } from 'lucide-react';
 import { useCallback, useState } from 'react';
@@ -16,7 +14,7 @@ const upSound = defineSound({
   gain: 0.06,
 });
 
-type ClickKeyProps = {
+export type ClickKeyProps = {
   onAction?: () => void | Promise<void>;
   disabled?: boolean;
 };
@@ -43,7 +41,10 @@ export default function ClickKey({ onAction, disabled = false }: ClickKeyProps) 
 
   return (
     <span className="relative inline-flex h-14 w-[190px]">
-      <span aria-hidden="true" className="absolute inset-0 translate-x-[6px] translate-y-[6px] rounded-[12px] bg-[#c7c7cc]" />
+      <span
+        aria-hidden="true"
+        className="absolute inset-0 translate-x-[6px] translate-y-[6px] rounded-[12px] bg-[#c7c7cc]"
+      />
       <button
         type="button"
         onPointerDown={press}

@@ -6,9 +6,9 @@ brand
 
 ## Product
 
-Motus is an open-source showcase and copy-ready library of fourteen React interactions for portfolios:
+Motus is an open-source npm library and showcase of fourteen React interactions for portfolios:
 
-- Glass Sidebar
+- Text Motion
 - Portfolio Nav
 - Expandable Tabs
 - Press Button
@@ -29,15 +29,15 @@ Frontend developers and design-minded builders evaluating reusable React interac
 
 ## Product Purpose
 
-Motus makes advanced portfolio interactions easy to discover, evaluate, and copy. Success means a visitor can understand the library, test a working component, switch between components without leaving the preview, and copy the source without creating an account or sending data to a server.
+Motus makes advanced portfolio interactions easy to discover, evaluate, and install. Success means a visitor can understand the library, test a working component, switch between components without leaving the preview, and use the published React API without creating an account or sending data to a server.
 
 ## Core Journey
 
 1. Understand the product promise and see a working component on the landing page (`/`).
 2. Open the full-canvas component workspace directly from `/components`; there is no intermediate directory page.
 3. Use the collapsible category rail to switch among all fourteen components while the preview stays in place.
-4. Reset or fullscreen the live preview, open Source as a split drawer, and copy or download the real component source.
-5. Copy the branded per-component install command from the rail without leaving the workspace.
+4. Reset or fullscreen the live preview, open Source as a split drawer, and inspect the real component source.
+5. Install `motus-ui` from npm and import the same implementation used by the preview.
 
 ## Brand Personality
 
@@ -59,7 +59,7 @@ Glass is a material demonstrated by the components, not the default styling of t
 
 **Keep the shell monochrome.** Black, white, and neutral grays organize the opaque product shell. Chroma belongs inside live component previews, visual-effect canvases, and source syntax, where it helps visitors understand material behavior and code structure.
 
-**Copy the real thing.** The source view must correspond to the component in the preview, label the file with its public component slug, and expose the branded `npx @motus-ui/cli@latest add <component-slug>` command without hiding essential setup behind an account or service.
+**Ship the real thing.** The source view must correspond to the component in the preview, and every documented component must be exported by the published `motus-ui` package without hiding essential setup behind an account or service.
 
 **Keep the scope honest.** Fourteen complete, responsive components are more credible than a large unfinished catalogue.
 

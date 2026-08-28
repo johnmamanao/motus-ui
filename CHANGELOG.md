@@ -16,12 +16,15 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Responsive desktop, tablet, portrait-mobile, and landscape-mobile layouts.
 - Motus identity, animated icons, favicon, and component feedback using Lottie React.
 - Keyboard navigation, visible focus states, touch-friendly controls, and reduced-motion support.
+- Installable `motus-ui` package with ESM, TypeScript declarations, and compiled styles.
+- npm workspace structure with a package consumer smoke test.
 
 ### Changed
 
 - Renamed the project and repository from Formstate UI to Motus UI.
 - Reworked the landing page around a focused hero and interactive component showcase.
 - Simplified the component sidebar into a quieter grouped index.
+- Split the showcase and reusable component library into dedicated workspaces.
 
 ### Fixed
 

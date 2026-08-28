@@ -1,5 +1,3 @@
-'use client';
-
 import { Copy, RotateCcw } from 'lucide-react';
 import { LottieLight } from 'lottie-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
@@ -10,37 +8,101 @@ const easeOut = { x: [0.8], y: [0] };
 const frame = (time: number, start: number[], end: number[]) => ({ t: time, s: start, e: end, i: easeIn, o: easeOut });
 
 const pageLayer = (index: number, start: number[], end: number[], opacity: number) => ({
-  ddd: 0, ind: index, ty: 4, nm: `Copy sheet ${index}`, sr: 1,
+  ddd: 0,
+  ind: index,
+  ty: 4,
+  nm: `Copy sheet ${index}`,
+  sr: 1,
   ks: {
     o: { a: 1, k: [frame(0, [opacity], [opacity]), frame(18, [opacity], [18]), { t: 32, s: [18] }] },
-    r: { a: 0, k: 0 }, p: { a: 1, k: [frame(0, [start[0], start[1], 0], [end[0], end[1], 0]), { t: 32, s: [end[0], end[1], 0] }] },
-    a: { a: 0, k: [0, 0, 0] }, s: { a: 0, k: [100, 100, 100] },
+    r: { a: 0, k: 0 },
+    p: { a: 1, k: [frame(0, [start[0], start[1], 0], [end[0], end[1], 0]), { t: 32, s: [end[0], end[1], 0] }] },
+    a: { a: 0, k: [0, 0, 0] },
+    s: { a: 0, k: [100, 100, 100] },
   },
   ao: 0,
   shapes: [
     { ty: 'rc', d: 1, s: { a: 0, k: [20, 23] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 4 }, nm: 'Sheet' },
-    { ty: 'st', c: { a: 0, k: [1, 1, 1, 1] }, o: { a: 0, k: 100 }, w: { a: 0, k: 2.2 }, lc: 2, lj: 2, ml: 4, nm: 'White stroke' },
-    { ty: 'tr', p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, sk: { a: 0, k: 0 }, sa: { a: 0, k: 0 }, nm: 'Transform' },
-  ], ip: 0, op: 54, st: 0, bm: 0,
+    {
+      ty: 'st',
+      c: { a: 0, k: [1, 1, 1, 1] },
+      o: { a: 0, k: 100 },
+      w: { a: 0, k: 2.2 },
+      lc: 2,
+      lj: 2,
+      ml: 4,
+      nm: 'White stroke',
+    },
+    {
+      ty: 'tr',
+      p: { a: 0, k: [0, 0] },
+      a: { a: 0, k: [0, 0] },
+      s: { a: 0, k: [100, 100] },
+      r: { a: 0, k: 0 },
+      o: { a: 0, k: 100 },
+      sk: { a: 0, k: 0 },
+      sa: { a: 0, k: 0 },
+      nm: 'Transform',
+    },
+  ],
+  ip: 0,
+  op: 54,
+  st: 0,
+  bm: 0,
 });
 
 const checkStroke = (index: number, width: number, position: number[], rotation: number, start: number) => ({
-  ddd: 0, ind: index, ty: 4, nm: `Copied stroke ${index}`, sr: 1,
+  ddd: 0,
+  ind: index,
+  ty: 4,
+  nm: `Copied stroke ${index}`,
+  sr: 1,
   ks: {
-    o: { a: 1, k: [frame(start, [0], [100]), { t: 54, s: [100] }] }, r: { a: 0, k: rotation },
-    p: { a: 0, k: [position[0], position[1], 0] }, a: { a: 0, k: [0, 0, 0] },
-    s: { a: 1, k: [frame(start, [0, 100, 100], [112, 100, 100]), frame(start + 10, [112, 100, 100], [100, 100, 100]), { t: 54, s: [100, 100, 100] }] },
+    o: { a: 1, k: [frame(start, [0], [100]), { t: 54, s: [100] }] },
+    r: { a: 0, k: rotation },
+    p: { a: 0, k: [position[0], position[1], 0] },
+    a: { a: 0, k: [0, 0, 0] },
+    s: {
+      a: 1,
+      k: [
+        frame(start, [0, 100, 100], [112, 100, 100]),
+        frame(start + 10, [112, 100, 100], [100, 100, 100]),
+        { t: 54, s: [100, 100, 100] },
+      ],
+    },
   },
   ao: 0,
   shapes: [
     { ty: 'rc', d: 1, s: { a: 0, k: [width, 5] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 2.5 }, nm: 'Stroke' },
     { ty: 'fl', c: { a: 0, k: [1, 1, 1, 1] }, o: { a: 0, k: 100 }, r: 1, nm: 'White fill' },
-    { ty: 'tr', p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, sk: { a: 0, k: 0 }, sa: { a: 0, k: 0 }, nm: 'Transform' },
-  ], ip: 0, op: 54, st: 0, bm: 0,
+    {
+      ty: 'tr',
+      p: { a: 0, k: [0, 0] },
+      a: { a: 0, k: [0, 0] },
+      s: { a: 0, k: [100, 100] },
+      r: { a: 0, k: 0 },
+      o: { a: 0, k: 100 },
+      sk: { a: 0, k: 0 },
+      sa: { a: 0, k: 0 },
+      nm: 'Transform',
+    },
+  ],
+  ip: 0,
+  op: 54,
+  st: 0,
+  bm: 0,
 });
 
 const copiedAnimation = {
-  v: '5.12.2', fr: 60, ip: 0, op: 54, w: 48, h: 48, nm: 'Copy sheets resolve into confirmation', ddd: 0, assets: [],
+  v: '5.12.2',
+  fr: 60,
+  ip: 0,
+  op: 54,
+  w: 48,
+  h: 48,
+  nm: 'Copy sheets resolve into confirmation',
+  ddd: 0,
+  assets: [],
   layers: [
     pageLayer(1, [18, 18], [24, 24], 52),
     pageLayer(2, [30, 30], [24, 24], 100),
@@ -49,13 +111,17 @@ const copiedAnimation = {
   ],
 };
 
-type CopyLinkButtonProps = {
+export type CopyLinkButtonProps = {
   value?: string;
   onCopy?: (value: string) => void | Promise<void>;
   disabled?: boolean;
 };
 
-export default function CopyLinkButton({ value = 'https://example.com/work', onCopy, disabled = false }: CopyLinkButtonProps) {
+export default function CopyLinkButton({
+  value = 'https://example.com/work',
+  onCopy,
+  disabled = false,
+}: CopyLinkButtonProps) {
   const resetTimer = useRef<number | null>(null);
   const mounted = useRef(true);
   const [status, setStatus] = useState<'idle' | 'copying' | 'copied' | 'error'>('idle');
@@ -96,7 +162,10 @@ export default function CopyLinkButton({ value = 'https://example.com/work', onC
       disabled={disabled || copying || copied}
       aria-busy={copying}
       initial={false}
-      animate={{ backgroundColor: copied ? '#eaf7ee' : failed ? '#fff0ef' : '#f5f5f7', color: copied ? '#175f35' : failed ? '#9c2f28' : '#1d1d1f' }}
+      animate={{
+        backgroundColor: copied ? '#eaf7ee' : failed ? '#fff0ef' : '#f5f5f7',
+        color: copied ? '#175f35' : failed ? '#9c2f28' : '#1d1d1f',
+      }}
       whileHover={status === 'idle' || failed ? { scale: 1.012 } : undefined}
       whileTap={status === 'idle' || failed ? { scale: 0.982 } : undefined}
       transition={reduceMotion ? { duration: 0 } : { duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
@@ -121,8 +190,14 @@ export default function CopyLinkButton({ value = 'https://example.com/work', onC
         className="flex size-11 shrink-0 items-center justify-center overflow-hidden rounded-[12px] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.18)]"
       >
         {copied ? (
-          <span className="size-8"><LottieLight src={copiedAnimation} autoplay={!reduceMotion} loop={false} /></span>
-        ) : failed ? <RotateCcw size={16} /> : <Copy size={16} strokeWidth={1.9} />}
+          <span className="size-8">
+            <LottieLight src={copiedAnimation} autoplay={!reduceMotion} loop={false} />
+          </span>
+        ) : failed ? (
+          <RotateCcw size={16} />
+        ) : (
+          <Copy size={16} strokeWidth={1.9} />
+        )}
       </motion.span>
 
       <span className="sr-only" aria-live="polite">

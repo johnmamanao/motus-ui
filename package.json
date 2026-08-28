@@ -1,49 +1,25 @@
 {
-  "name": "motus-ui",
+  "name": "motus-ui-workspace",
   "private": true,
   "version": "0.1.0",
-  "description": "Interactive React components for expressive portfolio interfaces.",
+  "description": "Workspace for the Motus UI React library and component showcase.",
   "license": "MIT",
-  "author": "John Charles Frederick Mamanao",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/johnmamanao/motus-ui.git"
-  },
-  "bugs": {
-    "url": "https://github.com/johnmamanao/motus-ui/issues"
-  },
-  "homepage": "https://github.com/johnmamanao/motus-ui#readme",
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "build": "tsc --noEmit && vite build",
-    "preview": "vite preview",
-    "format": "prettier --write \"*.{md,json}\"",
-    "format:check": "prettier --check \"*.{md,json}\""
-  },
   "packageManager": "npm@11.8.0",
-  "dependencies": {
-    "@fontsource-variable/archivo": "^5.3.0",
-    "@fontsource-variable/bricolage-grotesque": "^5.3.0",
-    "@fontsource/ibm-plex-mono": "^5.3.0",
-    "@tailwindcss/vite": "^4.3.3",
-    "@vitejs/plugin-react": "^5.0.0",
-    "@web-kits/audio": "^0.1.0",
-    "gsap": "^3.15.0",
-    "lottie-react": "^3.1.0",
-    "lucide-react": "^0.563.0",
-    "motion": "^13.1.1",
-    "prism-react-renderer": "^2.4.1",
-    "react": "^19.2.4",
-    "react-dom": "^19.2.4",
-    "react-use-measure": "^2.1.7",
-    "tailwindcss": "^4.3.3",
-    "vite": "^6.2.0"
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev --workspace @motus-ui/site",
+    "build": "npm run build:package && npm run build:site",
+    "build:package": "npm run build --workspace motus-ui",
+    "build:site": "npm run build --workspace @motus-ui/site",
+    "check": "npm run check --workspace motus-ui && npm run check --workspace @motus-ui/site",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "verify:package": "node scripts/verify-package.mjs"
   },
   "devDependencies": {
-    "@types/react": "^19.2.14",
-    "@types/react-dom": "^19.2.3",
-    "prettier": "^3.9.6",
-    "typescript": "~5.8.2"
+    "prettier": "^3.9.6"
   }
 }

@@ -1,0 +1,79 @@
+{
+  "name": "motus-ui",
+  "version": "0.1.0",
+  "description": "Expressive React components with polished motion and clear interaction feedback.",
+  "keywords": [
+    "react",
+    "components",
+    "ui",
+    "animation",
+    "motion",
+    "portfolio",
+    "typescript"
+  ],
+  "license": "MIT",
+  "author": "John Charles Frederick Mamanao",
+  "type": "module",
+  "sideEffects": [
+    "**/*.css"
+  ],
+  "files": [
+    "dist"
+  ],
+  "main": "./dist/index.js",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    },
+    "./styles.css": {
+      "types": "./dist/styles.d.ts",
+      "default": "./dist/styles.css"
+    }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnmamanao/motus-ui.git",
+    "directory": "packages/motus-ui"
+  },
+  "bugs": {
+    "url": "https://github.com/johnmamanao/motus-ui/issues"
+  },
+  "homepage": "https://github.com/johnmamanao/motus-ui#readme",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "clean": "node -e \"require('node:fs').rmSync('dist',{recursive:true,force:true})\"",
+    "build": "npm run clean && vite build && tailwindcss -i ./src/styles.css -o ./dist/styles.css --minify && tsc -p tsconfig.build.json",
+    "check": "tsc --noEmit",
+    "prepack": "npm run build"
+  },
+  "peerDependencies": {
+    "react": ">=18.2 <20",
+    "react-dom": ">=18.2 <20"
+  },
+  "dependencies": {
+    "@web-kits/audio": "^0.1.0",
+    "gsap": "^3.15.0",
+    "lottie-react": "^3.1.0",
+    "lucide-react": "^0.563.0",
+    "motion": "^13.1.1",
+    "react-use-measure": "^2.1.7"
+  },
+  "devDependencies": {
+    "@tailwindcss/cli": "^4.3.3",
+    "@types/node": "^24.3.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "tailwindcss": "^4.3.3",
+    "typescript": "~5.8.2",
+    "vite": "^6.4.3"
+  }
+}

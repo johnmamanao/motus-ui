@@ -1,47 +1,68 @@
-# Deploying Motus UI
+# Releasing Motus UI
 
-Motus is a client-side Vite application. It can be deployed to any static host that supports a single-page-application fallback.
+Motus has two release targets: the public npm package in `packages/motus-ui` and the static showcase in `apps/site`.
 
-## Verify the release
+## Verify a release
+
+Run the complete verification suite from the repository root:
 
 ```bash
-npm install
+npm ci
+npm run check
 npm run format:check
 npm run build
+npm run verify:package
+npm audit --omit=dev
 ```
 
-The deployable output is written to `dist/`.
+The package build is written to `packages/motus-ui/dist`. The site build is written to `apps/site/dist`.
 
-## Vercel
+## Publish to npm
 
-1. Import `johnmamanao/motus-ui` into Vercel.
-2. Select the **Vite** framework preset.
-3. Use `npm run build` as the build command.
-4. Use `dist` as the output directory.
-5. Deploy.
+1. Confirm the version in `packages/motus-ui/package.json` and update `CHANGELOG.md`.
+2. Authenticate with an npm account that has publishing 2FA enabled:
 
-The included `vercel.json` sends direct component routes such as `/components/text-motion` to the application entry point.
+   ```bash
+   npm login
+   npm whoami
+   ```
 
-## Other static hosts
+3. Review the exact package contents:
 
-Use the same build command and output directory. Configure the host to rewrite unknown paths to `/index.html`; without that fallback, direct component URLs may return a 404.
+   ```bash
+   npm pack --workspace motus-ui --dry-run
+   ```
 
-## Release checklist
+4. Publish the public package:
 
-- [ ] Update `CHANGELOG.md`
-- [ ] Run `npm run format:check`
-- [ ] Run `npm run build`
-- [ ] Test landing and component routes on mobile and desktop
-- [ ] Commit and push to `main`
-- [ ] Tag the release, for example `v0.1.0`
-- [ ] Create matching GitHub release notes
+   ```bash
+   npm publish --workspace motus-ui
+   ```
 
-## Version tags
+5. Verify the registry release:
+
+   ```bash
+   npm view motus-ui version
+   ```
+
+Never publish from the workspace root. The root and showcase packages are intentionally private.
+
+## Deploy the showcase
+
+The root `vercel.json` builds the Vite showcase and serves `apps/site/dist`. Direct component routes are rewritten to `index.html`.
+
+For another static host, use:
+
+- Build command: `npm run build:site`
+- Output directory: `apps/site/dist`
+- SPA fallback: rewrite unknown routes to `/index.html`
+
+## Tag the release
+
+After npm and the showcase are verified:
 
 ```bash
 git tag v0.1.0
 git push origin v0.1.0
 gh release create v0.1.0 --title "Motus UI 0.1.0" --generate-notes
 ```
-
-Motus is not currently published as an npm package. Its present distribution model is the hosted component workspace with copyable component source.

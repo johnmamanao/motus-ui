@@ -1,16 +1,6 @@
 # Contributing to Motus UI
 
-Thanks for helping improve Motus. Contributions should keep components useful, accessible, responsive, and easy to copy into a portfolio project.
-
-## Report a problem
-
-Open a GitHub issue and include:
-
-- The component and route involved
-- Browser and viewport size
-- Steps to reproduce the behavior
-- Expected and actual results
-- A screenshot or short recording when the problem is visual
+Thanks for helping improve Motus. Contributions should keep components useful, accessible, responsive, and safe to install from npm.
 
 ## Development setup
 
@@ -21,61 +11,42 @@ npm install
 npm run dev
 ```
 
-The local site runs at [http://localhost:4174](http://localhost:4174).
+The local showcase runs at [http://localhost:4174](http://localhost:4174).
+
+## Workspace structure
+
+```text
+apps/site/                Showcase and component workbench
+packages/motus-ui/src/    Published component source
+scripts/                  Release verification
+```
+
+Add reusable components to `packages/motus-ui/src` and export their public API from `packages/motus-ui/src/index.ts`. The showcase should import from `motus-ui` rather than maintaining a duplicate implementation.
 
 ## Pull requests
 
-1. Create a branch from `main` using `feat/`, `fix/`, `docs/`, or `chore/`.
-2. Keep each pull request focused on one change.
-3. Preserve keyboard access, reduced-motion behavior, and responsive layouts.
-4. Update source examples and documentation when a public component API changes.
-5. Run the verification commands below.
-6. Open a pull request describing what changed, why it changed, and how it was tested.
+1. Create a focused branch from `main`.
+2. Preserve keyboard access, reduced-motion behavior, and responsive layouts.
+3. Export public prop types when adding or changing component APIs.
+4. Update the README and changelog when behavior or installation changes.
+5. Run all verification commands.
+6. Describe what changed, why it changed, and how it was tested.
 
 ## Verification
 
 ```bash
+npm run check
 npm run format:check
 npm run build
+npm run verify:package
 ```
 
-For interface changes, also verify:
+For interface changes, also test desktop, tablet, mobile portrait, mobile landscape, keyboard navigation, and `prefers-reduced-motion: reduce`.
 
-- 1440px desktop
-- 768px tablet
-- 375 × 667 mobile portrait
-- A short mobile landscape viewport
-- Keyboard navigation
-- `prefers-reduced-motion: reduce`
+## Component expectations
 
-## Project structure
-
-```text
-src/
-├── buttons/       Button components
-├── effects/       Canvas-based backgrounds
-├── motion/        Text Motion and its variants
-├── App.tsx        Site routes and component workspace
-├── PortfolioPieces.tsx
-├── ExpandableTab.tsx
-└── styles.css
-```
-
-## Design expectations
-
-- A component must make sense without decorative demo content.
-- The preview must match the source shown to the user.
-- Motion must communicate state or interaction, not merely add activity.
+- The preview must use the same source exported by the npm package.
+- Motion should communicate state or interaction.
 - Controls need visible focus states and accessible labels.
-- Avoid hidden dependencies, remote animation assets, and backend requirements.
-
-## Commit messages
-
-Use a short conventional prefix when practical:
-
-```text
-feat: add a component
-fix: correct mobile overflow
-docs: clarify component usage
-chore: update tooling
-```
+- Components must not require an account, backend, or remote animation asset.
+- Public components must be documented and tree-shakeable.

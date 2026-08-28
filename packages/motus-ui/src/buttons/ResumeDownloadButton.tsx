@@ -1,5 +1,3 @@
-'use client';
-
 import { Check, Download, RotateCcw } from 'lucide-react';
 import { LottieLight } from 'lottie-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
@@ -12,37 +10,98 @@ const frame = (time: number, start: number[], end: number[]) => ({ t: time, s: s
 const TRANSFER_DURATION_MS = 740;
 
 const transferAnimation = {
-  v: '5.12.2', fr: 90, ip: 0, op: 66, w: 52, h: 52, nm: 'Document enters download tray', ddd: 0, assets: [],
+  v: '5.12.2',
+  fr: 90,
+  ip: 0,
+  op: 66,
+  w: 52,
+  h: 52,
+  nm: 'Document enters download tray',
+  ddd: 0,
+  assets: [],
   layers: [
     {
-      ddd: 0, ind: 1, ty: 4, nm: 'Document', sr: 1,
+      ddd: 0,
+      ind: 1,
+      ty: 4,
+      nm: 'Document',
+      sr: 1,
       ks: {
         o: { a: 1, k: [frame(0, [100], [100]), frame(45, [100], [20]), { t: 66, s: [20] }] },
         r: { a: 1, k: [frame(0, [-4], [2]), frame(26, [2], [0]), { t: 66, s: [0] }] },
-        p: { a: 1, k: [frame(0, [26, 15, 0], [26, 30, 0]), frame(38, [26, 30, 0], [26, 34, 0]), { t: 66, s: [26, 34, 0] }] },
-        a: { a: 0, k: [0, 0, 0] }, s: { a: 1, k: [frame(0, [100, 100, 100], [94, 94, 100]), { t: 66, s: [94, 94, 100] }] },
+        p: {
+          a: 1,
+          k: [frame(0, [26, 15, 0], [26, 30, 0]), frame(38, [26, 30, 0], [26, 34, 0]), { t: 66, s: [26, 34, 0] }],
+        },
+        a: { a: 0, k: [0, 0, 0] },
+        s: { a: 1, k: [frame(0, [100, 100, 100], [94, 94, 100]), { t: 66, s: [94, 94, 100] }] },
       },
       ao: 0,
       shapes: [
         { ty: 'rc', d: 1, s: { a: 0, k: [20, 25] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 3 }, nm: 'Page' },
         { ty: 'fl', c: { a: 0, k: [1, 1, 1, 1] }, o: { a: 0, k: 100 }, r: 1, nm: 'Page fill' },
-        { ty: 'tr', p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, sk: { a: 0, k: 0 }, sa: { a: 0, k: 0 }, nm: 'Transform' },
-      ], ip: 0, op: 66, st: 0, bm: 0,
+        {
+          ty: 'tr',
+          p: { a: 0, k: [0, 0] },
+          a: { a: 0, k: [0, 0] },
+          s: { a: 0, k: [100, 100] },
+          r: { a: 0, k: 0 },
+          o: { a: 0, k: 100 },
+          sk: { a: 0, k: 0 },
+          sa: { a: 0, k: 0 },
+          nm: 'Transform',
+        },
+      ],
+      ip: 0,
+      op: 66,
+      st: 0,
+      bm: 0,
     },
     {
-      ddd: 0, ind: 2, ty: 4, nm: 'Tray', sr: 1,
-      ks: { o: { a: 0, k: 100 }, r: { a: 0, k: 0 }, p: { a: 0, k: [26, 36, 0] }, a: { a: 0, k: [0, 0, 0] }, s: { a: 1, k: [frame(18, [88, 100, 100], [105, 100, 100]), frame(33, [105, 100, 100], [100, 100, 100]), { t: 66, s: [100, 100, 100] }] } },
+      ddd: 0,
+      ind: 2,
+      ty: 4,
+      nm: 'Tray',
+      sr: 1,
+      ks: {
+        o: { a: 0, k: 100 },
+        r: { a: 0, k: 0 },
+        p: { a: 0, k: [26, 36, 0] },
+        a: { a: 0, k: [0, 0, 0] },
+        s: {
+          a: 1,
+          k: [
+            frame(18, [88, 100, 100], [105, 100, 100]),
+            frame(33, [105, 100, 100], [100, 100, 100]),
+            { t: 66, s: [100, 100, 100] },
+          ],
+        },
+      },
       ao: 0,
       shapes: [
         { ty: 'rc', d: 1, s: { a: 0, k: [28, 4] }, p: { a: 0, k: [0, 0] }, r: { a: 0, k: 2 }, nm: 'Slot' },
         { ty: 'fl', c: { a: 0, k: [0.64, 0.98, 0.72, 1] }, o: { a: 0, k: 100 }, r: 1, nm: 'Slot fill' },
-        { ty: 'tr', p: { a: 0, k: [0, 0] }, a: { a: 0, k: [0, 0] }, s: { a: 0, k: [100, 100] }, r: { a: 0, k: 0 }, o: { a: 0, k: 100 }, sk: { a: 0, k: 0 }, sa: { a: 0, k: 0 }, nm: 'Transform' },
-      ], ip: 0, op: 66, st: 0, bm: 0,
+        {
+          ty: 'tr',
+          p: { a: 0, k: [0, 0] },
+          a: { a: 0, k: [0, 0] },
+          s: { a: 0, k: [100, 100] },
+          r: { a: 0, k: 0 },
+          o: { a: 0, k: 100 },
+          sk: { a: 0, k: 0 },
+          sa: { a: 0, k: 0 },
+          nm: 'Transform',
+        },
+      ],
+      ip: 0,
+      op: 66,
+      st: 0,
+      bm: 0,
     },
   ],
 };
 
-type ResumeDownloadButtonProps = {
+export type ResumeDownloadButtonProps = {
   href?: string;
   filename?: string;
   fileLabel?: string;
@@ -123,8 +182,14 @@ export default function ResumeDownloadButton({
         className="relative flex h-[52px] w-[52px] shrink-0 items-center justify-center overflow-hidden rounded-[12px] text-white shadow-[inset_0_1px_0_rgba(255,255,255,0.12)]"
       >
         {preparing ? (
-          <span className="size-10"><LottieLight src={transferAnimation} autoplay={!reduceMotion} loop={false} /></span>
-        ) : started ? <Check size={18} strokeWidth={2.2} /> : failed ? <RotateCcw size={17} /> : (
+          <span className="size-10">
+            <LottieLight src={transferAnimation} autoplay={!reduceMotion} loop={false} />
+          </span>
+        ) : started ? (
+          <Check size={18} strokeWidth={2.2} />
+        ) : failed ? (
+          <RotateCcw size={17} />
+        ) : (
           <motion.span whileHover={reduceMotion ? undefined : { y: -2 }} className="relative block h-8 w-9">
             <span className="absolute left-[9px] top-0 h-[25px] w-[20px] rounded-[3px] bg-white shadow-[0_3px_8px_rgba(0,0,0,.22)]">
               <i className="absolute left-1.5 right-1.5 top-2 h-px bg-black/25" />
@@ -148,12 +213,26 @@ export default function ResumeDownloadButton({
             {preparing ? 'Downloading' : started ? 'Downloaded' : failed ? 'Try again' : 'Download résumé'}
           </motion.strong>
         </AnimatePresence>
-        <span className={`mt-1.5 block text-[10px] font-medium ${started ? 'text-[#b9dfc6]' : failed ? 'text-[#ffd0cc]' : 'text-white/60'}`}>{fileLabel}</span>
+        <span
+          className={`mt-1.5 block text-[10px] font-medium ${started ? 'text-[#b9dfc6]' : failed ? 'text-[#ffd0cc]' : 'text-white/60'}`}
+        >
+          {fileLabel}
+        </span>
       </span>
 
-      <Download aria-hidden="true" size={15} className={`${preparing || started ? 'opacity-0' : 'opacity-55'} transition-opacity`} />
+      <Download
+        aria-hidden="true"
+        size={15}
+        className={`${preparing || started ? 'opacity-0' : 'opacity-55'} transition-opacity`}
+      />
       <span className="sr-only" aria-live="polite">
-        {preparing ? 'Downloading résumé.' : started ? 'Résumé downloaded.' : failed ? 'Download failed. Try again.' : ''}
+        {preparing
+          ? 'Downloading résumé.'
+          : started
+            ? 'Résumé downloaded.'
+            : failed
+              ? 'Download failed. Try again.'
+              : ''}
       </span>
     </motion.button>
   );
