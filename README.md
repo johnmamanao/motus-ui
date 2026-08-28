@@ -13,22 +13,22 @@ Motus is an open-source React component library for portfolio interfaces. It foc
 
 ## Components
 
-| Category | Component | Purpose |
-| --- | --- | --- |
-| Motion | Text Motion | One-line animated text with nineteen selectable variants |
-| Navigation | Portfolio Nav | Compact portfolio navigation with an animated active route |
-| Navigation | Expandable Tabs | Application tabs that expand to reveal their selected panel |
-| Buttons | Press Button | Tactile primary action with optional click sound |
-| Buttons | Resume Download | Animated résumé download that waits for its motion to finish |
-| Buttons | Copy Link | Clipboard action with animated confirmation |
-| Projects | Project Card | Featured project surface that opens to show details |
-| Projects | Project List | Project directory with a responsive visual preview |
-| Content | Skills List | Focus-sensitive list for capabilities and skills |
-| Contact | Contact Card | Availability and direct-contact actions |
-| Code | Tech Stack | Compact technical stack summary for project pages |
-| Backgrounds | Silk Background | Pointer-responsive animated fabric light |
-| Backgrounds | Halftone Background | Interactive halftone field for sections and hero areas |
-| Backgrounds | Light Background | Soft ambient background for text-led layouts |
+| Category    | Component           | Purpose                                                      |
+| ----------- | ------------------- | ------------------------------------------------------------ |
+| Motion      | Text Motion         | One-line animated text with nineteen selectable variants     |
+| Navigation  | Portfolio Nav       | Compact portfolio navigation with an animated active route   |
+| Navigation  | Expandable Tabs     | Application tabs that expand to reveal their selected panel  |
+| Buttons     | Press Button        | Tactile primary action with optional click sound             |
+| Buttons     | Resume Download     | Animated résumé download that waits for its motion to finish |
+| Buttons     | Copy Link           | Clipboard action with animated confirmation                  |
+| Projects    | Project Card        | Featured project surface that opens to show details          |
+| Projects    | Project List        | Project directory with a responsive visual preview           |
+| Content     | Skills List         | Focus-sensitive list for capabilities and skills             |
+| Contact     | Contact Card        | Availability and direct-contact actions                      |
+| Code        | Tech Stack          | Compact technical stack summary for project pages            |
+| Backgrounds | Silk Background     | Pointer-responsive animated fabric light                     |
+| Backgrounds | Halftone Background | Interactive halftone field for sections and hero areas       |
+| Backgrounds | Light Background    | Soft ambient background for text-led layouts                 |
 
 ## Getting started
 
@@ -96,3 +96,10 @@ src/
 ```
 
 All component state runs locally in the browser. Motus does not require a database, account, paid service, or external API.
+
+## Repository guides
+
+- [Contributing](CONTRIBUTING.md)
+- [Changelog](CHANGELOG.md)
+- [Deployment](DEPLOY.md)
+- [MIT License](LICENSE)

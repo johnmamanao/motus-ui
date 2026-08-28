@@ -1,136 +1,136 @@
 ---
-name: "Motus"
-description: "A monochrome component studio where form responds visibly to state."
+name: 'Motus'
+description: 'A monochrome component studio where form responds visibly to state.'
 colors:
-  black: "#000000"
-  panel: "#0a0a0a"
-  panel-raised: "#111111"
-  line: "#262626"
-  white: "#ffffff"
-  text: "#ededed"
-  muted: "#a1a1a1"
-  preview: "#f2f3f5"
-  fallback-preview: "#f3f3f5"
-  key-face: "#101011"
-  key-base: "#c7c7cc"
-  control-dark: "#111114"
-  control-light: "#f5f5f7"
-  control-muted: "#6e6e73"
-  focus-blue: "#0a84ff"
-  copy-success-surface: "#eaf7ee"
-  copy-success-text: "#175f35"
-  copy-error-surface: "#fff0ef"
-  copy-error-text: "#9c2f28"
+  black: '#000000'
+  panel: '#0a0a0a'
+  panel-raised: '#111111'
+  line: '#262626'
+  white: '#ffffff'
+  text: '#ededed'
+  muted: '#a1a1a1'
+  preview: '#f2f3f5'
+  fallback-preview: '#f3f3f5'
+  key-face: '#101011'
+  key-base: '#c7c7cc'
+  control-dark: '#111114'
+  control-light: '#f5f5f7'
+  control-muted: '#6e6e73'
+  focus-blue: '#0a84ff'
+  copy-success-surface: '#eaf7ee'
+  copy-success-text: '#175f35'
+  copy-error-surface: '#fff0ef'
+  copy-error-text: '#9c2f28'
 typography:
   display:
-    fontFamily: "Bricolage Grotesque Variable, sans-serif"
-    fontSize: "clamp(3.625rem, 6.5vw, 6.5rem)"
+    fontFamily: 'Bricolage Grotesque Variable, sans-serif'
+    fontSize: 'clamp(3.625rem, 6.5vw, 6.5rem)'
     fontWeight: 700
     lineHeight: 0.91
-    letterSpacing: "-0.04em"
+    letterSpacing: '-0.04em'
   headline:
-    fontFamily: "Bricolage Grotesque Variable, sans-serif"
-    fontSize: "clamp(2.625rem, 5vw, 4.75rem)"
+    fontFamily: 'Bricolage Grotesque Variable, sans-serif'
+    fontSize: 'clamp(2.625rem, 5vw, 4.75rem)'
     fontWeight: 700
     lineHeight: 0.98
-    letterSpacing: "-0.04em"
+    letterSpacing: '-0.04em'
   body:
-    fontFamily: "Archivo Variable, sans-serif"
-    fontSize: "1rem"
+    fontFamily: 'Archivo Variable, sans-serif'
+    fontSize: '1rem'
     fontWeight: 400
     lineHeight: 1.6
   label:
-    fontFamily: "IBM Plex Mono, monospace"
-    fontSize: "0.75rem"
+    fontFamily: 'IBM Plex Mono, monospace'
+    fontSize: '0.75rem'
     fontWeight: 500
     lineHeight: 1.5
-    letterSpacing: "0.1em"
+    letterSpacing: '0.1em'
 rounded:
-  sm: "8px"
-  md: "10px"
-  key: "12px"
-  lg: "14px"
-  action: "18px"
-  pill: "999px"
+  sm: '8px'
+  md: '10px'
+  key: '12px'
+  lg: '14px'
+  action: '18px'
+  pill: '999px'
 spacing:
-  xs: "8px"
-  sm: "12px"
-  md: "20px"
-  lg: "32px"
-  xl: "64px"
+  xs: '8px'
+  sm: '12px'
+  md: '20px'
+  lg: '32px'
+  xl: '64px'
 components:
   button-primary:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.black}"
-    rounded: "{rounded.md}"
-    padding: "0 18px"
-    height: "48px"
+    backgroundColor: '{colors.white}'
+    textColor: '{colors.black}'
+    rounded: '{rounded.md}'
+    padding: '0 18px'
+    height: '48px'
   button-neutral:
-    backgroundColor: "{colors.white}"
-    textColor: "{colors.black}"
-    rounded: "{rounded.sm}"
-    padding: "11px 13px"
+    backgroundColor: '{colors.white}'
+    textColor: '{colors.black}'
+    rounded: '{rounded.sm}'
+    padding: '11px 13px'
   button-click-key:
-    backgroundColor: "{colors.key-face}"
-    textColor: "{colors.white}"
-    rounded: "{rounded.key}"
-    padding: "0 20px"
-    height: "56px"
-    width: "190px"
+    backgroundColor: '{colors.key-face}'
+    textColor: '{colors.white}'
+    rounded: '{rounded.key}'
+    padding: '0 20px'
+    height: '56px'
+    width: '190px'
   button-click-key-base:
-    backgroundColor: "{colors.key-base}"
-    rounded: "{rounded.key}"
-    height: "56px"
-    width: "190px"
+    backgroundColor: '{colors.key-base}'
+    rounded: '{rounded.key}'
+    height: '56px'
+    width: '190px'
   button-resume-download:
-    backgroundColor: "{colors.control-dark}"
-    textColor: "{colors.white}"
-    rounded: "16px"
-    padding: "6px 16px 6px 6px"
-    height: "64px"
-    width: "244px"
+    backgroundColor: '{colors.control-dark}'
+    textColor: '{colors.white}'
+    rounded: '16px'
+    padding: '6px 16px 6px 6px'
+    height: '64px'
+    width: '244px'
   button-resume-download-started:
-    backgroundColor: "#113523"
-    textColor: "#e1f7e8"
-    rounded: "16px"
-    height: "64px"
-    width: "244px"
+    backgroundColor: '#113523'
+    textColor: '#e1f7e8'
+    rounded: '16px'
+    height: '64px'
+    width: '244px'
   button-resume-download-error:
-    backgroundColor: "#431f1d"
-    textColor: "#ffe8e6"
-    rounded: "16px"
-    height: "64px"
-    width: "244px"
+    backgroundColor: '#431f1d'
+    textColor: '#ffe8e6'
+    rounded: '16px'
+    height: '64px'
+    width: '244px'
   button-copy-link:
-    backgroundColor: "{colors.control-light}"
-    textColor: "#1d1d1f"
-    rounded: "16px"
-    padding: "6px 6px 6px 20px"
-    height: "56px"
-    width: "202px"
+    backgroundColor: '{colors.control-light}'
+    textColor: '#1d1d1f'
+    rounded: '16px'
+    padding: '6px 6px 6px 20px'
+    height: '56px'
+    width: '202px'
   button-copy-link-success:
-    backgroundColor: "{colors.copy-success-surface}"
-    textColor: "{colors.copy-success-text}"
-    rounded: "16px"
-    height: "56px"
-    width: "202px"
+    backgroundColor: '{colors.copy-success-surface}'
+    textColor: '{colors.copy-success-text}'
+    rounded: '16px'
+    height: '56px'
+    width: '202px'
   button-copy-link-error:
-    backgroundColor: "{colors.copy-error-surface}"
-    textColor: "{colors.copy-error-text}"
-    rounded: "16px"
-    height: "56px"
-    width: "202px"
+    backgroundColor: '{colors.copy-error-surface}'
+    textColor: '{colors.copy-error-text}'
+    rounded: '16px'
+    height: '56px'
+    width: '202px'
   panel:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.text}"
-    rounded: "{rounded.lg}"
-    padding: "20px"
+    backgroundColor: '{colors.panel}'
+    textColor: '{colors.text}'
+    rounded: '{rounded.lg}'
+    padding: '20px'
   search-field:
-    backgroundColor: "{colors.panel}"
-    textColor: "{colors.text}"
-    rounded: "12px"
-    padding: "0 16px"
-    height: "58px"
+    backgroundColor: '{colors.panel}'
+    textColor: '{colors.text}'
+    rounded: '12px'
+    padding: '0 16px'
+    height: '58px'
 ---
 
 # Design System: Motus
