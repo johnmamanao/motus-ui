@@ -37,6 +37,14 @@ export default function App() {
 }
 ```
 
+## AI skill
+
+Install the Motus UI skill so a compatible coding agent can select components, wire their APIs, and troubleshoot integration details:
+
+```bash
+npx skills add https://github.com/johnmamanao/motus-ui --skill motus-ui
+```
+
 ## Usage
 
 ### Text motion
