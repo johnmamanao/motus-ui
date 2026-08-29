@@ -4082,15 +4082,30 @@ body,
 }
 .home-page .nav-links {
   margin-left: auto;
+  gap: 8px;
 }
 .home-page .nav-links button,
 .home-page .nav-links a {
   color: #92928e;
+  border: 1px solid transparent;
 }
 .home-page .nav-links button:hover,
 .home-page .nav-links a:hover {
   color: #fff;
   background: rgba(255, 255, 255, 0.065);
+  border-color: rgba(255, 255, 255, 0.08);
+}
+.home-page .nav-source {
+  width: 40px;
+  height: 40px;
+  justify-content: center;
+  padding: 0;
+  border-color: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+.home-page .nav-source-label,
+.home-page .nav-source .nav-external-icon {
+  display: none;
 }
 .home-hero {
   position: relative;
@@ -4200,26 +4215,39 @@ body,
     background 100ms ease-out,
     border-color 100ms ease-out;
 }
-.home-actions button {
+.home-primary-action {
   background: #f3f3f0;
   color: #090909;
   cursor: pointer;
 }
-.home-actions a {
+.home-actions .home-install {
   background: rgba(255, 255, 255, 0.035);
   border: 1px solid rgba(255, 255, 255, 0.17);
   color: #d3d3cf;
+  cursor: pointer;
 }
 .home-actions button:hover,
 .home-actions a:hover {
   transform: translateY(-2px);
 }
-.home-actions button:hover {
+.home-primary-action:hover {
   background: #fff;
 }
-.home-actions a:hover {
+.home-actions .home-install:hover {
   background: rgba(255, 255, 255, 0.075);
   border-color: rgba(255, 255, 255, 0.32);
+}
+.home-install {
+  min-width: 210px;
+}
+.home-install code {
+  color: inherit;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 10px;
+}
+.home-install.copied {
+  border-color: rgba(255, 255, 255, 0.3);
+  color: #fff;
 }
 .home-showcase {
   background: var(--home-paper);
@@ -4586,12 +4614,55 @@ body,
   background: #292927;
 }
 .home-footer {
-  min-height: 100px;
+  min-height: 96px;
+  display: flex;
+  align-items: center;
+  gap: 32px;
+  padding: 0 clamp(22px, 4.5vw, 72px);
   background: #090909;
   border-color: #272725;
 }
-.home-footer > span {
-  color: #666662;
+.home-footer-main {
+  min-height: 0;
+  display: flex;
+  flex: 1;
+  align-items: center;
+}
+.home-footer-brand {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.home-footer-brand .brand {
+  width: max-content;
+  color: #f4f4f1;
+}
+.home-footer-brand p {
+  max-width: 370px;
+  margin: 0;
+  color: #777772;
+  font-size: 12px;
+  line-height: 1.5;
+}
+.home-footer-meta {
+  min-height: 0;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  border: 0;
+  color: #5f5f5b;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+.home-footer-meta a {
+  margin-left: 8px;
+  color: #989893;
+  transition: color 160ms ease;
+}
+.home-footer-meta a:hover {
+  color: #fff;
 }
 
 @keyframes home-showcase-in {
@@ -4645,6 +4716,19 @@ body,
     background: #131313;
     border-color: #333;
   }
+  .home-page .nav-source {
+    width: auto;
+    height: 48px;
+    justify-content: flex-start;
+    padding: 13px;
+  }
+  .home-page .nav-source-label,
+  .home-page .nav-source .nav-external-icon {
+    display: initial;
+  }
+  .home-page .nav-source .nav-external-icon {
+    margin-left: auto;
+  }
   .home-page .menu-button {
     color: #fff;
   }
@@ -4684,6 +4768,13 @@ body,
   .home-actions a {
     width: 100%;
     height: 49px;
+  }
+  .home-install {
+    width: 100%;
+    max-width: 420px;
+    min-width: 0;
+    justify-content: space-between;
+    margin-top: 0;
   }
   .home-showcase {
     padding: 86px 14px;
@@ -4759,7 +4850,31 @@ body,
     width: 100%;
   }
   .home-footer {
-    min-height: 120px;
+    min-height: 0;
+    align-items: stretch;
+    flex-direction: column;
+    gap: 0;
+    padding-inline: 18px;
+  }
+  .home-footer-main {
+    min-height: 0;
+    padding: 32px 0 25px;
+  }
+  .home-footer-brand {
+    display: grid;
+    justify-content: start;
+    gap: 13px;
+  }
+  .home-footer-meta {
+    min-height: 0;
+    flex-wrap: wrap;
+    gap: 13px 20px;
+    padding: 18px 0 22px;
+    border-top: 1px solid #242422;
+  }
+  .home-footer-meta a {
+    width: 100%;
+    margin: 2px 0 0;
   }
 }
 

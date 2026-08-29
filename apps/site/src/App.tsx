@@ -295,9 +295,16 @@ function SiteHeader({ path, navigate }: { path: string; navigate: (path: string)
             <Boxes size={16} aria-hidden="true" />
             <span>Components</span>
           </button>
-          <a href="https://github.com/johnmamanao/motus-ui" target="_blank" rel="noreferrer">
+          <a
+            className="nav-source"
+            href="https://github.com/johnmamanao/motus-ui"
+            target="_blank"
+            rel="noreferrer"
+            aria-label="Open the Motus UI GitHub repository"
+            title="GitHub repository"
+          >
             <Github size={16} aria-hidden="true" />
-            <span>GitHub</span>
+            <span className="nav-source-label">GitHub</span>
             <ArrowUpRight className="nav-external-icon" size={13} aria-hidden="true" />
           </a>
         </nav>
@@ -322,9 +329,20 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
   const [showcaseId, setShowcaseId] = useState<PieceId>('text-motion');
   const [homeTextMotionVariant, setHomeTextMotionVariant] = useState<TextMotionVariant>('lift');
   const [homeVariantMenuOpen, setHomeVariantMenuOpen] = useState(false);
+  const [installCopied, setInstallCopied] = useState(false);
   const activeShowcase = showcase.find(({ piece }) => piece.id === showcaseId) ?? showcase[0];
   const activeHomeVariant =
     TEXT_MOTION_VARIANTS.find((item) => item.id === homeTextMotionVariant) ?? TEXT_MOTION_VARIANTS[0];
+
+  const copyInstallCommand = async () => {
+    try {
+      await navigator.clipboard.writeText('npm install motus-ui');
+      setInstallCopied(true);
+      window.setTimeout(() => setInstallCopied(false), 1400);
+    } catch {
+      setInstallCopied(false);
+    }
+  };
 
   useEffect(() => {
     if (!homeVariantMenuOpen) return;
@@ -405,12 +423,20 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
           </h1>
           <p className="home-lead">Portfolio components you can try, copy, and change.</p>
           <div className="home-actions">
-            <button onClick={() => document.querySelector('#featured')?.scrollIntoView({ behavior: 'smooth' })}>
+            <button
+              className="home-primary-action"
+              onClick={() => document.querySelector('#featured')?.scrollIntoView({ behavior: 'smooth' })}
+            >
               See the pieces <ArrowRight size={17} />
             </button>
-            <a href="https://github.com/johnmamanao/motus-ui" target="_blank" rel="noreferrer">
-              View on GitHub <ArrowUpRight size={15} />
-            </a>
+            <button
+              className={installCopied ? 'home-install copied' : 'home-install'}
+              onClick={copyInstallCommand}
+              aria-label={installCopied ? 'Install command copied' : 'Copy npm install command'}
+            >
+              <code>{installCopied ? 'Copied to clipboard' : 'npm install motus-ui'}</code>
+              {installCopied ? <Check size={15} aria-hidden="true" /> : <Clipboard size={15} aria-hidden="true" />}
+            </button>
           </div>
         </section>
         <section className="home-showcase" id="featured" aria-labelledby="library-title">
@@ -514,14 +540,22 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
         </section>
       </main>
       <footer className="home-footer">
-        <button className="brand" onClick={() => navigate('/')}>
-          <Mark />
-          <span>Motus</span>
-        </button>
-        <span>React components for portfolio work.</span>
-        <a href="https://github.com/johnmamanao/motus-ui">
-          GitHub <ArrowUpRight size={14} />
-        </a>
+        <div className="home-footer-main">
+          <div className="home-footer-brand">
+            <button className="brand" onClick={() => navigate('/')} aria-label="Back to Motus home">
+              <Mark />
+              <span>Motus</span>
+            </button>
+            <p>Motion-focused React components for expressive portfolio interfaces.</p>
+          </div>
+        </div>
+        <div className="home-footer-meta">
+          <span>Open source · MIT</span>
+          <span>React 18.2+</span>
+          <a href="https://www.npmjs.com/package/motus-ui" target="_blank" rel="noreferrer">
+            View package <ArrowUpRight size={13} />
+          </a>
+        </div>
       </footer>
     </div>
   );
