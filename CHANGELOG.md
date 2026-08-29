@@ -4,6 +4,18 @@ All notable changes to Motus UI are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 0.1.2 - 2026-08-30
+
+### Changed
+
+- Switched the package homepage and README showcase links to the canonical `motion-ui.johnmamanao.com` domain.
+
+## 0.1.1 - 2026-08-30
+
+### Changed
+
+- Added the live Motus UI showcase to the package metadata and npm README.
+
 ## 0.1.0 - 2026-08-28
 
 ### Added

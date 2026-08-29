@@ -49,7 +49,7 @@ Never publish from the workspace root. The root and showcase packages are intent
 
 ## Deploy the showcase
 
-The root `vercel.json` builds the Vite showcase and serves `apps/site/dist`. Direct component routes are rewritten to `index.html`.
+The `apps/site/vercel.json` file builds the Vite showcase and serves `apps/site/dist`. The Vercel project's root directory is `apps/site`, and direct component routes are rewritten to `index.html`.
 
 For another static host, use:
 

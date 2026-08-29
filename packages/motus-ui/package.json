@@ -1,6 +1,6 @@
 {
   "name": "motus-ui",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Expressive React components with polished motion and clear interaction feedback.",
   "keywords": [
     "react",
@@ -41,7 +41,7 @@
   "bugs": {
     "url": "https://github.com/johnmamanao/motus-ui/issues"
   },
-  "homepage": "https://github.com/johnmamanao/motus-ui#readme",
+  "homepage": "https://motion-ui.johnmamanao.com",
   "publishConfig": {
     "access": "public",
     "registry": "https://registry.npmjs.org/"
