@@ -295,7 +295,7 @@ function SiteHeader({ path, navigate }: { path: string; navigate: (path: string)
             <Boxes size={16} aria-hidden="true" />
             <span>Components</span>
           </button>
-          <a href="https://github.com/johnmamanao" target="_blank" rel="noreferrer">
+          <a href="https://github.com/johnmamanao/motus-ui" target="_blank" rel="noreferrer">
             <Github size={16} aria-hidden="true" />
             <span>GitHub</span>
             <ArrowUpRight className="nav-external-icon" size={13} aria-hidden="true" />
@@ -408,7 +408,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
             <button onClick={() => document.querySelector('#featured')?.scrollIntoView({ behavior: 'smooth' })}>
               See the pieces <ArrowRight size={17} />
             </button>
-            <a href="https://github.com/johnmamanao" target="_blank" rel="noreferrer">
+            <a href="https://github.com/johnmamanao/motus-ui" target="_blank" rel="noreferrer">
               View on GitHub <ArrowUpRight size={15} />
             </a>
           </div>
@@ -519,7 +519,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
           <span>Motus</span>
         </button>
         <span>React components for portfolio work.</span>
-        <a href="https://github.com/johnmamanao">
+        <a href="https://github.com/johnmamanao/motus-ui">
           GitHub <ArrowUpRight size={14} />
         </a>
       </footer>
