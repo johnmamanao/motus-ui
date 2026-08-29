@@ -1,14 +1,14 @@
 # Motus UI
 
 [![npm version](https://img.shields.io/npm/v/motus-ui?label=npm&color=cb3837)](https://www.npmjs.com/package/motus-ui)
-[![website](https://img.shields.io/badge/website-live-111111)](https://motion-ui.johnmamanao.com)
+[![website](https://img.shields.io/badge/website-live-111111)](https://motus-ui.johnmamanao.com)
 [![license: MIT](https://img.shields.io/badge/license-MIT-67b718)](https://github.com/johnmamanao/motus-ui/blob/main/LICENSE)
 
 Motion-focused React components for portfolios and creative interfaces. Motus includes animated text, tactile actions, navigation, project displays, and ambient visual effects.
 
 Built with React, TypeScript, Tailwind CSS, GSAP, Motion, and Lottie. The package is ESM-only and includes TypeScript declarations.
 
-Explore every component in the [live Motus UI showcase](https://motion-ui.johnmamanao.com).
+Explore every component in the [live Motus UI showcase](https://motus-ui.johnmamanao.com).
 
 ## Install
 

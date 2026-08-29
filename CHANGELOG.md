@@ -4,6 +4,12 @@ All notable changes to Motus UI are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 0.1.3 - 2026-08-30
+
+### Changed
+
+- Corrected the canonical package and showcase URL to `motus-ui.johnmamanao.com`.
+
 ## 0.1.2 - 2026-08-30
 
 ### Changed
