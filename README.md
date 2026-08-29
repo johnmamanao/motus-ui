@@ -161,33 +161,9 @@ Place an effect inside a positioned container and layer your content above it.
 
 Motus components provide keyboard focus states and disabled states where applicable. Motion-based components respect `prefers-reduced-motion`; clipboard, download, and audio behavior still depends on browser permissions.
 
-## Development
-
-```bash
-git clone https://github.com/johnmamanao/motus-ui.git
-cd motus-ui
-npm install
-npm run dev
-```
-
-The local showcase runs at [http://localhost:4174](http://localhost:4174).
-
-Before opening a pull request, run:
-
-```bash
-npm run check
-npm run format:check
-npm run build
-npm run verify:package
-```
-
 ## Contributing
 
-See [CONTRIBUTING.md](./CONTRIBUTING.md).
-
-## Release
-
-See [DEPLOY.md](./DEPLOY.md) for the npm publishing checklist.
+Development setup and verification commands are in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## License
 
