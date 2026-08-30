@@ -15,6 +15,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Redesigned Social Links as an asymmetric GitHub anchor with a Facebook, Instagram, and X side rail, and removed decorative status dots.
 - Replaced fictional product language with direct component names and action-based descriptions across the website.
 - Added plain-name exports such as `ProjectButton`, `CountryMap`, `SocialLinks`, `NavigationBar`, and `ProjectDetails` while preserving the earlier names as compatibility aliases.
 - Added shared Motus color, radius, duration, and easing tokens plus an automated consistency check.

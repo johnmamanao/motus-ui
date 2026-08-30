@@ -170,7 +170,7 @@ const PIECES: Piece[] = [
     id: 'social-relay',
     name: 'Social Links',
     category: 'Navigation',
-    description: 'Open four external destinations from a circular link group.',
+    description: 'Open GitHub and social profiles from one primary link and a compact side rail.',
     functionName: 'SocialRelay',
     source: socialRelaySource,
   },

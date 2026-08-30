@@ -118,7 +118,7 @@ import { SocialLinks } from 'motus-ui';
 <SocialLinks />;
 ```
 
-`SocialLinks` renders up to four circular links with accessible labels, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
+`SocialLinks` renders GitHub as a primary circular action with Facebook, Instagram, and X in a compact side rail. It includes accessible labels, focus feedback, and reduced-motion behavior. Pass `items` to use your own profile URLs.
 
 ### Portfolio components
 
@@ -192,10 +192,10 @@ Place an effect inside a positioned container and layer your content above it.
 
 ### `SocialLinks`
 
-| Prop        | Type                        | Default            | Description                               |
-| ----------- | --------------------------- | ------------------ | ----------------------------------------- |
-| `items`     | `readonly SocialLinkItem[]` | Motus destinations | Up to four customizable destination links |
-| `className` | `string`                    | `''`               | Adds classes to the outer navigation      |
+| Prop        | Type                        | Default         | Description                               |
+| ----------- | --------------------------- | --------------- | ----------------------------------------- |
+| `items`     | `readonly SocialLinkItem[]` | Social profiles | Up to four customizable destination links |
+| `className` | `string`                    | `''`            | Adds classes to the outer navigation      |
 
 `SocialLinkItem` requires `id`, `label`, and `href`, and accepts optional `meta`, `accent`, `icon`, and `target` fields.
 

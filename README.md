@@ -118,7 +118,7 @@ Included countries: Japan, Philippines, Italy, Iceland, Chile, India, Australia,
 
 ### Social links
 
-Render a compact cluster of four circular glass links. The defaults connect to the Motus repository, npm package, showcase, and issue tracker; pass `items` to replace them.
+Render an asymmetric set of circular glass links with GitHub as the primary action and Facebook, Instagram, and X in a compact side rail. Pass `items` to replace the default destinations with your own profile URLs.
 
 ```tsx
 import { SocialLinks } from 'motus-ui';
@@ -202,10 +202,10 @@ Place an effect inside a positioned container and layer your content above it.
 
 ### `SocialLinks`
 
-| Prop        | Type                        | Default            | Description                               |
-| ----------- | --------------------------- | ------------------ | ----------------------------------------- |
-| `items`     | `readonly SocialLinkItem[]` | Motus destinations | Up to four customizable destination links |
-| `className` | `string`                    | `''`               | Adds classes to the outer navigation      |
+| Prop        | Type                        | Default         | Description                               |
+| ----------- | --------------------------- | --------------- | ----------------------------------------- |
+| `items`     | `readonly SocialLinkItem[]` | Social profiles | Up to four customizable destination links |
+| `className` | `string`                    | `''`            | Adds classes to the outer navigation      |
 
 Each item accepts `id`, `label`, `href`, and optional `meta`, `accent`, `icon`, and `target` values.
 
