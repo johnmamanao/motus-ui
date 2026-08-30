@@ -3,10 +3,10 @@ import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { geoIdentity, geoPath } from 'd3-geo';
 import { feature } from 'topojson-client';
+import { presimplify, quantile, simplify } from 'topojson-simplify';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-const topology = JSON.parse(readFileSync(resolve(root, 'node_modules/world-atlas/countries-110m.json'), 'utf8'));
-const collection = feature(topology, topology.objects.countries);
+const sourceTopology = JSON.parse(readFileSync(resolve(root, 'node_modules/world-atlas/countries-50m.json'), 'utf8'));
 
 const selected = [
   { id: 'japan', name: 'Japan', capital: 'Tokyo', coordinates: [139.6917, 35.6895] },
@@ -19,6 +19,22 @@ const selected = [
   { id: 'brazil', name: 'Brazil', capital: 'Brasília', coordinates: [-47.8825, -15.7942] },
 ];
 
+const selectedNames = new Set(selected.map((country) => country.name));
+const selectedTopology = {
+  ...sourceTopology,
+  objects: {
+    countries: {
+      ...sourceTopology.objects.countries,
+      geometries: sourceTopology.objects.countries.geometries.filter((geometry) =>
+        selectedNames.has(geometry.properties?.name),
+      ),
+    },
+  },
+};
+const weightedTopology = presimplify(selectedTopology);
+const topology = simplify(weightedTopology, quantile(weightedTopology, 0.58));
+const collection = feature(topology, topology.objects.countries);
+
 const records = selected.map((country) => {
   const geometry = collection.features.find((candidate) => candidate.properties?.name === country.name);
   if (!geometry) throw new Error('Missing Natural Earth geometry for ' + country.name);
@@ -26,8 +42,8 @@ const records = selected.map((country) => {
     .reflectY(true)
     .fitExtent(
       [
-        [38, 62],
-        [262, 302],
+        [44, 66],
+        [256, 284],
       ],
       geometry,
     );
