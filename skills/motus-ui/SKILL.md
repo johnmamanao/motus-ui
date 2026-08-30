@@ -125,13 +125,22 @@ Country IDs: `japan`, `philippines`, `italy`, `iceland`, `chile`, `india`, `aust
 
 Use `AtlasReveal` for a location story, travel feature, regional profile, or editorial map. It renders its bundled SVG geometry without a map provider or network request. Keep the built-in selector unless another accessible control updates the controlled `country` prop.
 
+### `SocialRelay`
+
+| Prop        | Type                         | Default            | Guidance                                   |
+| ----------- | ---------------------------- | ------------------ | ------------------------------------------ |
+| `items`     | `readonly SocialRelayItem[]` | Motus destinations | Supply no more than four destination links |
+| `className` | `string`                     | `''`               | Extend the outer card layout               |
+
+Each item requires `id`, `label`, and `href`. Use `meta` for a short destination type, `accent` for a CSS hex color, `icon` for a React node, and `target` when a link should stay in the current tab. Preserve recognizable link labels and do not replace the visible focus treatment.
+
 ### `LiquidGlassCard`
 
 `LiquidGlassCard` accepts `children`, `className`, `draggable`, `borderRadius`, `blurIntensity`, `glowIntensity`, and `shadowIntensity`. Use it over visible imagery or color so the refraction and blur have something to affect.
 
 ### Preset portfolio pieces
 
-`PortfolioNav`, `ExpandableTab`, `AtlasReveal`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. `AtlasReveal` is configurable through its public country-selection props. The other presets keep their current content built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
+`PortfolioNav`, `ExpandableTab`, `AtlasReveal`, `SocialRelay`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. `AtlasReveal` and `SocialRelay` expose configuration props. The other presets keep their current content built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
 
 ### Background effects
 

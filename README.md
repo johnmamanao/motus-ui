@@ -116,6 +116,16 @@ import { AtlasReveal } from 'motus-ui';
 
 Included countries: Japan, Philippines, Italy, Iceland, Chile, India, Australia, and Brazil. The geometry is preprocessed from [Natural Earth public-domain data](https://www.naturalearthdata.com/about/terms-of-use/), so the component makes no runtime map request.
 
+### Social relay
+
+Render a four-destination glass link matrix. The defaults connect to the Motus repository, npm package, showcase, and issue tracker; pass `items` to replace them.
+
+```tsx
+import { SocialRelay } from 'motus-ui';
+
+<SocialRelay />;
+```
+
 ### Portfolio components
 
 Use the larger pieces directly when you need a complete portfolio interaction.
@@ -189,6 +199,15 @@ Place an effect inside a positioned container and layer your content above it.
 | `onCountryChange` | `(country: AtlasCountryId) => void` | `undefined` | Runs after a country is selected             |
 | `showSelector`    | `boolean`                           | `true`      | Shows the built-in accessible country picker |
 | `className`       | `string`                            | `''`        | Adds classes to the outer map card           |
+
+### `SocialRelay`
+
+| Prop        | Type                         | Default            | Description                               |
+| ----------- | ---------------------------- | ------------------ | ----------------------------------------- |
+| `items`     | `readonly SocialRelayItem[]` | Motus destinations | Up to four customizable destination links |
+| `className` | `string`                     | `''`               | Adds classes to the outer relay card      |
+
+Each item accepts `id`, `label`, `href`, and optional `meta`, `accent`, `icon`, and `target` values.
 
 ## Accessibility
 

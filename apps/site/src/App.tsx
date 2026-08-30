@@ -24,6 +24,7 @@ import magneticHalftoneSource from '../../../packages/motus-ui/src/effects/Magne
 import spectralVeilSource from '../../../packages/motus-ui/src/effects/SpectralVeil.tsx?raw';
 import expandableTabSource from '../../../packages/motus-ui/src/ExpandableTab.tsx?raw';
 import atlasRevealSource from '../../../packages/motus-ui/src/maps/AtlasReveal.tsx?raw';
+import socialRelaySource from '../../../packages/motus-ui/src/links/SocialRelay.tsx?raw';
 import clickKeySource from '../../../packages/motus-ui/src/buttons/ClickKey.tsx?raw';
 import resumeDownloadSource from '../../../packages/motus-ui/src/buttons/ResumeDownloadButton.tsx?raw';
 import copyLinkButtonSource from '../../../packages/motus-ui/src/buttons/CopyLinkButton.tsx?raw';
@@ -199,6 +200,17 @@ const PIECES: Piece[] = [
     source: atlasRevealSource,
   },
   {
+    id: 'social-relay',
+    name: 'Social Relay',
+    category: 'Navigation',
+    gesture: 'Hover or focus',
+    description: 'A glass link matrix with destination labels, status feedback, and colored signal accents.',
+    useCase: 'Social links',
+    functionName: 'SocialRelay',
+    runtime: 'Motion · Accessible links',
+    source: socialRelaySource,
+  },
+  {
     id: 'liquid-mesh',
     name: 'Silk Background',
     category: 'Backgrounds',
@@ -276,6 +288,7 @@ function usageFor(piece: Piece) {
     'copy-link': `import CopyLinkButton from '${path}';\n\nexport default function ShareProject() {\n  return <CopyLinkButton value="https://example.com/work" />;\n}`,
     'expandable-tab': `import { ExpandableTab } from '${path}';\n\nexport default function AppNavigation() {\n  return <ExpandableTab />;\n}`,
     'atlas-reveal': `import { AtlasReveal } from '${path}';\n\nexport default function LocationStory() {\n  return <AtlasReveal defaultCountry="philippines" />;\n}`,
+    'social-relay': `import { SocialRelay } from '${path}';\n\nexport default function SocialLinks() {\n  return <SocialRelay />;\n}`,
   };
   return (
     examples[piece.id] ??

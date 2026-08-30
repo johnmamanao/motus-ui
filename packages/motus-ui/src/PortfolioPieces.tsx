@@ -1513,6 +1513,7 @@ const ExpandableTabPiece = lazy(() =>
   import('./ExpandableTab.js').then((module) => ({ default: module.ExpandableTab })),
 );
 const AtlasRevealPiece = lazy(() => import('./maps/AtlasReveal.js'));
+const SocialRelayPiece = lazy(() => import('./links/SocialRelay.js'));
 const ClickKeyPiece = lazy(() => import('./buttons/ClickKey.js'));
 const ResumeDownloadButtonPiece = lazy(() => import('./buttons/ResumeDownloadButton.js'));
 const CopyLinkButtonPiece = lazy(() => import('./buttons/CopyLinkButton.js'));
@@ -1570,6 +1571,7 @@ export type PieceId =
   | 'glass-code'
   | 'expandable-tab'
   | 'atlas-reveal'
+  | 'social-relay'
   | 'click-key'
   | 'resume-download'
   | 'copy-link'
@@ -1607,6 +1609,14 @@ export function PortfolioPiece({
       <div className="flex min-h-[38rem] w-full items-center justify-center p-5 sm:p-8">
         <Suspense fallback={atlasFallback}>
           <AtlasRevealPiece />
+        </Suspense>
+      </div>
+    );
+  if (id === 'social-relay')
+    return (
+      <div className="flex min-h-[38rem] w-full items-center justify-center p-5 sm:p-8">
+        <Suspense fallback={atlasFallback}>
+          <SocialRelayPiece />
         </Suspense>
       </div>
     );

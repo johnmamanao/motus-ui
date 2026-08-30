@@ -8,6 +8,8 @@ export type { ResumeDownloadButtonProps } from './buttons/ResumeDownloadButton.j
 export { ExpandableTab } from './ExpandableTab.js';
 export { AtlasReveal, atlasCountryOptions } from './maps/AtlasReveal.js';
 export type { AtlasCountryId, AtlasRevealProps } from './maps/AtlasReveal.js';
+export { SocialRelay } from './links/SocialRelay.js';
+export type { SocialRelayItem, SocialRelayProps } from './links/SocialRelay.js';
 export { default as TextMotion } from './motion/TextMotion.js';
 export type { TextMotionProps, TextMotionVariant } from './motion/TextMotion.js';
 

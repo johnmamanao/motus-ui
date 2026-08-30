@@ -110,6 +110,16 @@ import { AtlasReveal } from 'motus-ui';
 
 `AtlasReveal` includes Japan, Philippines, Italy, Iceland, Chile, India, Australia, and Brazil. It accepts controlled and uncontrolled country selection, labels each capital, and respects reduced-motion preferences. Its bundled geometry is preprocessed from [Natural Earth public-domain data](https://www.naturalearthdata.com/about/terms-of-use/); no map service or runtime request is required.
 
+### Social relay
+
+```tsx
+import { SocialRelay } from 'motus-ui';
+
+<SocialRelay />;
+```
+
+`SocialRelay` renders up to four glass destination nodes with accessible external links, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
+
 ### Portfolio components
 
 ```tsx
@@ -179,6 +189,15 @@ Place an effect inside a positioned container and layer your content above it.
 | `onCountryChange` | `(country: AtlasCountryId) => void` | `undefined` | Runs after a country is selected             |
 | `showSelector`    | `boolean`                           | `true`      | Shows the built-in accessible country picker |
 | `className`       | `string`                            | `''`        | Adds classes to the outer map card           |
+
+### `SocialRelay`
+
+| Prop        | Type                         | Default            | Description                               |
+| ----------- | ---------------------------- | ------------------ | ----------------------------------------- |
+| `items`     | `readonly SocialRelayItem[]` | Motus destinations | Up to four customizable destination links |
+| `className` | `string`                     | `''`               | Adds classes to the outer relay card      |
+
+`SocialRelayItem` requires `id`, `label`, and `href`, and accepts optional `meta`, `accent`, `icon`, and `target` fields.
 
 ## Accessibility
 
