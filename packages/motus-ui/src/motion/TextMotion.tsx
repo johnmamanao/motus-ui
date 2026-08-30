@@ -20,12 +20,12 @@ const variants = [
   { id: 'pulse', label: 'Pulse' },
   { id: 'drop', label: 'Drop' },
   { id: 'fan', label: 'Fan' },
-  { id: 'imprint', label: 'Imprint' },
-  { id: 'slipstream', label: 'Slipstream' },
-  { id: 'relay', label: 'Relay' },
-  { id: 'foldline', label: 'Foldline' },
+  { id: 'imprint', label: 'Stamp' },
+  { id: 'slipstream', label: 'Trail' },
+  { id: 'relay', label: 'Pass' },
+  { id: 'foldline', label: 'Fold' },
   { id: 'baseline', label: 'Baseline' },
-  { id: 'depthline', label: 'Depthline' },
+  { id: 'depthline', label: 'Depth' },
   { id: 'ticker', label: 'Ticker' },
 ] as const;
 

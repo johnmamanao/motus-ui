@@ -90,7 +90,7 @@ Keep the text to one line. Let the surrounding layout provide responsive sizing 
 
 Prefer the built-in clipboard behavior for ordinary HTTPS pages. Provide `onCopy` when the application already owns the copy workflow.
 
-### `ResumeDownloadButton`
+### `DownloadButton`
 
 | Prop         | Type                          | Default          | Guidance                                                      |
 | ------------ | ----------------------------- | ---------------- | ------------------------------------------------------------- |
@@ -102,16 +102,16 @@ Prefer the built-in clipboard behavior for ordinary HTTPS pages. Provide `onCopy
 
 The native download starts after the transfer animation. Do not add a second artificial delay.
 
-### `ClickKey`
+### `ProjectButton`
 
 | Prop       | Type                          | Default     | Guidance                       |
 | ---------- | ----------------------------- | ----------- | ------------------------------ |
 | `onAction` | `() => void \| Promise<void>` | `undefined` | Run the project-opening action |
 | `disabled` | `boolean`                     | `false`     | Disable action and sound       |
 
-`ClickKey` has a fixed "Open project" label, a split-flap scanning state, and a short activation cue. Use it for that intent; do not present it as a generic text button.
+`ProjectButton` has a fixed "Open project" label, a split-flap state, and a short activation cue. Use it for that intent; do not present it as a generic text button.
 
-### `AtlasReveal`
+### `CountryMap`
 
 | Prop              | Type                                | Default     | Guidance                                           |
 | ----------------- | ----------------------------------- | ----------- | -------------------------------------------------- |
@@ -123,14 +123,14 @@ The native download starts after the transfer animation. Do not add a second art
 
 Country IDs: `japan`, `philippines`, `italy`, `iceland`, `chile`, `india`, `australia`, and `brazil`.
 
-Use `AtlasReveal` for a location story, travel feature, regional profile, or editorial map. It renders its bundled SVG geometry without a map provider or network request. Keep the built-in selector unless another accessible control updates the controlled `country` prop.
+Use `CountryMap` for a location story, travel feature, regional profile, or editorial map. It renders its bundled SVG geometry without a map provider or network request. Keep the built-in selector unless another accessible control updates the controlled `country` prop.
 
-### `SocialRelay`
+### `SocialLinks`
 
-| Prop        | Type                         | Default            | Guidance                                   |
-| ----------- | ---------------------------- | ------------------ | ------------------------------------------ |
-| `items`     | `readonly SocialRelayItem[]` | Motus destinations | Supply no more than four destination links |
-| `className` | `string`                     | `''`               | Extend the outer navigation layout         |
+| Prop        | Type                        | Default            | Guidance                                   |
+| ----------- | --------------------------- | ------------------ | ------------------------------------------ |
+| `items`     | `readonly SocialLinkItem[]` | Motus destinations | Supply no more than four destination links |
+| `className` | `string`                    | `''`               | Extend the outer navigation layout         |
 
 Each item requires `id`, `label`, and `href`. Use `meta` for a short destination type, `accent` for a CSS hex color, `icon` for a React node, and `target` when a link should stay in the current tab. Preserve recognizable link labels and do not replace the visible focus treatment.
 
@@ -140,19 +140,19 @@ Each item requires `id`, `label`, and `href`. Use `meta` for a short destination
 
 ### Preset portfolio pieces
 
-`PortfolioNav`, `ExpandableTab`, `AtlasReveal`, `SocialRelay`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. `AtlasReveal` and `SocialRelay` expose configuration props. The other presets keep their current content built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
+`NavigationBar`, `ExpandableTabs`, `CountryMap`, `SocialLinks`, `ProjectDetails`, `ProjectList`, `SkillsList`, `ContactPanel`, and `TechStack` are complete interactive presets with no required props. `ExpandableTabs` renders a responsive accordion gallery with expanding tab panels. `CountryMap` and `SocialLinks` expose configuration props. The earlier export names remain available only as compatibility aliases. Use the plain names for new work.
 
 ### Background effects
 
-`SilkBackground`, `HalftoneBackground`, and `LightBackground` are interactive canvas effects. Mount them inside a container with an explicit width and height, then position foreground content in a higher layer.
+`FlowBackground`, `HalftoneBackground`, and `LightTrails` are interactive canvas effects. Mount them inside a container with an explicit width and height, then position foreground content in a higher layer.
 
 ```tsx
-import { SilkBackground } from 'motus-ui';
+import { FlowBackground } from 'motus-ui';
 
 export function HeroBackdrop() {
   return (
     <section style={{ position: 'relative', minHeight: 480 }}>
-      <SilkBackground />
+      <FlowBackground />
       <div style={{ position: 'relative', zIndex: 1 }}>Hero content</div>
     </section>
   );
@@ -195,7 +195,7 @@ export function HeroBackdrop() {
 **Click sound does not play**
 
 - Browsers can block audio until a user gesture initializes audio playback.
-- Do not trigger `ClickKey` programmatically and expect sound before interaction.
+- Do not trigger `ProjectButton` programmatically and expect sound before interaction.
 
 **A background is invisible or collapsed**
 

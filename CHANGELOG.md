@@ -13,6 +13,12 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Added six original Text Motion variants: `imprint`, `slipstream`, `relay`, `foldline`, `baseline`, and `depthline`.
 - Added `SocialRelay`, an original circular glass navigation cluster with configurable links, icons, accents, and accessible focus feedback.
 
+### Changed
+
+- Replaced fictional product language with direct component names and action-based descriptions across the website.
+- Added plain-name exports such as `ProjectButton`, `CountryMap`, `SocialLinks`, `NavigationBar`, and `ProjectDetails` while preserving the earlier names as compatibility aliases.
+- Added shared Motus color, radius, duration, and easing tokens plus an automated consistency check.
+
 ## 0.1.4 - 2026-08-30
 
 ### Changed

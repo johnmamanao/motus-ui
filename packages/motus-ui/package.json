@@ -1,7 +1,7 @@
 {
   "name": "motus-ui",
   "version": "0.1.5",
-  "description": "Expressive React components with polished motion and clear interaction feedback.",
+  "description": "Animated React components for portfolio websites.",
   "keywords": [
     "react",
     "components",

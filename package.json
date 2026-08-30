@@ -14,7 +14,8 @@
     "build": "npm run build:package && npm run build:site",
     "build:package": "npm run build --workspace motus-ui",
     "build:site": "npm run build --workspace @motus-ui/site",
-    "check": "npm run check --workspace motus-ui && npm run check --workspace @motus-ui/site",
+    "check": "npm run check --workspace motus-ui && npm run check --workspace @motus-ui/site && npm run check:consistency",
+    "check:consistency": "node scripts/check-consistency.mjs",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "verify:package": "node scripts/verify-package.mjs"

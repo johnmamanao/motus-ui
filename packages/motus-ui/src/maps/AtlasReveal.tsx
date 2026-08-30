@@ -1,5 +1,6 @@
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { type KeyboardEvent, useEffect, useId, useRef, useState } from 'react';
+import { MOTUS_DURATION, MOTUS_EASE } from '../system.js';
 import { atlasCountries, type AtlasCountryId } from './atlasData.js';
 
 export type { AtlasCountryId } from './atlasData.js';
@@ -100,7 +101,7 @@ function CountryPicker({
           {String(activeIndex + 1).padStart(2, '0')}
         </span>
         <span className="min-w-0">
-          <span className="block font-mono text-[7px] uppercase tracking-[0.16em] text-white/35">Country index</span>
+          <span className="block font-mono text-[7px] uppercase tracking-[0.16em] text-white/35">Country</span>
           <strong className="mt-0.5 block truncate text-[11px] font-semibold">{active.label}</strong>
         </span>
         <svg
@@ -122,11 +123,11 @@ function CountryPicker({
             initial={reduceMotion ? false : { opacity: 0, y: -8, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={reduceMotion ? undefined : { opacity: 0, y: -5, scale: 0.985 }}
-            transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.2, 0, 0, 1] }}
+            transition={{ duration: reduceMotion ? 0 : MOTUS_DURATION.standard, ease: MOTUS_EASE }}
           >
             <div className="flex items-center justify-between border-b border-white/10 px-2 pb-2 pt-1">
-              <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/42">Select territory</span>
-              <span className="font-mono text-[8px] text-[#efbd6c]">08 records</span>
+              <span className="font-mono text-[8px] uppercase tracking-[0.18em] text-white/42">Choose a country</span>
+              <span className="font-mono text-[8px] text-[#efbd6c]">8 countries</span>
             </div>
             <div className="mt-2 grid grid-cols-2 gap-1">
               {atlasCountries.map((item, index) => {
@@ -207,9 +208,9 @@ export function AtlasReveal({
       <header className="flex min-h-16 items-center justify-between gap-4 px-3 py-2 text-[#f4efe3]">
         <div className="min-w-0">
           <span className="block font-mono text-[8px] font-medium uppercase tracking-[0.22em] text-[#f4efe3]/45">
-            Cartography / 01
+            Country map
           </span>
-          <h2 className="mt-1 text-sm font-semibold tracking-[-0.02em]">Atlas Reveal</h2>
+          <h2 className="mt-1 text-sm font-semibold tracking-[-0.02em]">{active.label}</h2>
         </div>
         {showSelector && (
           <CountryPicker

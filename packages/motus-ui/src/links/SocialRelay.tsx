@@ -1,6 +1,7 @@
 import { CircleHelp, Github, Globe2, PackageOpen } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { type ReactNode, useState } from 'react';
+import { MOTUS_DURATION, MOTUS_EASE } from '../system.js';
 
 export type SocialRelayItem = {
   id: string;
@@ -95,15 +96,15 @@ export function SocialRelay({ items = defaultItems, className = '' }: SocialRela
                 whileTap={reduceMotion ? undefined : { scale: 0.94, y: 0, rotate: 0 }}
                 transition={{
                   delay: reduceMotion ? 0 : index * 0.045,
-                  duration: reduceMotion ? 0 : 0.26,
-                  ease: [0.2, 0, 0, 1],
+                  duration: reduceMotion ? 0 : MOTUS_DURATION.standard,
+                  ease: MOTUS_EASE,
                 }}
               >
                 <motion.span
                   className="absolute inset-[9px] rounded-full border"
                   style={{ borderColor: `${accent}22` }}
                   animate={active && !reduceMotion ? { rotate: 24, scale: 1.03 } : { rotate: 0, scale: 1 }}
-                  transition={{ duration: 0.24, ease: [0.2, 0, 0, 1] }}
+                  transition={{ duration: MOTUS_DURATION.standard, ease: MOTUS_EASE }}
                   aria-hidden="true"
                 />
                 <motion.span
@@ -111,7 +112,7 @@ export function SocialRelay({ items = defaultItems, className = '' }: SocialRela
                   animate={
                     active && !reduceMotion ? { x: ['0%', '360%'], opacity: [0, 0.55, 0] } : { x: '0%', opacity: 0 }
                   }
-                  transition={{ duration: 0.54, ease: [0.2, 0, 0, 1] }}
+                  transition={{ duration: MOTUS_DURATION.slow, ease: MOTUS_EASE }}
                   aria-hidden="true"
                 />
                 <motion.span
@@ -119,7 +120,7 @@ export function SocialRelay({ items = defaultItems, className = '' }: SocialRela
                   animate={
                     active && !reduceMotion ? { scale: 1.08, rotate: index % 2 ? -4 : 4 } : { scale: 1, rotate: 0 }
                   }
-                  transition={{ duration: 0.18, ease: [0.2, 0, 0, 1] }}
+                  transition={{ duration: MOTUS_DURATION.quick, ease: MOTUS_EASE }}
                 >
                   {item.icon}
                 </motion.span>

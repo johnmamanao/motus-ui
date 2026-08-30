@@ -57,12 +57,12 @@ const TEXT_MOTION_VARIANTS: { id: TextMotionVariant; label: string }[] = [
   { id: 'pulse', label: 'Pulse' },
   { id: 'drop', label: 'Drop' },
   { id: 'fan', label: 'Fan' },
-  { id: 'imprint', label: 'Imprint' },
-  { id: 'slipstream', label: 'Slipstream' },
-  { id: 'relay', label: 'Relay' },
-  { id: 'foldline', label: 'Foldline' },
+  { id: 'imprint', label: 'Stamp' },
+  { id: 'slipstream', label: 'Trail' },
+  { id: 'relay', label: 'Pass' },
+  { id: 'foldline', label: 'Fold' },
   { id: 'baseline', label: 'Baseline' },
-  { id: 'depthline', label: 'Depthline' },
+  { id: 'depthline', label: 'Depth' },
   { id: 'ticker', label: 'Ticker' },
 ];
 
@@ -70,177 +70,132 @@ type Piece = {
   id: PieceId;
   name: string;
   category: string;
-  gesture: string;
   description: string;
-  useCase: string;
   functionName: string;
   install?: string;
-  runtime?: string;
   source?: string;
 };
 const PIECES: Piece[] = [
   {
     id: 'text-motion',
-    name: 'Text Motion',
-    category: 'Motion',
-    gesture: 'Choose a style',
-    description: 'A transparent text line with twenty-five original motion variants.',
-    useCase: 'Animated headline',
+    name: 'Text Animations',
+    category: 'Animation',
+    description: 'Animate a line of text with one of twenty-five selectable effects.',
     functionName: 'TextMotion',
-    runtime: 'GSAP',
     source: textMotionSource,
   },
   {
     id: 'lens-dock',
-    name: 'Portfolio Nav',
+    name: 'Navigation Bar',
     category: 'Navigation',
-    gesture: 'Select',
-    description: 'A compact navigation bar with an animated active item.',
-    useCase: 'Main navigation',
+    description: 'Move an active indicator between portfolio links.',
     functionName: 'RibbonNavigation',
   },
   {
     id: 'click-key',
-    name: 'Press Button',
+    name: 'Project Button',
     category: 'Buttons',
-    gesture: 'Activate',
-    description: 'A split-flap project control with a scanning activation state.',
-    useCase: 'Primary action',
+    description: 'Open a project with a split-flap transition.',
     functionName: 'ClickKey',
-    runtime: 'Motion · Web Audio',
     source: clickKeySource,
   },
   {
     id: 'resume-download',
-    name: 'Resume Download',
+    name: 'Download Button',
     category: 'Buttons',
-    gesture: 'Download',
-    description: 'Downloads a résumé after the file animation finishes.',
-    useCase: 'Résumé',
+    description: 'Animate a file, then download it.',
     functionName: 'ResumeDownloadButton',
-    runtime: 'Motion · Lottie · Native download',
     source: resumeDownloadSource,
   },
   {
     id: 'copy-link',
-    name: 'Copy Link',
+    name: 'Copy Link Button',
     category: 'Buttons',
-    gesture: 'Copy',
-    description: 'Copies a project link and confirms it.',
-    useCase: 'Share',
+    description: 'Copy a URL and show a confirmation state.',
     functionName: 'CopyLinkButton',
-    runtime: 'Motion · Lottie · Clipboard API',
     source: copyLinkButtonSource,
   },
   {
     id: 'refraction-card',
-    name: 'Project Card',
+    name: 'Project Details',
     category: 'Projects',
-    gesture: 'Open',
-    description: 'A project card that opens to show details.',
-    useCase: 'Featured project',
+    description: 'Open a project summary to reveal its details.',
     functionName: 'ProjectAperture',
   },
   {
     id: 'mercury-tabs',
     name: 'Skills List',
     category: 'Content',
-    gesture: 'Focus',
-    description: 'A skills list that expands the focused item.',
-    useCase: 'Skills',
+    description: 'Expand a skill to show its description.',
     functionName: 'PressureStack',
   },
   {
     id: 'viscous-reel',
     name: 'Project List',
     category: 'Projects',
-    gesture: 'Preview',
-    description: 'A project list with a responsive preview.',
-    useCase: 'Projects',
+    description: 'Preview project details while moving through a list.',
     functionName: 'SpatialIndex',
   },
   {
     id: 'prism-contact',
-    name: 'Contact Card',
+    name: 'Contact Panel',
     category: 'Contact',
-    gesture: 'Open',
-    description: 'A contact card with email and copy actions.',
-    useCase: 'Contact',
+    description: 'Reveal email and copy actions.',
     functionName: 'ContactCapsule',
   },
   {
     id: 'glass-code',
     name: 'Tech Stack',
     category: 'Code',
-    gesture: 'Inspect',
-    description: 'A simple list of the tools used in a project.',
-    useCase: 'Project stack',
+    description: 'Switch between the tools used in a project.',
     functionName: 'BuildReceipt',
   },
   {
     id: 'expandable-tab',
     name: 'Expandable Tabs',
     category: 'Navigation',
-    gesture: 'Select',
-    description: 'An accordion gallery where the selected tab expands into focus.',
-    useCase: 'Section navigation',
+    description: 'Expand the selected tab to show its content.',
     functionName: 'ExpandableTab',
-    runtime: 'Motion · Accessible tabs',
     source: expandableTabSource,
   },
   {
     id: 'atlas-reveal',
-    name: 'Atlas Reveal',
+    name: 'Country Map',
     category: 'Maps',
-    gesture: 'Choose a country',
-    description: 'An artistic country map with animated boundaries, a capital label, and a compass rose.',
-    useCase: 'Location story',
+    description: 'Choose a country to animate its outline, capital, and compass.',
     functionName: 'AtlasReveal',
-    runtime: 'Motion · SVG · Natural Earth',
     source: atlasRevealSource,
   },
   {
     id: 'social-relay',
-    name: 'Social Relay',
+    name: 'Social Links',
     category: 'Navigation',
-    gesture: 'Hover or focus',
-    description: 'A compact circular link cluster with glass surfaces, colored signal accents, and tactile motion.',
-    useCase: 'Social links',
+    description: 'Open four external destinations from a circular link group.',
     functionName: 'SocialRelay',
-    runtime: 'Motion · Accessible links',
     source: socialRelaySource,
   },
   {
     id: 'liquid-mesh',
-    name: 'Silk Background',
+    name: 'Flow Background',
     category: 'Backgrounds',
-    gesture: 'Pointer',
-    description: 'A light animated background that follows the pointer.',
-    useCase: 'Page background',
+    description: 'Render a flowing canvas background that follows the pointer.',
     functionName: 'OpticalSilk',
-    runtime: 'Canvas 2D · GSAP ticker',
     source: mercuryFlowSource,
   },
   {
     id: 'chromatic-lens',
     name: 'Halftone Background',
     category: 'Backgrounds',
-    gesture: 'Pointer',
-    description: 'A halftone background that reacts to the pointer.',
-    useCase: 'Section background',
+    description: 'Render a halftone field that reacts to the pointer.',
     functionName: 'MagneticHalftone',
-    runtime: 'Canvas 2D · GSAP ticker',
     source: magneticHalftoneSource,
   },
   {
     id: 'solar-fabric',
-    name: 'Light Background',
+    name: 'Light Trails',
     category: 'Backgrounds',
-    gesture: 'Ambient motion',
-    description: 'A soft animated background for hero sections.',
-    useCase: 'Hero background',
+    description: 'Render slow-moving light trails behind page content.',
     functionName: 'SpectralVeil',
-    runtime: 'Canvas 2D · GSAP ticker',
     source: spectralVeilSource,
   },
 ];
@@ -280,19 +235,32 @@ function slugFor(piece: Piece) {
     .replace(/^-|-$/g, '');
 }
 function usageFor(piece: Piece) {
-  const path = `@/components/motus-ui/${slugFor(piece)}`;
+  const path = 'motus-ui';
+  const publicNames: Partial<Record<PieceId, string>> = {
+    'lens-dock': 'NavigationBar',
+    'refraction-card': 'ProjectDetails',
+    'prism-contact': 'ContactPanel',
+    'expandable-tab': 'ExpandableTabs',
+    'atlas-reveal': 'CountryMap',
+    'social-relay': 'SocialLinks',
+    'click-key': 'ProjectButton',
+    'resume-download': 'DownloadButton',
+    'liquid-mesh': 'FlowBackground',
+    'solar-fabric': 'LightTrails',
+  };
+  const publicName = publicNames[piece.id] ?? piece.functionName;
   const examples: Partial<Record<PieceId, string>> = {
     'text-motion': `import { TextMotion } from '${path}';\n\nexport default function WorkHeading() {\n  return (\n    <TextMotion\n      text="SELECTED WORK"\n      alternateText="CREATIVE CODE"\n      variant="ticker"\n    />\n  );\n}`,
-    'click-key': `import ClickKey from '${path}';\n\nexport default function PrimaryAction() {\n  return <ClickKey onAction={() => console.log('Pressed')} />;\n}`,
-    'resume-download': `import ResumeDownloadButton from '${path}';\n\nexport default function ResumeLink() {\n  return <ResumeDownloadButton href="/resume.pdf" filename="resume.pdf" />;\n}`,
+    'click-key': `import { ProjectButton } from '${path}';\n\nexport default function ProjectAction() {\n  return <ProjectButton onAction={() => console.log('View project')} />;\n}`,
+    'resume-download': `import { DownloadButton } from '${path}';\n\nexport default function ResumeLink() {\n  return <DownloadButton href="/resume.pdf" filename="resume.pdf" />;\n}`,
     'copy-link': `import CopyLinkButton from '${path}';\n\nexport default function ShareProject() {\n  return <CopyLinkButton value="https://example.com/work" />;\n}`,
-    'expandable-tab': `import { ExpandableTab } from '${path}';\n\nexport default function AppNavigation() {\n  return <ExpandableTab />;\n}`,
-    'atlas-reveal': `import { AtlasReveal } from '${path}';\n\nexport default function LocationStory() {\n  return <AtlasReveal defaultCountry="philippines" />;\n}`,
-    'social-relay': `import { SocialRelay } from '${path}';\n\nexport default function SocialLinks() {\n  return <SocialRelay />;\n}`,
+    'expandable-tab': `import { ExpandableTabs } from '${path}';\n\nexport default function SectionTabs() {\n  return <ExpandableTabs />;\n}`,
+    'atlas-reveal': `import { CountryMap } from '${path}';\n\nexport default function LocationStory() {\n  return <CountryMap defaultCountry="philippines" />;\n}`,
+    'social-relay': `import { SocialLinks } from '${path}';\n\nexport default function FooterLinks() {\n  return <SocialLinks />;\n}`,
   };
   return (
     examples[piece.id] ??
-    `import { ${piece.functionName} } from '${path}';\n\nexport default function Example() {\n  return <${piece.functionName} />;\n}`
+    `import { ${publicName} } from '${path}';\n\nexport default function Example() {\n  return <${publicName} />;\n}`
   );
 }
 function Mark({ tone = 'light', className = '' }: { tone?: 'light' | 'dark'; className?: string }) {
@@ -446,12 +414,12 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
           <div className="home-symbol">
             <HeroMotionIcon tone="light" />
           </div>
-          <p className="home-kicker">Motus · React component library</p>
+          <p className="home-kicker">Animated React components</p>
           <h1 id="home-title">
             <span>Motion, without</span>
             <span>the mess.</span>
           </h1>
-          <p className="home-lead">Portfolio components you can try, copy, and change.</p>
+          <p className="home-lead">Preview each component, install the package, and adapt it to your project.</p>
           <div className="home-actions">
             <button className="home-primary-action" onClick={() => navigate('/components')}>
               Browse components <ArrowRight size={17} />
@@ -468,9 +436,9 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
         </section>
         <section className="home-showcase" id="featured" aria-labelledby="library-title">
           <header className="home-showcase-head">
-            <p>Live components</p>
-            <h2 id="library-title">Try one here.</h2>
-            <span>These are the real components. Click, drag, type, or switch between them below.</span>
+            <p>Featured components</p>
+            <h2 id="library-title">Preview a component.</h2>
+            <span>Use the controls in each preview, then open the component for its code and usage.</span>
           </header>
           <div className="home-showcase-window">
             <div className="home-showcase-bar">
@@ -498,7 +466,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
                   <div
                     className={`home-variant-menu ${homeVariantMenuOpen ? 'open' : ''}`}
                     role="listbox"
-                    aria-label="Text Motion animation variants"
+                    aria-label="Text animation variants"
                   >
                     <header>
                       <strong>Choose animation</strong>
@@ -526,7 +494,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
                   </div>
                 </div>
               ) : (
-                <em>Live preview</em>
+                <em>Preview</em>
               )}
             </div>
             <div className="home-showcase-stage" key={showcaseId}>
@@ -556,7 +524,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
               <p>{activeShowcase.piece.description}</p>
             </div>
             <button className="home-showcase-open" onClick={() => navigate(`/components/${activeShowcase.piece.id}`)}>
-              Open {activeShowcase.piece.name} <ArrowUpRight size={16} />
+              View details <ArrowUpRight size={16} />
             </button>
           </div>
         </section>
@@ -568,7 +536,7 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
               <Mark />
               <span>Motus</span>
             </button>
-            <p>Motion-focused React components for expressive portfolio interfaces.</p>
+            <p>Interactive React components for portfolio websites.</p>
           </div>
         </div>
         <div className="home-footer-meta">
@@ -603,7 +571,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
   const variantPicker = useRef<HTMLDivElement>(null);
   const source = sourceFor(piece);
   const usage = usageFor(piece);
-  const install = piece.install ?? `npx @motus-ui/cli@latest add ${slugFor(piece)}`;
+  const install = piece.install ?? 'npm install motus-ui';
   const categories = [...new Set(PIECES.map((item) => item.category))];
 
   useEffect(() => {
@@ -740,7 +708,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
             <span>Motus</span>
           </button>
           <div className="motus-lab-identity">
-            <span>Component studio</span>
+            <span>Components</span>
             <i aria-hidden="true">/</i>
             <strong>{piece.name}</strong>
           </div>
@@ -827,13 +795,13 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
         </header>
 
         <main className="motus-lab-body">
-          <section className="motus-lab-stage" aria-label={piece.name + ' interactive preview'}>
+          <section className="motus-lab-stage" aria-label={piece.name + ' preview'}>
             <div className="motus-lab-stage-meta top-left" aria-hidden="true">
-              <span>Interactive preview</span>
+              <span>Preview</span>
               <i />
             </div>
             <span className="motus-lab-stage-meta top-right" aria-hidden="true">
-              M–{String(PIECES.indexOf(piece) + 1).padStart(2, '0')}
+              {String(PIECES.indexOf(piece) + 1).padStart(2, '0')} / {PIECES.length}
             </span>
             <div className="motus-lab-preview-piece" data-piece={piece.id}>
               <PortfolioPiece id={piece.id} textMotionVariant={textMotionVariant} key={piece.id + '-' + previewKey} />
@@ -862,15 +830,15 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
           >
             <header className="motus-lab-panel-head">
               <div>
-                <span>Library</span>
-                <strong>Browse components</strong>
+                <span>Components</span>
+                <strong>All components</strong>
               </div>
               <button aria-label="Close component catalog" onClick={() => setSidebarOpen(false)}>
                 <X size={16} />
               </button>
             </header>
             <button className="motus-lab-group-toggle" aria-pressed={grouped} onClick={() => setGrouped(!grouped)}>
-              <span>View</span>
+              <span>Group</span>
               <i>
                 {grouped ? 'By category' : 'All components'}
                 <ChevronsUpDown size={13} />
@@ -887,7 +855,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
                 : renderSection('All', PIECES)}
             </nav>
             <div className="motus-lab-install">
-              <span>Install {piece.name}</span>
+              <span>Install package</span>
               <button onClick={() => copy(install, 'install')}>
                 <code>{install}</code>
                 {copied === 'install' ? <AnimatedCheck /> : <Clipboard size={14} />}
@@ -903,7 +871,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
           >
             <header className="motus-lab-panel-head">
               <div>
-                <span>Documentation</span>
+                <span>Code</span>
                 <strong>{drawerView === 'source' ? slugFor(piece) + '.tsx' : 'Use ' + piece.name}</strong>
               </div>
               <div className="motus-lab-panel-actions">
@@ -957,8 +925,8 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
             ) : (
               <div className="motus-lab-usage">
                 <header>
-                  <span>Quick start</span>
-                  <h2>Use {piece.name}</h2>
+                  <span>Usage</span>
+                  <h2>{piece.name}</h2>
                   <p>{piece.description}</p>
                 </header>
                 <section>

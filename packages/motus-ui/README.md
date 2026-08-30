@@ -4,7 +4,7 @@
 [![website](https://img.shields.io/badge/website-live-111111)](https://motus-ui.johnmamanao.com)
 [![license: MIT](https://img.shields.io/badge/license-MIT-67b718)](https://github.com/johnmamanao/motus-ui/blob/main/LICENSE)
 
-Motion-focused React components for portfolios and creative interfaces. Motus includes animated text, tactile actions, navigation, project displays, and ambient visual effects.
+React components for portfolio websites. Motus includes animated text, buttons, navigation, project displays, and canvas backgrounds.
 
 Built with React, TypeScript, Tailwind CSS, GSAP, Motion, and Lottie. The package is ESM-only and includes TypeScript declarations.
 
@@ -50,7 +50,7 @@ npx skills add https://github.com/johnmamanao/motus-ui --skill motus-ui
 
 ## Usage
 
-### Text motion
+### Text animations
 
 ```tsx
 import { TextMotion } from 'motus-ui';
@@ -78,69 +78,69 @@ import { CopyLinkButton } from 'motus-ui';
 
 Pass `onCopy` to replace the built-in browser clipboard behavior.
 
-### Resume download
+### Download button
 
 The download begins after the transfer animation completes.
 
 ```tsx
-import { ResumeDownloadButton } from 'motus-ui';
+import { DownloadButton } from 'motus-ui';
 
-<ResumeDownloadButton href="/resume.pdf" filename="jane-doe-resume.pdf" fileLabel="PDF · 184 KB" />;
+<DownloadButton href="/resume.pdf" filename="jane-doe-resume.pdf" fileLabel="PDF · 184 KB" />;
 ```
 
 Pass `onDownload` when the file comes from an API or another custom source.
 
-### Press button
+### Project button
 
 ```tsx
-import { ClickKey } from 'motus-ui';
+import { ProjectButton } from 'motus-ui';
 
-<ClickKey onAction={() => console.log('Open project')} />;
+<ProjectButton onAction={() => console.log('Open project')} />;
 ```
 
-`ClickKey` uses a split-flap information panel, scanning activation state, and short audio cue to confirm activation. Audio begins only after user interaction.
+`ProjectButton` uses a split-flap transition and a short audio cue to confirm activation. Audio begins only after user interaction.
 
-### Atlas reveal
+### Country map
 
 ```tsx
-import { AtlasReveal } from 'motus-ui';
+import { CountryMap } from 'motus-ui';
 
-<AtlasReveal defaultCountry="philippines" />;
+<CountryMap defaultCountry="philippines" />;
 ```
 
-`AtlasReveal` includes Japan, Philippines, Italy, Iceland, Chile, India, Australia, and Brazil. It accepts controlled and uncontrolled country selection, labels each capital, and respects reduced-motion preferences. Its bundled geometry is preprocessed from [Natural Earth public-domain data](https://www.naturalearthdata.com/about/terms-of-use/); no map service or runtime request is required.
+`CountryMap` includes Japan, Philippines, Italy, Iceland, Chile, India, Australia, and Brazil. It accepts controlled and uncontrolled country selection, labels each capital, and respects reduced-motion preferences. Its bundled geometry is preprocessed from [Natural Earth public-domain data](https://www.naturalearthdata.com/about/terms-of-use/); no map service or runtime request is required.
 
-### Social relay
+### Social links
 
 ```tsx
-import { SocialRelay } from 'motus-ui';
+import { SocialLinks } from 'motus-ui';
 
-<SocialRelay />;
+<SocialLinks />;
 ```
 
-`SocialRelay` renders up to four circular glass links with accessible labels, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
+`SocialLinks` renders up to four circular links with accessible labels, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
 
 ### Portfolio components
 
 ```tsx
 import {
-  AtlasReveal,
-  ContactCard,
-  ExpandableTab,
-  PortfolioNav,
-  ProjectCard,
+  ContactPanel,
+  CountryMap,
+  ExpandableTabs,
+  NavigationBar,
+  ProjectDetails,
   ProjectList,
   SkillsList,
   TechStack,
 } from 'motus-ui';
 ```
 
-These pieces can be rendered directly without required props. `ExpandableTab` is an accessible accordion gallery where the selected tab expands into focus. `LiquidGlassCard` and `RouteLens` are also exported for composed layouts.
+These pieces can be rendered directly without required props. The earlier export names remain available as compatibility aliases.
 
 ### Background effects
 
 ```tsx
-import { HalftoneBackground, LightBackground, SilkBackground } from 'motus-ui';
+import { FlowBackground, HalftoneBackground, LightTrails } from 'motus-ui';
 ```
 
 Place an effect inside a positioned container and layer your content above it.
@@ -163,7 +163,7 @@ Place an effect inside a positioned container and layer your content above it.
 | `onCopy`   | `(value: string) => void \| Promise<void>` | Browser clipboard            | Custom copy handler           |
 | `disabled` | `boolean`                                  | `false`                      | Disables the action           |
 
-### `ResumeDownloadButton`
+### `DownloadButton`
 
 | Prop         | Type                          | Default          | Description             |
 | ------------ | ----------------------------- | ---------------- | ----------------------- |
@@ -173,14 +173,14 @@ Place an effect inside a positioned container and layer your content above it.
 | `onDownload` | `() => void \| Promise<void>` | Native download  | Custom download handler |
 | `disabled`   | `boolean`                     | `false`          | Disables the action     |
 
-### `ClickKey`
+### `ProjectButton`
 
 | Prop       | Type                          | Default     | Description                     |
 | ---------- | ----------------------------- | ----------- | ------------------------------- |
 | `onAction` | `() => void \| Promise<void>` | `undefined` | Runs when the button is clicked |
 | `disabled` | `boolean`                     | `false`     | Disables the action and sound   |
 
-### `AtlasReveal`
+### `CountryMap`
 
 | Prop              | Type                                | Default     | Description                                  |
 | ----------------- | ----------------------------------- | ----------- | -------------------------------------------- |
@@ -190,14 +190,14 @@ Place an effect inside a positioned container and layer your content above it.
 | `showSelector`    | `boolean`                           | `true`      | Shows the built-in accessible country picker |
 | `className`       | `string`                            | `''`        | Adds classes to the outer map card           |
 
-### `SocialRelay`
+### `SocialLinks`
 
-| Prop        | Type                         | Default            | Description                               |
-| ----------- | ---------------------------- | ------------------ | ----------------------------------------- |
-| `items`     | `readonly SocialRelayItem[]` | Motus destinations | Up to four customizable destination links |
-| `className` | `string`                     | `''`               | Adds classes to the outer navigation      |
+| Prop        | Type                        | Default            | Description                               |
+| ----------- | --------------------------- | ------------------ | ----------------------------------------- |
+| `items`     | `readonly SocialLinkItem[]` | Motus destinations | Up to four customizable destination links |
+| `className` | `string`                    | `''`               | Adds classes to the outer navigation      |
 
-`SocialRelayItem` requires `id`, `label`, and `href`, and accepts optional `meta`, `accent`, `icon`, and `target` fields.
+`SocialLinkItem` requires `id`, `label`, and `href`, and accepts optional `meta`, `accent`, `icon`, and `target` fields.
 
 ## Accessibility
 

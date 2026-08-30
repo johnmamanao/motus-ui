@@ -1,26 +1,27 @@
 import { ArrowUpRight, CircleDot, Gauge, Layers3, Sparkles } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { type KeyboardEvent, useId, useState } from 'react';
+import { MOTUS_DURATION, MOTUS_EASE } from './system.js';
 
 const panels = [
   {
-    id: 'focus',
-    label: 'Focus',
-    eyebrow: 'Attention',
-    title: 'Direct the eye.',
-    description: 'Let one clear movement establish hierarchy before the rest of the interface responds.',
+    id: 'layout',
+    label: 'Layout',
+    eyebrow: 'Hierarchy',
+    title: 'Set the hierarchy.',
+    description: 'Use size and position to make the active section clear.',
     accent: '#c9ff67',
     wash: '#efffd1',
     icon: CircleDot,
-    metric: '120 ms',
-    metricLabel: 'response',
+    metric: '01',
+    metricLabel: 'active tab',
   },
   {
-    id: 'rhythm',
-    label: 'Rhythm',
+    id: 'timing',
+    label: 'Timing',
     eyebrow: 'Timing',
-    title: 'Move with intent.',
-    description: 'A measured tempo keeps interaction feedback immediate without making the interface feel abrupt.',
+    title: 'Keep feedback quick.',
+    description: 'Short transitions make the change visible without delaying the next action.',
     accent: '#8bc5ff',
     wash: '#dceeff',
     icon: Gauge,
@@ -28,39 +29,39 @@ const panels = [
     metricLabel: 'transition',
   },
   {
-    id: 'depth',
-    label: 'Depth',
-    eyebrow: 'Structure',
-    title: 'Separate, don’t clutter.',
-    description: 'Layering gives context to the active state while the surrounding choices remain close at hand.',
+    id: 'state',
+    label: 'State',
+    eyebrow: 'Selection',
+    title: 'Show what is active.',
+    description: 'Contrast keeps the selected tab distinct from the remaining options.',
     accent: '#ffad7d',
     wash: '#ffe6d7',
     icon: Layers3,
-    metric: '03',
-    metricLabel: 'layers',
+    metric: '02',
+    metricLabel: 'states',
   },
   {
-    id: 'finish',
-    label: 'Finish',
-    eyebrow: 'Polish',
-    title: 'Close the loop.',
-    description: 'The final details confirm what changed and leave the interface ready for the next decision.',
+    id: 'access',
+    label: 'Access',
+    eyebrow: 'Keyboard',
+    title: 'Support every input.',
+    description: 'Arrow keys, focus styles, and readable labels keep the tabs usable.',
     accent: '#d8b1ff',
     wash: '#efe0ff',
     icon: Sparkles,
-    metric: 'AA',
-    metricLabel: 'contrast',
+    metric: '4 keys',
+    metricLabel: 'navigation',
   },
 ] as const;
 
 type PanelId = (typeof panels)[number]['id'];
 
 export function ExpandableTab() {
-  const [activeId, setActiveId] = useState<PanelId>('focus');
+  const [activeId, setActiveId] = useState<PanelId>('layout');
   const reduceMotion = useReducedMotion();
   const tabsetId = useId();
   const activeIndex = panels.findIndex((panel) => panel.id === activeId);
-  const transition = reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.2, 0.8, 0.2, 1] as const };
+  const transition = reduceMotion ? { duration: 0 } : { duration: MOTUS_DURATION.standard, ease: MOTUS_EASE };
 
   const selectByKey = (
     event: KeyboardEvent<HTMLButtonElement>,
@@ -92,14 +93,14 @@ export function ExpandableTab() {
       className="relative flex h-full flex-col overflow-hidden px-5 pb-5 pt-[72px] sm:px-6 sm:pb-6"
       initial={reduceMotion ? false : { opacity: 0, y: 12 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.2, 0.8, 0.2, 1] }}
+      transition={{ duration: reduceMotion ? 0 : MOTUS_DURATION.standard, ease: MOTUS_EASE }}
     >
       <motion.span
         className="pointer-events-none absolute -right-12 -top-8 size-44 rounded-full opacity-70 blur-2xl"
         style={{ backgroundColor: panel.wash }}
         initial={reduceMotion ? false : { scale: 0.78, opacity: 0 }}
         animate={{ scale: 1, opacity: 0.7 }}
-        transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+        transition={{ duration: reduceMotion ? 0 : MOTUS_DURATION.slow, ease: MOTUS_EASE }}
         aria-hidden="true"
       />
       <span className="relative text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
@@ -136,9 +137,9 @@ export function ExpandableTab() {
               M
             </span>
             <div>
-              <strong className="block text-xs font-semibold tracking-[-0.01em]">Expandable studies</strong>
+              <strong className="block text-xs font-semibold tracking-[-0.01em]">Expandable tabs</strong>
               <span className="mt-0.5 block text-[8px] font-medium uppercase tracking-[0.15em] text-white/35">
-                Select a perspective
+                Choose a section
               </span>
             </div>
           </div>
@@ -148,7 +149,7 @@ export function ExpandableTab() {
         <div
           className="hidden h-[370px] gap-2 md:flex"
           role="tablist"
-          aria-label="Expandable motion studies"
+          aria-label="Expandable tabs"
           aria-orientation="horizontal"
         >
           {panels.map((panel, index) => {
@@ -206,7 +207,7 @@ export function ExpandableTab() {
         <div
           className="flex flex-col gap-2 md:hidden"
           role="tablist"
-          aria-label="Expandable motion studies"
+          aria-label="Expandable tabs"
           aria-orientation="vertical"
         >
           {panels.map((panel, index) => {

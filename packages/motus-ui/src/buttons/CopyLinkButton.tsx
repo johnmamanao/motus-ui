@@ -2,6 +2,7 @@ import { Copy, RotateCcw } from 'lucide-react';
 import { LottieLight } from 'lottie-react';
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import { useEffect, useRef, useState } from 'react';
+import { MOTUS_DURATION, MOTUS_EASE } from '../system.js';
 
 const easeIn = { x: [0.2], y: [1] };
 const easeOut = { x: [0.8], y: [0] };
@@ -168,7 +169,7 @@ export default function CopyLinkButton({
       }}
       whileHover={status === 'idle' || failed ? { scale: 1.012 } : undefined}
       whileTap={status === 'idle' || failed ? { scale: 0.982 } : undefined}
-      transition={reduceMotion ? { duration: 0 } : { duration: 0.22, ease: [0.16, 1, 0.3, 1] }}
+      transition={reduceMotion ? { duration: 0 } : { duration: MOTUS_DURATION.standard, ease: MOTUS_EASE }}
       className={`flex h-14 w-[202px] items-center justify-between rounded-[16px] p-1.5 pl-5 text-[13px] font-semibold tracking-[-0.01em] shadow-[0_18px_42px_rgba(15,23,42,0.14),inset_0_1px_0_rgba(255,255,255,0.9)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#0a84ff] focus-visible:ring-offset-4 disabled:opacity-75 ${copying ? 'cursor-wait' : disabled ? 'cursor-not-allowed' : copied ? 'cursor-default' : 'cursor-pointer'}`}
     >
       <AnimatePresence initial={false} mode="popLayout">
@@ -177,7 +178,7 @@ export default function CopyLinkButton({
           initial={{ opacity: 0, y: 6, filter: 'blur(4px)' }}
           animate={{ opacity: 1, y: 0, filter: 'blur(0px)' }}
           exit={{ opacity: 0, y: -6, filter: 'blur(4px)' }}
-          transition={{ duration: reduceMotion ? 0 : 0.18, ease: [0.16, 1, 0.3, 1] }}
+          transition={{ duration: reduceMotion ? 0 : MOTUS_DURATION.quick, ease: MOTUS_EASE }}
           className="whitespace-nowrap"
         >
           {copying ? 'Copying' : copied ? 'Copied' : failed ? 'Try again' : 'Copy link'}

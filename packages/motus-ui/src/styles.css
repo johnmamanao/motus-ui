@@ -4,3 +4,17 @@
 @import 'tailwindcss/utilities.css' layer(utilities);
 
 @source "./**/*.{ts,tsx}";
+
+:root {
+  --motus-ink: #11110f;
+  --motus-paper: #f4f3ed;
+  --motus-accent: #c9ff67;
+  --motus-line: rgba(17, 17, 15, 0.12);
+  --motus-radius-control: 12px;
+  --motus-radius-panel: 24px;
+  --motus-duration-feedback: 120ms;
+  --motus-duration-quick: 180ms;
+  --motus-duration-standard: 260ms;
+  --motus-duration-slow: 420ms;
+  --motus-ease: cubic-bezier(0.2, 0, 0, 1);
+}

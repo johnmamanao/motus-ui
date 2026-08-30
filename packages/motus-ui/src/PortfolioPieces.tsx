@@ -381,9 +381,9 @@ export function ProjectAperture() {
                 <X size={15} />
               </button>
               <a
-                href="#northstar-case-study"
+                href="#studio-website-case-study"
                 tabIndex={open ? 0 : -1}
-                aria-label="Open Northstar case study"
+                aria-label="Open studio website case study"
                 className="grid h-10 w-10 place-items-center rounded-full bg-black !text-white no-underline md:h-11 md:w-11"
               >
                 <ArrowUpRight size={16} />
@@ -392,12 +392,12 @@ export function ProjectAperture() {
           </div>
           <div>
             <h3 className="text-[2rem] font-semibold leading-[.9] tracking-[-.075em] md:text-[2.7rem]">
-              Northstar
+              Studio
               <br />
-              Workspace
+              Website
             </h3>
             <p className="mt-3 max-w-[17rem] text-[11px] leading-4 text-black/48 md:mt-4 md:text-[12px] md:leading-5">
-              A workspace for distributed product teams.
+              A portfolio website for an independent product designer.
             </p>
           </div>
           <div className="grid grid-cols-2 border-t border-black/10 pt-3 text-[9px] md:pt-4 md:text-[10px]">
@@ -418,7 +418,7 @@ export function ProjectAperture() {
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_32%,rgba(255,255,255,.18),transparent_22%),radial-gradient(circle_at_36%_68%,rgba(125,141,255,.26),transparent_26%),linear-gradient(145deg,#18191c,#050506)]" />
           <div className="absolute left-[52%] top-[16%] h-[17rem] w-[11rem] rotate-6 rounded-[3.2rem] border border-white/15 bg-white/[.06] shadow-[inset_0_1px_0_rgba(255,255,255,.24),0_30px_70px_rgba(0,0,0,.32)] backdrop-blur-2xl" />
           <header className="relative flex items-center justify-between p-5">
-            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/44">Northstar / 2026</span>
+            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/44">Studio website / 2026</span>
             <button
               onClick={toggle}
               aria-expanded={open}
@@ -429,8 +429,8 @@ export function ProjectAperture() {
             </button>
           </header>
           <div className="absolute bottom-6 left-6">
-            <span className="text-[11px] text-white/40">Team workspace</span>
-            <h3 className="mt-1 text-[3.6rem] font-semibold tracking-[-.085em]">Northstar</h3>
+            <span className="text-[11px] text-white/40">Portfolio project</span>
+            <h3 className="mt-1 text-[3.6rem] font-semibold tracking-[-.085em]">Studio</h3>
           </div>
         </div>
       </article>
@@ -509,29 +509,29 @@ export function SpatialIndex() {
   const cards = [
     {
       code: '01',
-      title: 'Northstar',
-      type: 'Team workspace',
+      title: 'Workspace',
+      type: 'Product design',
       result: '2026',
       tone: 'linear-gradient(145deg,#dfe7ff,#8c9cff)',
     },
     {
       code: '02',
-      title: 'Eidolon',
-      type: 'Studio website',
+      title: 'Portfolio',
+      type: 'Web design',
       result: '2026',
       tone: 'linear-gradient(145deg,#e8e8eb,#aaaaaf)',
     },
     {
       code: '03',
-      title: 'Fieldnotes',
-      type: 'Writing app',
+      title: 'Journal',
+      type: 'Mobile design',
       result: '2025',
       tone: 'linear-gradient(145deg,#f1eadc,#d2b88d)',
     },
     {
       code: '04',
-      title: 'Relay',
-      type: 'Developer tool',
+      title: 'Release Tool',
+      type: 'Developer experience',
       result: '2025',
       tone: 'linear-gradient(145deg,#dff5e8,#83c7a1)',
     },
@@ -565,7 +565,7 @@ export function SpatialIndex() {
             {cards.map((item, itemIndex) => (
               <a
                 key={item.title}
-                href={`#${item.title.toLowerCase()}-case-study`}
+                href={`#${item.title.toLowerCase().replace(/\s+/g, '-')}-case-study`}
                 onPointerEnter={() => choose(itemIndex)}
                 onFocus={() => choose(itemIndex)}
                 onClick={() => choose(itemIndex)}
