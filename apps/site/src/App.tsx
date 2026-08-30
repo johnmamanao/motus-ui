@@ -56,6 +56,12 @@ const TEXT_MOTION_VARIANTS: { id: TextMotionVariant; label: string }[] = [
   { id: 'pulse', label: 'Pulse' },
   { id: 'drop', label: 'Drop' },
   { id: 'fan', label: 'Fan' },
+  { id: 'imprint', label: 'Imprint' },
+  { id: 'slipstream', label: 'Slipstream' },
+  { id: 'relay', label: 'Relay' },
+  { id: 'foldline', label: 'Foldline' },
+  { id: 'baseline', label: 'Baseline' },
+  { id: 'depthline', label: 'Depthline' },
   { id: 'ticker', label: 'Ticker' },
 ];
 
@@ -77,7 +83,7 @@ const PIECES: Piece[] = [
     name: 'Text Motion',
     category: 'Motion',
     gesture: 'Choose a style',
-    description: 'A transparent text line with nineteen previewable motion variants.',
+    description: 'A transparent text line with twenty-five original motion variants.',
     useCase: 'Animated headline',
     functionName: 'TextMotion',
     runtime: 'GSAP',

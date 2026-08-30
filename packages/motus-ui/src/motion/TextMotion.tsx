@@ -20,6 +20,12 @@ const variants = [
   { id: 'pulse', label: 'Pulse' },
   { id: 'drop', label: 'Drop' },
   { id: 'fan', label: 'Fan' },
+  { id: 'imprint', label: 'Imprint' },
+  { id: 'slipstream', label: 'Slipstream' },
+  { id: 'relay', label: 'Relay' },
+  { id: 'foldline', label: 'Foldline' },
+  { id: 'baseline', label: 'Baseline' },
+  { id: 'depthline', label: 'Depthline' },
   { id: 'ticker', label: 'Ticker' },
 ] as const;
 
@@ -48,7 +54,9 @@ export function TextMotion({
     const center = (letters.length - 1) / 2;
     const id: TextMotionVariant = activeVariant.id;
     gsap.killTweensOf(letters);
-    gsap.set(letters, { clearProps: 'transform,opacity,filter,textShadow,clipPath,transformOrigin,fontWeight' });
+    gsap.set(letters, {
+      clearProps: 'transform,opacity,filter,textShadow,clipPath,transformOrigin,fontWeight,color',
+    });
 
     if (id === 'ticker') {
       const fontSize = Number.parseFloat(getComputedStyle(root.current!).fontSize) || 16;
@@ -520,6 +528,232 @@ export function TextMotion({
           duration: 0.68,
           stagger: { each: 0.018, from: 'edges' },
           ease: 'back.out(1.5)',
+        });
+    }
+
+    if (id === 'imprint') {
+      intro.fromTo(
+        letters,
+        {
+          y: -22,
+          scaleX: 0.92,
+          scaleY: 1.38,
+          opacity: 0,
+          textShadow: '0 18px 0 rgba(17,17,17,.08)',
+          transformOrigin: '50% 100%',
+        },
+        {
+          y: 0,
+          scaleX: 1,
+          scaleY: 1,
+          opacity: 1,
+          textShadow: '0 0 0 rgba(17,17,17,0)',
+          duration: 0.68,
+          stagger: 0.042,
+          ease: 'power4.out',
+        },
+      );
+      loop
+        .to(letters, {
+          y: 4,
+          scaleX: 1.045,
+          scaleY: 0.91,
+          color: '#6d3d23',
+          textShadow: '0 1px 0 rgba(17,17,17,.2)',
+          duration: 0.2,
+          stagger: { each: 0.034, from: 'center' },
+          ease: 'power3.in',
+        })
+        .to(letters, {
+          y: 0,
+          scaleX: 1,
+          scaleY: 1,
+          color: '#111111',
+          textShadow: '0 0 0 rgba(17,17,17,0)',
+          duration: 0.46,
+          stagger: { each: 0.032, from: 'center' },
+          ease: 'back.out(1.5)',
+        });
+    }
+
+    if (id === 'slipstream') {
+      intro.fromTo(
+        letters,
+        {
+          x: (index) => -72 - index * 4,
+          skewX: -18,
+          scaleX: 1.34,
+          filter: 'blur(9px)',
+          opacity: 0,
+        },
+        {
+          x: 0,
+          skewX: 0,
+          scaleX: 1,
+          filter: 'blur(0px)',
+          opacity: 1,
+          duration: 0.74,
+          stagger: 0.038,
+          ease: 'expo.out',
+        },
+      );
+      loop
+        .to(letters, {
+          x: (index) => 16 - index * 1.2,
+          skewX: -10,
+          scaleX: 1.12,
+          filter: 'blur(2.5px)',
+          duration: 0.24,
+          stagger: 0.025,
+          ease: 'power3.in',
+        })
+        .to(letters, {
+          x: 0,
+          skewX: 0,
+          scaleX: 1,
+          filter: 'blur(0px)',
+          duration: 0.56,
+          stagger: 0.025,
+          ease: 'expo.out',
+        });
+    }
+
+    if (id === 'relay') {
+      intro.fromTo(
+        letters,
+        { y: 18, rotateZ: -6, opacity: 0 },
+        { y: 0, rotateZ: 0, opacity: 1, duration: 0.58, stagger: 0.042, ease: 'power4.out' },
+      );
+      loop
+        .to(letters, {
+          y: -10,
+          scale: 1.12,
+          color: '#b95827',
+          textShadow: '0 7px 16px rgba(185,88,39,.2)',
+          duration: 0.18,
+          stagger: 0.075,
+          ease: 'power3.out',
+        })
+        .to(
+          letters,
+          {
+            y: 0,
+            scale: 1,
+            color: '#111111',
+            textShadow: '0 0 0 rgba(185,88,39,0)',
+            duration: 0.32,
+            stagger: 0.075,
+            ease: 'power3.inOut',
+          },
+          '<0.12',
+        );
+    }
+
+    if (id === 'foldline') {
+      intro.fromTo(
+        letters,
+        {
+          rotateY: (index) => (index % 2 ? 96 : -96),
+          xPercent: (index) => (index % 2 ? 28 : -28),
+          opacity: 0,
+          transformOrigin: (index) => (index % 2 ? '0% 50%' : '100% 50%'),
+        },
+        {
+          rotateY: 0,
+          xPercent: 0,
+          opacity: 1,
+          duration: 0.72,
+          stagger: 0.045,
+          ease: 'power4.out',
+        },
+      );
+      loop
+        .to(letters, {
+          rotateY: (index) => (index % 2 ? 42 : -42),
+          xPercent: (index) => (index % 2 ? 8 : -8),
+          duration: 0.32,
+          stagger: { each: 0.026, from: 'center' },
+          ease: 'power3.inOut',
+        })
+        .to(letters, {
+          rotateY: 0,
+          xPercent: 0,
+          duration: 0.5,
+          stagger: { each: 0.026, from: 'center' },
+          ease: 'power4.out',
+        });
+    }
+
+    if (id === 'baseline') {
+      intro.fromTo(
+        letters,
+        { yPercent: 105, scaleY: 0.58, clipPath: 'inset(0 0 100% 0)', opacity: 0 },
+        {
+          yPercent: 0,
+          scaleY: 1,
+          clipPath: 'inset(0 0 0% 0)',
+          opacity: 1,
+          duration: 0.68,
+          stagger: 0.044,
+          ease: 'power4.out',
+        },
+      );
+      loop
+        .to(letters, {
+          y: (index) => (index % 3 === 1 ? 7 : index % 3 === 2 ? 3 : 0),
+          scaleY: (index) => (index % 3 === 1 ? 0.88 : 0.96),
+          duration: 0.28,
+          stagger: 0.038,
+          ease: 'power3.inOut',
+        })
+        .to(letters, {
+          y: 0,
+          scaleY: 1,
+          duration: 0.48,
+          stagger: 0.038,
+          ease: 'back.out(1.45)',
+        });
+    }
+
+    if (id === 'depthline') {
+      intro.fromTo(
+        letters,
+        {
+          z: (index) => -220 - Math.abs(index - center) * 24,
+          y: (index) => (index - center) * 4,
+          rotateX: 18,
+          scale: 0.68,
+          filter: 'blur(7px)',
+          opacity: 0,
+        },
+        {
+          z: 0,
+          y: 0,
+          rotateX: 0,
+          scale: 1,
+          filter: 'blur(0px)',
+          opacity: 1,
+          duration: 0.92,
+          stagger: { each: 0.032, from: 'center' },
+          ease: 'expo.out',
+        },
+      );
+      loop
+        .to(letters, {
+          z: (index) => ((index % 3) - 1) * 34,
+          y: (index) => ((index % 3) - 1) * -4,
+          opacity: (index) => (index % 3 === 0 ? 0.72 : 1),
+          duration: 0.46,
+          stagger: { each: 0.025, from: 'center' },
+          ease: 'power3.inOut',
+        })
+        .to(letters, {
+          z: 0,
+          y: 0,
+          opacity: 1,
+          duration: 0.62,
+          stagger: { each: 0.025, from: 'edges' },
+          ease: 'power3.out',
         });
     }
 

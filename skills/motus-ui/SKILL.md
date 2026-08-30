@@ -66,7 +66,7 @@ export function AnimatedHeading() {
 | `alternateText` | `string`            | `'CREATIVE CODE'` | Second value used by `ticker` |
 | `variant`       | `TextMotionVariant` | `'lift'`          | Animation style               |
 
-Variants: `lift`, `hinge`, `drift`, `ripple`, `stretch`, `cascade`, `magnet`, `arc`, `roll`, `echo`, `shutter`, `orbit`, `weight`, `sweep`, `scatter`, `pulse`, `drop`, `fan`, and `ticker`.
+Variants: `lift`, `hinge`, `drift`, `ripple`, `stretch`, `cascade`, `magnet`, `arc`, `roll`, `echo`, `shutter`, `orbit`, `weight`, `sweep`, `scatter`, `pulse`, `drop`, `fan`, `imprint`, `slipstream`, `relay`, `foldline`, `baseline`, `depthline`, and `ticker`.
 
 Choose a variant based on the requested character:
 
@@ -74,6 +74,8 @@ Choose a variant based on the requested character:
 - Use `ripple`, `arc`, `orbit`, or `fan` for more expressive display text.
 - Use `shutter`, `sweep`, or `roll` for directional transitions.
 - Use `stretch` or `weight` when the typography itself should transform.
+- Use `imprint` for a tactile press, `slipstream` for directional speed, or `relay` for sequential emphasis.
+- Use `foldline`, `baseline`, or `depthline` for editorial structure and spatial staging.
 - Use `ticker` only when transitioning between `text` and `alternateText`.
 
 Keep the text to one line. Let the surrounding layout provide responsive sizing and enough horizontal space.

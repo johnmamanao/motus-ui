@@ -10,6 +10,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 - Added `AtlasReveal`, an animated artistic country map with eight selectable countries, capital labels, coordinates, and a compass rose.
 - Added locally bundled, build-time-processed Natural Earth country geometry with no runtime map dependency.
+- Added six original Text Motion variants: `imprint`, `slipstream`, `relay`, `foldline`, `baseline`, and `depthline`.
 
 ## 0.1.4 - 2026-08-30
 
