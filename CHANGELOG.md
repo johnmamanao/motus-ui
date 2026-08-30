@@ -19,6 +19,11 @@ The project follows [Semantic Versioning](https://semver.org/).
 - Added plain-name exports such as `ProjectButton`, `CountryMap`, `SocialLinks`, `NavigationBar`, and `ProjectDetails` while preserving the earlier names as compatibility aliases.
 - Added shared Motus color, radius, duration, and easing tokens plus an automated consistency check.
 
+### Fixed
+
+- Corrected the Project Details layout at small mobile widths and kept its open state fully readable.
+- Restored touch scrolling and component selection in the mobile Browse menu.
+
 ## 0.1.4 - 2026-08-30
 
 ### Changed

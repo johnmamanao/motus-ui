@@ -569,6 +569,8 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
   const resetTimer = useRef<number | null>(null);
   const workspace = useRef<HTMLElement>(null);
   const variantPicker = useRef<HTMLDivElement>(null);
+  const catalogNav = useRef<HTMLElement>(null);
+  const activeCatalogItem = useRef<HTMLButtonElement>(null);
   const source = sourceFor(piece);
   const usage = usageFor(piece);
   const install = piece.install ?? 'npm install motus-ui';
@@ -579,6 +581,23 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
     setVariantMenuOpen(false);
     if (window.innerWidth < 900 && window.location.pathname !== '/components') setSidebarOpen(false);
   }, [piece.id]);
+
+  useEffect(() => {
+    if (!sidebarOpen) return;
+    const frame = window.requestAnimationFrame(() => {
+      const nav = catalogNav.current;
+      const active = activeCatalogItem.current;
+      if (!nav || !active) return;
+      const navBox = nav.getBoundingClientRect();
+      const activeBox = active.getBoundingClientRect();
+      const activeTop = activeBox.top - navBox.top + nav.scrollTop;
+      nav.scrollTo({
+        top: Math.max(0, activeTop - (nav.clientHeight - activeBox.height) / 2),
+        behavior: 'instant',
+      });
+    });
+    return () => window.cancelAnimationFrame(frame);
+  }, [piece.id, sidebarOpen]);
 
   useEffect(() => {
     if (!variantMenuOpen) return;
@@ -665,12 +684,14 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
   };
   const choose = (item: Piece) => {
     setSourceOpen(false);
+    if (window.innerWidth < 900) setSidebarOpen(false);
     navigate(`/components/${item.id}`);
   };
   const renderLink = (item: Piece) => {
     return (
       <button
         key={item.id}
+        ref={item.id === piece.id ? activeCatalogItem : undefined}
         className={item.id === piece.id ? 'active' : ''}
         aria-current={item.id === piece.id ? 'page' : undefined}
         onClick={() => choose(item)}
@@ -844,7 +865,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
                 <ChevronsUpDown size={13} />
               </i>
             </button>
-            <nav className="motus-lab-component-nav" aria-label="Choose component">
+            <nav ref={catalogNav} className="motus-lab-component-nav" aria-label="Choose component">
               {grouped
                 ? categories.map((category) =>
                     renderSection(

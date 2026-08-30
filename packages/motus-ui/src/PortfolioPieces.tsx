@@ -347,14 +347,14 @@ export function ProjectAperture() {
       );
   };
   const move = (event: ReactPointerEvent<HTMLElement>) => {
-    if (openState.current || transitioning.current) return;
+    if (openState.current || transitioning.current || window.matchMedia('(max-width: 560px)').matches) return;
     const rect = event.currentTarget.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
     gsap.to(cover.current, { rotateY: x * 4, rotateX: y * -3, duration: 0.55, ease: 'power3.out', overwrite: true });
   };
   return (
-    <div className="flex min-h-[31rem] w-full items-center justify-center p-4 [perspective:1400px]">
+    <div className="flex min-h-[32rem] w-full items-center justify-center p-2 [perspective:1400px] sm:min-h-[31rem] sm:p-4">
       <article
         onPointerMove={move}
         onPointerLeave={() =>
@@ -362,12 +362,12 @@ export function ProjectAperture() {
           !transitioning.current &&
           gsap.to(cover.current, { rotateX: 0, rotateY: 0, duration: 0.42, ease: 'power3.out', overwrite: 'auto' })
         }
-        className="relative h-[27rem] w-full max-w-[43rem] overflow-hidden rounded-[2.25rem] border border-black/[.08] bg-[#f5f5f7] text-[#111] shadow-[0_35px_100px_rgba(0,0,0,.14)]"
+        className="relative h-[29rem] w-full max-w-[43rem] overflow-hidden rounded-[1.75rem] border border-black/[.08] bg-[#f5f5f7] text-[#111] shadow-[0_24px_70px_rgba(0,0,0,.12)] sm:h-[27rem] sm:rounded-[2.25rem] sm:shadow-[0_35px_100px_rgba(0,0,0,.14)]"
       >
         <div
           ref={detail}
           aria-hidden={!open}
-          className="pointer-events-none absolute inset-x-0 bottom-0 flex h-[56%] w-full flex-col justify-between p-5 opacity-0 md:inset-y-0 md:left-auto md:right-0 md:h-auto md:w-[55%] md:p-7"
+          className="pointer-events-none absolute inset-x-0 bottom-0 flex h-[56%] w-full flex-col justify-between p-4 opacity-0 sm:p-5 md:inset-y-0 md:left-auto md:right-0 md:h-auto md:w-[55%] md:p-7"
         >
           <div className="flex items-center justify-between">
             <span className="font-mono text-[9px] uppercase tracking-[.17em] text-black/38">Project</span>
@@ -413,24 +413,26 @@ export function ProjectAperture() {
         </div>
         <div
           ref={cover}
-          className="absolute inset-3 z-10 overflow-hidden rounded-[1.65rem] bg-[#111] text-white shadow-[0_24px_70px_rgba(0,0,0,.34)] [transform-origin:center_top] [transform-style:preserve-3d] md:[transform-origin:left_center]"
+          className="absolute inset-2 z-10 overflow-hidden rounded-[1.35rem] bg-[#111] text-white shadow-[0_24px_70px_rgba(0,0,0,.34)] [transform-origin:center_top] [transform-style:preserve-3d] sm:inset-3 sm:rounded-[1.65rem] md:[transform-origin:left_center]"
         >
           <div className="absolute inset-0 bg-[radial-gradient(circle_at_68%_32%,rgba(255,255,255,.18),transparent_22%),radial-gradient(circle_at_36%_68%,rgba(125,141,255,.26),transparent_26%),linear-gradient(145deg,#18191c,#050506)]" />
-          <div className="absolute left-[52%] top-[16%] h-[17rem] w-[11rem] rotate-6 rounded-[3.2rem] border border-white/15 bg-white/[.06] shadow-[inset_0_1px_0_rgba(255,255,255,.24),0_30px_70px_rgba(0,0,0,.32)] backdrop-blur-2xl" />
-          <header className="relative flex items-center justify-between p-5">
-            <span className="font-mono text-[9px] uppercase tracking-[.18em] text-white/44">Studio website / 2026</span>
+          <div className="absolute -right-10 top-[18%] h-[15rem] w-[9.5rem] rotate-6 rounded-[2.8rem] border border-white/15 bg-white/[.06] shadow-[inset_0_1px_0_rgba(255,255,255,.24),0_30px_70px_rgba(0,0,0,.32)] backdrop-blur-2xl sm:left-[52%] sm:right-auto sm:top-[16%] sm:h-[17rem] sm:w-[11rem] sm:rounded-[3.2rem]" />
+          <header className="relative flex items-start justify-between gap-3 p-4 sm:items-center sm:p-5">
+            <span className="max-w-[8rem] font-mono text-[8px] uppercase leading-[1.55] tracking-[.16em] text-white/44 sm:max-w-none sm:text-[9px] sm:tracking-[.18em]">
+              Studio website / 2026
+            </span>
             <button
               onClick={toggle}
               aria-expanded={open}
-              className="flex h-11 items-center gap-2 rounded-full border border-white/12 bg-white/[.08] px-4 text-[10px] font-semibold backdrop-blur-xl hover:bg-white/[.14]"
+              className="flex h-10 shrink-0 items-center gap-2 whitespace-nowrap rounded-full border border-white/12 bg-white/[.08] px-3 text-[9px] font-semibold backdrop-blur-xl hover:bg-white/[.14] sm:h-11 sm:px-4 sm:text-[10px]"
             >
-              <span>{open ? 'Close' : 'Open project'}</span>
+              <span>{open ? 'Close' : 'View details'}</span>
               <ArrowRight size={14} />
             </button>
           </header>
-          <div className="absolute bottom-6 left-6">
+          <div className="absolute bottom-5 left-5 sm:bottom-6 sm:left-6">
             <span className="text-[11px] text-white/40">Portfolio project</span>
-            <h3 className="mt-1 text-[3.6rem] font-semibold tracking-[-.085em]">Studio</h3>
+            <h3 className="mt-1 text-[3rem] font-semibold tracking-[-.085em] sm:text-[3.6rem]">Studio</h3>
           </div>
         </div>
       </article>

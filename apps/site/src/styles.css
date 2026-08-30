@@ -3109,7 +3109,7 @@ body,
   .motus-lab-backdrop {
     position: absolute;
     inset: 0;
-    z-index: 35;
+    z-index: 25;
     display: block;
     border: 0;
     background: rgba(12, 12, 12, 0.42);
@@ -3194,10 +3194,18 @@ body,
   .motus-lab-preview-piece[data-piece='text-motion'] [data-variant] {
     font-size: clamp(1.75rem, 8cqw, 4rem);
   }
-  .motus-lab-stage-meta.top-left span,
+  .motus-lab-stage-meta.top-left span {
+    display: none;
+  }
   .motus-lab-panel {
     height: calc(100dvh - 60px);
     border-radius: 14px 14px 0 0;
+  }
+  .motus-lab-component-nav {
+    overscroll-behavior: contain;
+    scrollbar-gutter: stable;
+    touch-action: pan-y;
+    -webkit-overflow-scrolling: touch;
   }
   .motus-lab-docs {
     grid-template-rows: 64px 43px minmax(0, 1fr);
