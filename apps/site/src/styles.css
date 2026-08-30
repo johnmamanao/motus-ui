@@ -2690,11 +2690,6 @@ body,
   left: 22px;
   bottom: 19px;
 }
-.motus-lab-stage-meta.bottom-right {
-  right: calc(var(--panel-space) + 22px);
-  bottom: 19px;
-  transition: right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
 .motus-lab-backdrop {
   display: none;
 }
@@ -3100,10 +3095,6 @@ body,
     left: 16px;
     bottom: 16px;
   }
-  .motus-lab-stage-meta.bottom-right {
-    right: 16px;
-    bottom: 16px;
-  }
   .motus-lab-backdrop {
     position: absolute;
     inset: 0;
@@ -3193,9 +3184,6 @@ body,
     font-size: clamp(1.75rem, 8cqw, 4rem);
   }
   .motus-lab-stage-meta.top-left span,
-  .motus-lab-stage-meta.bottom-right {
-    display: none;
-  }
   .motus-lab-panel {
     height: calc(100dvh - 60px);
     border-radius: 14px 14px 0 0;

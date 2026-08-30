@@ -809,9 +809,6 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
             <span className="motus-lab-stage-meta bottom-left" aria-hidden="true">
               {piece.category}
             </span>
-            <span className="motus-lab-stage-meta bottom-right" aria-hidden="true">
-              Drag · click · explore
-            </span>
           </section>
 
           <button
