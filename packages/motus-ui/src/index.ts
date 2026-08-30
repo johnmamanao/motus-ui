@@ -6,6 +6,8 @@ export { default as ResumeDownloadButton } from './buttons/ResumeDownloadButton.
 export type { ResumeDownloadButtonProps } from './buttons/ResumeDownloadButton.js';
 
 export { ExpandableTab } from './ExpandableTab.js';
+export { AtlasReveal, atlasCountryOptions } from './maps/AtlasReveal.js';
+export type { AtlasCountryId, AtlasRevealProps } from './maps/AtlasReveal.js';
 export { default as TextMotion } from './motion/TextMotion.js';
 export type { TextMotionProps, TextMotionVariant } from './motion/TextMotion.js';
 

@@ -104,6 +104,18 @@ import { ClickKey } from 'motus-ui';
 
 Audio starts only after user interaction and may follow the browser's autoplay policy.
 
+### Atlas reveal
+
+Animate a curated country silhouette with a capital label, coordinate readout, and compass rose. Use `country` for a controlled selector or `defaultCountry` for local state.
+
+```tsx
+import { AtlasReveal } from 'motus-ui';
+
+<AtlasReveal defaultCountry="philippines" />;
+```
+
+Included countries: Japan, Philippines, Italy, Iceland, Chile, India, Australia, and Brazil. The geometry is preprocessed from [Natural Earth public-domain data](https://www.naturalearthdata.com/about/terms-of-use/), so the component makes no runtime map request.
+
 ### Portfolio components
 
 Use the larger pieces directly when you need a complete portfolio interaction.
@@ -123,7 +135,7 @@ export function Portfolio() {
 }
 ```
 
-Additional pieces include `ExpandableTab`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`. `ExpandableTab` presents an accessible accordion gallery where the selected tab expands into focus.
+Additional pieces include `ExpandableTab`, `AtlasReveal`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`. `ExpandableTab` presents an accessible accordion gallery where the selected tab expands into focus.
 
 ### Background effects
 
@@ -167,6 +179,16 @@ Place an effect inside a positioned container and layer your content above it.
 | ---------- | ----------------------------- | ----------- | ------------------------------- |
 | `onAction` | `() => void \| Promise<void>` | `undefined` | Runs when the button is clicked |
 | `disabled` | `boolean`                     | `false`     | Disables the action and sound   |
+
+### `AtlasReveal`
+
+| Prop              | Type                                | Default     | Description                                  |
+| ----------------- | ----------------------------------- | ----------- | -------------------------------------------- |
+| `country`         | `AtlasCountryId`                    | `undefined` | Controlled country                           |
+| `defaultCountry`  | `AtlasCountryId`                    | `'japan'`   | Initial country when uncontrolled            |
+| `onCountryChange` | `(country: AtlasCountryId) => void` | `undefined` | Runs after a country is selected             |
+| `showSelector`    | `boolean`                           | `true`      | Shows the built-in accessible country picker |
+| `className`       | `string`                            | `''`        | Adds classes to the outer map card           |
 
 ## Accessibility
 

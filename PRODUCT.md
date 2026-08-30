@@ -6,11 +6,12 @@ brand
 
 ## Product
 
-Motus is an open-source npm library and showcase of fourteen React interactions for portfolios:
+Motus is an open-source npm library and showcase of fifteen React interactions for portfolios:
 
 - Text Motion
 - Portfolio Nav
 - Expandable Tabs
+- Atlas Reveal
 - Press Button
 - Resume Download
 - Copy Link
@@ -35,7 +36,7 @@ Motus makes advanced portfolio interactions easy to discover, evaluate, and inst
 
 1. Understand the product promise and see a working component on the landing page (`/`).
 2. Open the full-canvas component workspace directly from `/components`; there is no intermediate directory page.
-3. Use the collapsible category rail to switch among all fourteen components while the preview stays in place.
+3. Use the collapsible category rail to switch among all fifteen components while the preview stays in place.
 4. Reset or fullscreen the live preview, open Source as a split drawer, and inspect the real component source.
 5. Install `motus-ui` from npm and import the same implementation used by the preview.
 
@@ -61,7 +62,7 @@ Glass is a material demonstrated by the components, not the default styling of t
 
 **Ship the real thing.** The source view must correspond to the component in the preview, and every documented component must be exported by the published `motus-ui` package without hiding essential setup behind an account or service.
 
-**Keep the scope honest.** Fourteen complete, responsive components are more credible than a large unfinished catalogue.
+**Keep the scope honest.** Fifteen complete, responsive components are more credible than a large unfinished catalogue.
 
 **Protect the zero-backend promise.** All interaction state stays in the browser and disappears on refresh. Motus requires no account, database, paid service, or external API.
 

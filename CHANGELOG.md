@@ -4,6 +4,13 @@ All notable changes to Motus UI are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 0.1.5 - 2026-08-30
+
+### Added
+
+- Added `AtlasReveal`, an animated artistic country map with eight selectable countries, capital labels, coordinates, and a compass rose.
+- Added locally bundled, build-time-processed Natural Earth country geometry with no runtime map dependency.
+
 ## 0.1.4 - 2026-08-30
 
 ### Changed

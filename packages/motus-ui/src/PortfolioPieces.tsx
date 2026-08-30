@@ -1512,6 +1512,7 @@ export function RouteLens() {
 const ExpandableTabPiece = lazy(() =>
   import('./ExpandableTab.js').then((module) => ({ default: module.ExpandableTab })),
 );
+const AtlasRevealPiece = lazy(() => import('./maps/AtlasReveal.js'));
 const ClickKeyPiece = lazy(() => import('./buttons/ClickKey.js'));
 const ResumeDownloadButtonPiece = lazy(() => import('./buttons/ResumeDownloadButton.js'));
 const CopyLinkButtonPiece = lazy(() => import('./buttons/CopyLinkButton.js'));
@@ -1524,6 +1525,7 @@ const fullbleedFallback = (
   <div className="showcase-fullbleed h-full min-h-[38rem] w-full bg-[#f3f3f5]" aria-label="Loading component" />
 );
 const inlineFallback = <div className="h-16 w-[236px] opacity-0" aria-label="Loading component" />;
+const atlasFallback = <div className="aspect-[3/4] w-full max-w-[430px] opacity-0" aria-label="Loading map" />;
 const previewAction = () => new Promise<void>((resolve) => window.setTimeout(resolve, 420));
 
 function ButtonPreview({ children }: { children: ReactNode }) {
@@ -1567,6 +1569,7 @@ export type PieceId =
   | 'prism-contact'
   | 'glass-code'
   | 'expandable-tab'
+  | 'atlas-reveal'
   | 'click-key'
   | 'resume-download'
   | 'copy-link'
@@ -1598,6 +1601,14 @@ export function PortfolioPiece({
       <Suspense fallback={inlineFallback}>
         <ExpandableTabPiece />
       </Suspense>
+    );
+  if (id === 'atlas-reveal')
+    return (
+      <div className="flex min-h-[38rem] w-full items-center justify-center p-5 sm:p-8">
+        <Suspense fallback={atlasFallback}>
+          <AtlasRevealPiece />
+        </Suspense>
+      </div>
     );
   if (id === 'click-key')
     return (

@@ -23,6 +23,7 @@ import mercuryFlowSource from '../../../packages/motus-ui/src/effects/MercuryFlo
 import magneticHalftoneSource from '../../../packages/motus-ui/src/effects/MagneticHalftone.tsx?raw';
 import spectralVeilSource from '../../../packages/motus-ui/src/effects/SpectralVeil.tsx?raw';
 import expandableTabSource from '../../../packages/motus-ui/src/ExpandableTab.tsx?raw';
+import atlasRevealSource from '../../../packages/motus-ui/src/maps/AtlasReveal.tsx?raw';
 import clickKeySource from '../../../packages/motus-ui/src/buttons/ClickKey.tsx?raw';
 import resumeDownloadSource from '../../../packages/motus-ui/src/buttons/ResumeDownloadButton.tsx?raw';
 import copyLinkButtonSource from '../../../packages/motus-ui/src/buttons/CopyLinkButton.tsx?raw';
@@ -181,6 +182,17 @@ const PIECES: Piece[] = [
     source: expandableTabSource,
   },
   {
+    id: 'atlas-reveal',
+    name: 'Atlas Reveal',
+    category: 'Maps',
+    gesture: 'Choose a country',
+    description: 'An artistic country map with animated boundaries, a capital label, and a compass rose.',
+    useCase: 'Location story',
+    functionName: 'AtlasReveal',
+    runtime: 'Motion · SVG · Natural Earth',
+    source: atlasRevealSource,
+  },
+  {
     id: 'liquid-mesh',
     name: 'Silk Background',
     category: 'Backgrounds',
@@ -257,6 +269,7 @@ function usageFor(piece: Piece) {
     'resume-download': `import ResumeDownloadButton from '${path}';\n\nexport default function ResumeLink() {\n  return <ResumeDownloadButton href="/resume.pdf" filename="resume.pdf" />;\n}`,
     'copy-link': `import CopyLinkButton from '${path}';\n\nexport default function ShareProject() {\n  return <CopyLinkButton value="https://example.com/work" />;\n}`,
     'expandable-tab': `import { ExpandableTab } from '${path}';\n\nexport default function AppNavigation() {\n  return <ExpandableTab />;\n}`,
+    'atlas-reveal': `import { AtlasReveal } from '${path}';\n\nexport default function LocationStory() {\n  return <AtlasReveal defaultCountry="philippines" />;\n}`,
   };
   return (
     examples[piece.id] ??

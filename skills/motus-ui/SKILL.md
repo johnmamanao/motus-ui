@@ -109,13 +109,27 @@ The native download starts after the transfer animation. Do not add a second art
 
 `ClickKey` has a fixed "Open project" label, a split-flap scanning state, and a short activation cue. Use it for that intent; do not present it as a generic text button.
 
+### `AtlasReveal`
+
+| Prop              | Type                                | Default     | Guidance                                           |
+| ----------------- | ----------------------------------- | ----------- | -------------------------------------------------- |
+| `country`         | `AtlasCountryId`                    | `undefined` | Controlled country                                 |
+| `defaultCountry`  | `AtlasCountryId`                    | `'japan'`   | Initial country for an uncontrolled map            |
+| `onCountryChange` | `(country: AtlasCountryId) => void` | `undefined` | Synchronize a selection with application state     |
+| `showSelector`    | `boolean`                           | `true`      | Hide only when the application supplies its own UI |
+| `className`       | `string`                            | `''`        | Extend the outer card layout                       |
+
+Country IDs: `japan`, `philippines`, `italy`, `iceland`, `chile`, `india`, `australia`, and `brazil`.
+
+Use `AtlasReveal` for a location story, travel feature, regional profile, or editorial map. It renders its bundled SVG geometry without a map provider or network request. Keep the built-in selector unless another accessible control updates the controlled `country` prop.
+
 ### `LiquidGlassCard`
 
 `LiquidGlassCard` accepts `children`, `className`, `draggable`, `borderRadius`, `blurIntensity`, `glowIntensity`, and `shadowIntensity`. Use it over visible imagery or color so the refraction and blur have something to affect.
 
 ### Preset portfolio pieces
 
-`PortfolioNav`, `ExpandableTab`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. Their current content is built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
+`PortfolioNav`, `ExpandableTab`, `AtlasReveal`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. `AtlasReveal` is configurable through its public country-selection props. The other presets keep their current content built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
 
 ### Background effects
 
