@@ -118,7 +118,7 @@ import { SocialRelay } from 'motus-ui';
 <SocialRelay />;
 ```
 
-`SocialRelay` renders up to four glass destination nodes with accessible external links, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
+`SocialRelay` renders up to four circular glass links with accessible labels, focus feedback, and reduced-motion behavior. Pass `items` to replace the built-in Motus destinations.
 
 ### Portfolio components
 
@@ -195,7 +195,7 @@ Place an effect inside a positioned container and layer your content above it.
 | Prop        | Type                         | Default            | Description                               |
 | ----------- | ---------------------------- | ------------------ | ----------------------------------------- |
 | `items`     | `readonly SocialRelayItem[]` | Motus destinations | Up to four customizable destination links |
-| `className` | `string`                     | `''`               | Adds classes to the outer relay card      |
+| `className` | `string`                     | `''`               | Adds classes to the outer navigation      |
 
 `SocialRelayItem` requires `id`, `label`, and `href`, and accepts optional `meta`, `accent`, `icon`, and `target` fields.
 

@@ -118,7 +118,7 @@ Included countries: Japan, Philippines, Italy, Iceland, Chile, India, Australia,
 
 ### Social relay
 
-Render a four-destination glass link matrix. The defaults connect to the Motus repository, npm package, showcase, and issue tracker; pass `items` to replace them.
+Render a compact cluster of four circular glass links. The defaults connect to the Motus repository, npm package, showcase, and issue tracker; pass `items` to replace them.
 
 ```tsx
 import { SocialRelay } from 'motus-ui';
@@ -205,7 +205,7 @@ Place an effect inside a positioned container and layer your content above it.
 | Prop        | Type                         | Default            | Description                               |
 | ----------- | ---------------------------- | ------------------ | ----------------------------------------- |
 | `items`     | `readonly SocialRelayItem[]` | Motus destinations | Up to four customizable destination links |
-| `className` | `string`                     | `''`               | Adds classes to the outer relay card      |
+| `className` | `string`                     | `''`               | Adds classes to the outer navigation      |
 
 Each item accepts `id`, `label`, `href`, and optional `meta`, `accent`, `icon`, and `target` values.
 

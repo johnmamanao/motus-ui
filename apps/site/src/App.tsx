@@ -204,7 +204,7 @@ const PIECES: Piece[] = [
     name: 'Social Relay',
     category: 'Navigation',
     gesture: 'Hover or focus',
-    description: 'A glass link matrix with destination labels, status feedback, and colored signal accents.',
+    description: 'A compact circular link cluster with glass surfaces, colored signal accents, and tactile motion.',
     useCase: 'Social links',
     functionName: 'SocialRelay',
     runtime: 'Motion · Accessible links',

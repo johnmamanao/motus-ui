@@ -130,7 +130,7 @@ Use `AtlasReveal` for a location story, travel feature, regional profile, or edi
 | Prop        | Type                         | Default            | Guidance                                   |
 | ----------- | ---------------------------- | ------------------ | ------------------------------------------ |
 | `items`     | `readonly SocialRelayItem[]` | Motus destinations | Supply no more than four destination links |
-| `className` | `string`                     | `''`               | Extend the outer card layout               |
+| `className` | `string`                     | `''`               | Extend the outer navigation layout         |
 
 Each item requires `id`, `label`, and `href`. Use `meta` for a short destination type, `accent` for a CSS hex color, `icon` for a React node, and `target` when a link should stay in the current tab. Preserve recognizable link labels and do not replace the visible focus treatment.
 
