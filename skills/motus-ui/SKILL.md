@@ -107,7 +107,7 @@ The native download starts after the transfer animation. Do not add a second art
 | `onAction` | `() => void \| Promise<void>` | `undefined` | Run the project-opening action |
 | `disabled` | `boolean`                     | `false`     | Disable action and sound       |
 
-`ClickKey` has a fixed "Open project" label and built-in press/release sound. Use it for that intent; do not present it as a generic text button.
+`ClickKey` has a fixed "Open project" label, a visual signal pulse, and a short activation cue. Use it for that intent; do not present it as a generic text button.
 
 ### `LiquidGlassCard`
 
@@ -115,7 +115,7 @@ The native download starts after the transfer animation. Do not add a second art
 
 ### Preset portfolio pieces
 
-`PortfolioNav`, `ExpandableTab`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. Their current content is built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
+`PortfolioNav`, `ExpandableTab`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a vertical motion index and editorial content panel. Their current content is built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
 
 ### Background effects
 

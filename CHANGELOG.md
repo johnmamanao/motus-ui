@@ -4,6 +4,19 @@ All notable changes to Motus UI are documented here.
 
 The project follows [Semantic Versioning](https://semver.org/).
 
+## 0.1.4 - 2026-08-30
+
+### Changed
+
+- Rebuilt `ExpandableTab` as an original accessible motion index and editorial content panel.
+- Redesigned `ClickKey` as a signal-style project action with focused visual and audio feedback.
+- Replaced the component showcase shell with a full-height studio and responsive inspector.
+- Simplified the landing-page calls to action and refined the header and footer hierarchy.
+
+### Fixed
+
+- Removed residual third-party naming and high-risk derivative implementation patterns from current source.
+
 ## 0.1.3 - 2026-08-30
 
 ### Changed

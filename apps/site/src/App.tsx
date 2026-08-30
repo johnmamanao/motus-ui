@@ -1,6 +1,5 @@
 import { startTransition, useEffect, useRef, useState } from 'react';
 import {
-  ArrowLeft,
   ArrowRight,
   ArrowUpRight,
   Boxes,
@@ -13,7 +12,6 @@ import {
   Github,
   Maximize2,
   Menu,
-  PanelLeft,
   RotateCcw,
   X,
 } from 'lucide-react';
@@ -97,11 +95,11 @@ const PIECES: Piece[] = [
     id: 'click-key',
     name: 'Press Button',
     category: 'Buttons',
-    gesture: 'Press',
-    description: 'A button with short key travel and click sound.',
+    gesture: 'Activate',
+    description: 'A signal-style action with focused motion and a short audio cue.',
     useCase: 'Primary action',
     functionName: 'ClickKey',
-    runtime: 'Web Audio · Pointer events',
+    runtime: 'Motion · Web Audio',
     source: clickKeySource,
   },
   {
@@ -175,11 +173,11 @@ const PIECES: Piece[] = [
     id: 'expandable-tab',
     name: 'Expandable Tabs',
     category: 'Navigation',
-    gesture: 'Expand',
-    description: 'Tabs that expand to show the selected content.',
-    useCase: 'App navigation',
+    gesture: 'Select',
+    description: 'A vertical motion index paired with an editorial content canvas.',
+    useCase: 'Section navigation',
     functionName: 'ExpandableTab',
-    runtime: 'Motion · Web Audio · React use-measure',
+    runtime: 'Motion · Accessible tabs',
     source: expandableTabSource,
   },
   {
@@ -423,11 +421,8 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
           </h1>
           <p className="home-lead">Portfolio components you can try, copy, and change.</p>
           <div className="home-actions">
-            <button
-              className="home-primary-action"
-              onClick={() => document.querySelector('#featured')?.scrollIntoView({ behavior: 'smooth' })}
-            >
-              See the pieces <ArrowRight size={17} />
+            <button className="home-primary-action" onClick={() => navigate('/components')}>
+              Browse components <ArrowRight size={17} />
             </button>
             <button
               className={installCopied ? 'home-install copied' : 'home-install'}
@@ -528,14 +523,9 @@ function HomePage({ navigate }: { navigate: (path: string) => void }) {
               <small>{activeShowcase.piece.category}</small>
               <p>{activeShowcase.piece.description}</p>
             </div>
-            <span>
-              <button className="home-showcase-open" onClick={() => navigate(`/components/${activeShowcase.piece.id}`)}>
-                Open component <ArrowUpRight size={16} />
-              </button>
-              <button className="home-showcase-all" onClick={() => navigate('/components')}>
-                View all {PIECES.length} components <ArrowRight size={17} />
-              </button>
-            </span>
+            <button className="home-showcase-open" onClick={() => navigate(`/components/${activeShowcase.piece.id}`)}>
+              Open {activeShowcase.piece.name} <ArrowUpRight size={16} />
+            </button>
           </div>
         </section>
       </main>
@@ -643,7 +633,7 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
     if (resetTimer.current) window.clearTimeout(resetTimer.current);
     resetTimer.current = window.setTimeout(() => setResetting(false), 850);
     gsap.fromTo(
-      '.atomix-preview-piece',
+      '.motus-lab-preview-piece',
       { opacity: 0.3, scale: 0.965 },
       { opacity: 1, scale: 1, duration: 0.55, ease: 'power4.out' },
     );
@@ -704,60 +694,53 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
   );
 
   return (
-    <div className="atomix-shell">
+    <div className="motus-lab">
       <section
         ref={workspace}
-        className={`atomix-workspace ${sidebarOpen ? 'sidebar-is-open' : ''} ${sourceOpen ? 'source-is-open' : ''}`}
-        aria-label={`${piece.name} component workspace`}
+        className={['motus-lab-workspace', sidebarOpen && 'catalog-is-open', sourceOpen && 'docs-is-open']
+          .filter(Boolean)
+          .join(' ')}
+        aria-label={piece.name + ' component workspace'}
       >
-        <div className="atomix-preview">
-          <div className="atomix-preview-piece" data-piece={piece.id}>
-            <PortfolioPiece id={piece.id} textMotionVariant={textMotionVariant} key={`${piece.id}-${previewKey}`} />
-          </div>
-        </div>
-
-        <div className={`atomix-mobile-toolbar ${piece.id === 'text-motion' ? 'has-variant' : ''}`}>
-          <button
-            className="atomix-sidebar-toggle"
-            aria-label={sidebarOpen ? 'Close component menu' : 'Open component menu'}
-            aria-expanded={sidebarOpen}
-            onClick={() => {
-              setSidebarOpen(!sidebarOpen);
-              setSourceOpen(false);
-            }}
-          >
-            <PanelLeft size={17} />
+        <header className="motus-lab-header">
+          <button className="motus-lab-brand" onClick={() => navigate('/')} aria-label="Back to Motus home">
+            <Mark />
+            <span>Motus</span>
           </button>
-          <span className="atomix-mobile-title">{piece.name}</span>
-          <div className="atomix-controls" role="toolbar" aria-label="Preview controls">
+          <div className="motus-lab-identity">
+            <span>Component studio</span>
+            <i aria-hidden="true">/</i>
+            <strong>{piece.name}</strong>
+          </div>
+          <div className="motus-lab-tools" role="toolbar" aria-label="Preview controls">
             {piece.id === 'text-motion' && (
-              <div className="atomix-variant-picker" ref={variantPicker}>
+              <div className="motus-lab-variant" ref={variantPicker}>
                 <button
-                  className="atomix-variant-trigger"
-                  aria-label={`Choose animation. Current: ${TEXT_MOTION_VARIANTS.find((item) => item.id === textMotionVariant)?.label}`}
+                  className="motus-lab-variant-trigger"
+                  aria-label={
+                    'Choose animation. Current: ' +
+                    TEXT_MOTION_VARIANTS.find((item) => item.id === textMotionVariant)?.label
+                  }
                   aria-haspopup="listbox"
                   aria-expanded={variantMenuOpen}
                   aria-controls="text-motion-variants"
                   onClick={() => setVariantMenuOpen((open) => !open)}
                 >
-                  <span className="atomix-variant-copy">
-                    <strong>Animation</strong>
-                    <small>{TEXT_MOTION_VARIANTS.find((item) => item.id === textMotionVariant)?.label}</small>
-                  </span>
-                  <ChevronDown className={variantMenuOpen ? 'open' : ''} size={14} />
+                  <span>{TEXT_MOTION_VARIANTS.find((item) => item.id === textMotionVariant)?.label}</span>
+                  <ChevronDown className={variantMenuOpen ? 'open' : ''} size={13} />
                 </button>
                 <div
                   id="text-motion-variants"
-                  className={`atomix-variant-menu ${variantMenuOpen ? 'open' : ''}`}
+                  className={'motus-lab-variant-menu ' + (variantMenuOpen ? 'open' : '')}
                   role="listbox"
                   aria-label="Animation variants"
                   aria-hidden={!variantMenuOpen}
                   inert={!variantMenuOpen}
                 >
-                  <div className="atomix-variant-menu-head" aria-hidden="true">
-                    <strong>Choose animation</strong>
+                  <header>
+                    <strong>Animation</strong>
                     <span>{TEXT_MOTION_VARIANTS.length} styles</span>
-                  </div>
+                  </header>
                   {TEXT_MOTION_VARIANTS.map((item, index) => (
                     <button
                       key={item.id}
@@ -770,191 +753,232 @@ function DetailPage({ piece, navigate }: { piece: Piece; navigate: (path: string
                     >
                       <small>{String(index + 1).padStart(2, '0')}</small>
                       <span>{item.label}</span>
-                      {item.id === textMotionVariant && (
-                        <i>
-                          <Check size={12} />
-                        </i>
-                      )}
+                      {item.id === textMotionVariant && <Check size={12} />}
                     </button>
                   ))}
                 </div>
               </div>
             )}
-            <button className="atomix-fullscreen-button" aria-label="Toggle fullscreen" onClick={fullscreen}>
-              <Maximize2 size={17} />
+            <button
+              className={'motus-lab-tool motus-lab-browse ' + (sidebarOpen ? 'active' : '')}
+              aria-label={sidebarOpen ? 'Close component catalog' : 'Browse components'}
+              aria-expanded={sidebarOpen}
+              onClick={() => {
+                setSidebarOpen(!sidebarOpen);
+                setSourceOpen(false);
+              }}
+            >
+              <Boxes size={16} />
+              <span>Browse</span>
             </button>
-            <button className="atomix-reset-button" aria-label="Reset component" onClick={reset}>
-              {resetting ? <MotionReset playKey={previewKey} /> : <RotateCcw size={17} />}
+            <span className="motus-lab-divider" aria-hidden="true" />
+            <button
+              className="motus-lab-tool icon-only fullscreen-tool"
+              aria-label="Toggle fullscreen"
+              onClick={fullscreen}
+            >
+              <Maximize2 size={16} />
+            </button>
+            <button className="motus-lab-tool icon-only" aria-label="Reset component" onClick={reset}>
+              {resetting ? <MotionReset playKey={previewKey} /> : <RotateCcw size={16} />}
             </button>
             <button
-              className={`atomix-code-button ${sourceOpen ? 'active' : ''}`}
+              className={'motus-lab-tool motus-lab-code ' + (sourceOpen ? 'active' : '')}
               aria-label="View source code"
               aria-pressed={sourceOpen}
               onClick={() => toggleSource(!sourceOpen)}
             >
-              <Code2 size={17} />
-            </button>
-          </div>
-        </div>
-        <button
-          className={`atomix-sidebar-backdrop ${sidebarOpen ? 'visible' : ''}`}
-          aria-label="Close component menu"
-          aria-hidden={!sidebarOpen}
-          tabIndex={sidebarOpen ? 0 : -1}
-          onClick={() => setSidebarOpen(false)}
-        />
-
-        <aside
-          className={`atomix-sidebar ${sidebarOpen ? 'open' : ''}`}
-          aria-label="Component library"
-          aria-hidden={!sidebarOpen}
-          inert={!sidebarOpen}
-        >
-          <div className="atomix-sidebar-head">
-            <button className="atomix-brand" onClick={() => navigate('/')}>
-              <Mark />
-              <span>Motus</span>
-            </button>
-            <button aria-label="Close component menu" onClick={() => setSidebarOpen(false)}>
-              <X size={17} />
-            </button>
-          </div>
-          <button className="atomix-group-toggle" aria-pressed={grouped} onClick={() => setGrouped(!grouped)}>
-            <span>Browse</span>
-            <i>
-              {grouped ? 'Categories' : 'All components'}
-              <ChevronsUpDown size={14} />
-            </i>
-          </button>
-          <nav className="atomix-component-nav" aria-label="Choose component">
-            {grouped
-              ? categories.map((category) =>
-                  renderSection(
-                    category,
-                    PIECES.filter((item) => item.category === category),
-                  ),
-                )
-              : renderSection('All', PIECES)}
-          </nav>
-          <div className="atomix-sidebar-foot">
-            <span>Install {piece.name}</span>
-            <button onClick={() => copy(install, 'install')}>
-              <code>{install}</code>
-              {copied === 'install' ? <AnimatedCheck /> : <Clipboard size={14} />}
-            </button>
-          </div>
-        </aside>
-
-        <aside
-          className={`atomix-source-drawer ${sourceOpen ? 'open' : ''}`}
-          aria-label="Component code and usage"
-          aria-hidden={!sourceOpen}
-          inert={!sourceOpen}
-        >
-          <header>
-            <button aria-label="Close component code" onClick={() => toggleSource(false)}>
-              <ArrowLeft size={17} />
+              <Code2 size={16} />
               <span>Code</span>
             </button>
-            <strong>{drawerView === 'source' ? `${slugFor(piece)}.tsx` : 'How to use'}</strong>
-            <div>
-              {drawerView === 'source' && (
-                <button aria-label="Download source file" onClick={download}>
-                  <Download size={17} />
-                </button>
-              )}
-              <button
-                aria-label={drawerView === 'source' ? 'Copy source' : 'Copy usage example'}
-                onClick={() => copy(drawerView === 'source' ? source : usage, drawerView)}
-              >
-                {copied === drawerView ? <AnimatedCheck /> : <Clipboard size={17} />}
+          </div>
+        </header>
+
+        <main className="motus-lab-body">
+          <section className="motus-lab-stage" aria-label={piece.name + ' interactive preview'}>
+            <div className="motus-lab-stage-meta top-left" aria-hidden="true">
+              <span>Interactive preview</span>
+              <i />
+            </div>
+            <span className="motus-lab-stage-meta top-right" aria-hidden="true">
+              M–{String(PIECES.indexOf(piece) + 1).padStart(2, '0')}
+            </span>
+            <div className="motus-lab-preview-piece" data-piece={piece.id}>
+              <PortfolioPiece id={piece.id} textMotionVariant={textMotionVariant} key={piece.id + '-' + previewKey} />
+            </div>
+            <span className="motus-lab-stage-meta bottom-left" aria-hidden="true">
+              {piece.category}
+            </span>
+            <span className="motus-lab-stage-meta bottom-right" aria-hidden="true">
+              Drag · click · explore
+            </span>
+          </section>
+
+          <button
+            className={'motus-lab-backdrop ' + (sidebarOpen || sourceOpen ? 'visible' : '')}
+            aria-label="Close inspector"
+            aria-hidden={!sidebarOpen && !sourceOpen}
+            tabIndex={sidebarOpen || sourceOpen ? 0 : -1}
+            onClick={() => {
+              setSidebarOpen(false);
+              if (sourceOpen) toggleSource(false);
+            }}
+          />
+
+          <aside
+            className={'motus-lab-panel motus-lab-catalog ' + (sidebarOpen ? 'open' : '')}
+            aria-label="Component catalog"
+            aria-hidden={!sidebarOpen}
+            inert={!sidebarOpen}
+          >
+            <header className="motus-lab-panel-head">
+              <div>
+                <span>Library</span>
+                <strong>Browse components</strong>
+              </div>
+              <button aria-label="Close component catalog" onClick={() => setSidebarOpen(false)}>
+                <X size={16} />
+              </button>
+            </header>
+            <button className="motus-lab-group-toggle" aria-pressed={grouped} onClick={() => setGrouped(!grouped)}>
+              <span>View</span>
+              <i>
+                {grouped ? 'By category' : 'All components'}
+                <ChevronsUpDown size={13} />
+              </i>
+            </button>
+            <nav className="motus-lab-component-nav" aria-label="Choose component">
+              {grouped
+                ? categories.map((category) =>
+                    renderSection(
+                      category,
+                      PIECES.filter((item) => item.category === category),
+                    ),
+                  )
+                : renderSection('All', PIECES)}
+            </nav>
+            <div className="motus-lab-install">
+              <span>Install {piece.name}</span>
+              <button onClick={() => copy(install, 'install')}>
+                <code>{install}</code>
+                {copied === 'install' ? <AnimatedCheck /> : <Clipboard size={14} />}
               </button>
             </div>
-          </header>
-          <nav className="atomix-source-tabs" aria-label="Component documentation" role="tablist">
-            <button role="tab" aria-selected={drawerView === 'source'} onClick={() => selectDrawerView('source')}>
-              Source code
-            </button>
-            <button role="tab" aria-selected={drawerView === 'usage'} onClick={() => selectDrawerView('usage')}>
-              How to use
-            </button>
-          </nav>
-          {drawerView === 'source' ? (
-            <div className="atomix-source-code">
-              {sourceOpen && (
-                <Highlight theme={CODE_THEME} code={source} language="tsx">
-                  {({ tokens, getLineProps, getTokenProps }) => (
-                    <pre>
-                      <code>
-                        {tokens.map((line, lineIndex) => (
-                          <span {...getLineProps({ line })} className="source-line" key={lineIndex}>
-                            <i>{String(lineIndex + 1).padStart(2, '0')}</i>
-                            <span>
-                              {line.map((token, tokenIndex) => (
-                                <span key={tokenIndex} {...getTokenProps({ token })} />
-                              ))}
-                            </span>
-                          </span>
-                        ))}
-                      </code>
-                    </pre>
-                  )}
-                </Highlight>
-              )}
-            </div>
-          ) : (
-            <div className="atomix-usage">
-              <header>
-                <span>Quick start</span>
-                <h2>Use {piece.name}</h2>
-                <p>{piece.description}</p>
-              </header>
-              <section>
-                <div>
-                  <i>01</i>
-                  <span>
-                    <strong>Install</strong>
-                    <small>Add the component to your project.</small>
-                  </span>
-                </div>
-                <button onClick={() => copy(install, 'install')}>
-                  <code>{install}</code>
-                  {copied === 'install' ? <AnimatedCheck /> : <Clipboard size={15} />}
+          </aside>
+
+          <aside
+            className={'motus-lab-panel motus-lab-docs ' + (sourceOpen ? 'open' : '')}
+            aria-label="Component code and usage"
+            aria-hidden={!sourceOpen}
+            inert={!sourceOpen}
+          >
+            <header className="motus-lab-panel-head">
+              <div>
+                <span>Documentation</span>
+                <strong>{drawerView === 'source' ? slugFor(piece) + '.tsx' : 'Use ' + piece.name}</strong>
+              </div>
+              <div className="motus-lab-panel-actions">
+                {drawerView === 'source' && (
+                  <button aria-label="Download source file" onClick={download}>
+                    <Download size={16} />
+                  </button>
+                )}
+                <button
+                  aria-label={drawerView === 'source' ? 'Copy source' : 'Copy usage example'}
+                  onClick={() => copy(drawerView === 'source' ? source : usage, drawerView)}
+                >
+                  {copied === drawerView ? <AnimatedCheck /> : <Clipboard size={16} />}
                 </button>
-              </section>
-              <section>
-                <div>
-                  <i>02</i>
-                  <span>
-                    <strong>Import and render</strong>
-                    <small>Paste this where you want the component.</small>
-                  </span>
-                </div>
-                <Highlight theme={CODE_THEME} code={usage} language="tsx">
-                  {({ tokens, getLineProps, getTokenProps }) => (
-                    <pre>
-                      <code>
-                        {tokens.map((line, lineIndex) => (
-                          <span {...getLineProps({ line })} className="source-line" key={lineIndex}>
-                            <i>{String(lineIndex + 1).padStart(2, '0')}</i>
-                            <span>
-                              {line.map((token, tokenIndex) => (
-                                <span key={tokenIndex} {...getTokenProps({ token })} />
-                              ))}
+                <button aria-label="Close component documentation" onClick={() => toggleSource(false)}>
+                  <X size={16} />
+                </button>
+              </div>
+            </header>
+            <nav className="motus-lab-doc-tabs" aria-label="Component documentation" role="tablist">
+              <button role="tab" aria-selected={drawerView === 'source'} onClick={() => selectDrawerView('source')}>
+                Source
+              </button>
+              <button role="tab" aria-selected={drawerView === 'usage'} onClick={() => selectDrawerView('usage')}>
+                Usage
+              </button>
+            </nav>
+            {drawerView === 'source' ? (
+              <div className="motus-lab-source">
+                {sourceOpen && (
+                  <Highlight theme={CODE_THEME} code={source} language="tsx">
+                    {({ tokens, getLineProps, getTokenProps }) => (
+                      <pre>
+                        <code>
+                          {tokens.map((line, lineIndex) => (
+                            <span {...getLineProps({ line })} className="source-line" key={lineIndex}>
+                              <i>{String(lineIndex + 1).padStart(2, '0')}</i>
+                              <span>
+                                {line.map((token, tokenIndex) => (
+                                  <span key={tokenIndex} {...getTokenProps({ token })} />
+                                ))}
+                              </span>
                             </span>
-                          </span>
-                        ))}
-                      </code>
-                    </pre>
-                  )}
-                </Highlight>
-              </section>
-            </div>
-          )}
-        </aside>
-        <span className="atomix-status" aria-live="polite">
-          {copyStatus}
-        </span>
+                          ))}
+                        </code>
+                      </pre>
+                    )}
+                  </Highlight>
+                )}
+              </div>
+            ) : (
+              <div className="motus-lab-usage">
+                <header>
+                  <span>Quick start</span>
+                  <h2>Use {piece.name}</h2>
+                  <p>{piece.description}</p>
+                </header>
+                <section>
+                  <div>
+                    <i>01</i>
+                    <span>
+                      <strong>Install</strong>
+                      <small>Add the component to your project.</small>
+                    </span>
+                  </div>
+                  <button onClick={() => copy(install, 'install')}>
+                    <code>{install}</code>
+                    {copied === 'install' ? <AnimatedCheck /> : <Clipboard size={15} />}
+                  </button>
+                </section>
+                <section>
+                  <div>
+                    <i>02</i>
+                    <span>
+                      <strong>Import and render</strong>
+                      <small>Paste this where you want the component.</small>
+                    </span>
+                  </div>
+                  <Highlight theme={CODE_THEME} code={usage} language="tsx">
+                    {({ tokens, getLineProps, getTokenProps }) => (
+                      <pre>
+                        <code>
+                          {tokens.map((line, lineIndex) => (
+                            <span {...getLineProps({ line })} className="source-line" key={lineIndex}>
+                              <i>{String(lineIndex + 1).padStart(2, '0')}</i>
+                              <span>
+                                {line.map((token, tokenIndex) => (
+                                  <span key={tokenIndex} {...getTokenProps({ token })} />
+                                ))}
+                              </span>
+                            </span>
+                          ))}
+                        </code>
+                      </pre>
+                    )}
+                  </Highlight>
+                </section>
+              </div>
+            )}
+          </aside>
+          <span className="motus-lab-status" aria-live="polite">
+            {copyStatus}
+          </span>
+        </main>
       </section>
     </div>
   );

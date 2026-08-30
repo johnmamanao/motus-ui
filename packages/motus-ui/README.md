@@ -98,7 +98,7 @@ import { ClickKey } from 'motus-ui';
 <ClickKey onAction={() => console.log('Open project')} />;
 ```
 
-`ClickKey` provides tactile press-and-release feedback with sound. Audio begins only after user interaction.
+`ClickKey` uses a focused visual pulse and short audio cue to confirm activation. Audio begins only after user interaction.
 
 ### Portfolio components
 
@@ -106,7 +106,7 @@ import { ClickKey } from 'motus-ui';
 import { ContactCard, ExpandableTab, PortfolioNav, ProjectCard, ProjectList, SkillsList, TechStack } from 'motus-ui';
 ```
 
-These pieces can be rendered directly without required props. `LiquidGlassCard` and `RouteLens` are also exported for composed layouts.
+These pieces can be rendered directly without required props. `ExpandableTab` is an accessible vertical motion index with a coordinated editorial panel. `LiquidGlassCard` and `RouteLens` are also exported for composed layouts.
 
 ### Background effects
 

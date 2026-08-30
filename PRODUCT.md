@@ -45,7 +45,7 @@ Art-directed, precise, tactile, and calm. Motus should feel like an independent 
 
 ## Anti-references
 
-Avoid generic component-documentation dashboards, purple-blue SaaS gradients, identical card grids, decorative glassmorphism, cute illustrations, excessive pills, and interfaces that sacrifice usability for spectacle. Do not clone Atomix UI's specific imagery, branding, or composition.
+Avoid generic component-documentation dashboards, purple-blue SaaS gradients, identical card grids, decorative glassmorphism, cute illustrations, excessive pills, and interfaces that sacrifice usability for spectacle. Keep Motus visually distinct through its own typography, monochrome palette, motion language, and component-first composition.
 
 Glass is a material demonstrated by the components, not the default styling of the documentation shell.
 

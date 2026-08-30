@@ -94,7 +94,7 @@ import { ResumeDownloadButton } from 'motus-ui';
 
 ### Press button
 
-`ClickKey` provides a tactile press-and-release interaction with sound.
+`ClickKey` is a signal-style project action with a short visual pulse and audio cue.
 
 ```tsx
 import { ClickKey } from 'motus-ui';
@@ -123,7 +123,7 @@ export function Portfolio() {
 }
 ```
 
-Additional pieces include `ExpandableTab`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`.
+Additional pieces include `ExpandableTab`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`. `ExpandableTab` presents an accessible vertical motion index with a coordinated editorial panel.
 
 ### Background effects
 

@@ -92,13 +92,13 @@ input:focus-visible {
 }
 .home-showcase,
 .studio-preview-scroll,
-.atomix-preview,
+.motus-lab-stage,
 .preview-scroll {
   --scrollbar-thumb: rgba(46, 46, 43, 0.26);
   --scrollbar-thumb-hover: rgba(46, 46, 43, 0.48);
 }
-.atomix-sidebar,
-.atomix-source-drawer,
+.motus-lab-component-nav,
+.motus-lab-source,
 .source-mode,
 .source-window {
   --scrollbar-thumb: rgba(134, 140, 151, 0.42);
@@ -2417,444 +2417,445 @@ body,
   }
 }
 
-/* Single-canvas component workspace */
-.atomix-shell {
+/* Motus component studio */
+.motus-lab {
   height: 100dvh;
-  min-height: 540px;
+  min-height: 560px;
   overflow: hidden;
-  padding: 8px;
-  background: #050505;
-  color: #ededed;
+  background: #f2f2ef;
+  color: #171717;
 }
-.atomix-workspace {
-  --source-drawer-width: min(52%, 760px);
-  position: relative;
-  isolation: isolate;
-  height: calc(100dvh - 16px);
-  min-height: 524px;
-  overflow: hidden;
-  border-radius: 24px;
-  background: #f3f3f5;
-  color: #111;
-  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08);
-}
-.atomix-workspace:fullscreen {
-  height: 100vh;
-  border-radius: 0;
-}
-.atomix-preview {
-  position: absolute;
-  inset: 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  padding: clamp(34px, 6vw, 96px);
-  background: radial-gradient(circle at 50% 42%, #fff 0, #f6f6f7 40%, #ededf0 100%);
-}
-.atomix-preview:has(.showcase-fullbleed) {
-  padding: 0;
-}
-.atomix-preview-piece {
-  width: min(100%, 900px);
-  container-type: inline-size;
-  transition: transform 0.48s cubic-bezier(0.16, 1, 0.3, 1);
-}
-.atomix-preview-piece:has(.showcase-fullbleed) {
-  width: 100%;
+.motus-lab-workspace {
   height: 100%;
-}
-.atomix-preview-piece:has(.showcase-fullbleed) .showcase-fullbleed {
-  height: 100%;
-  min-height: 100%;
-}
-.atomix-mobile-toolbar {
-  display: contents;
-}
-.atomix-mobile-title {
-  display: none;
-}
-.atomix-sidebar-toggle,
-.atomix-controls,
-.atomix-sidebar,
-.atomix-source-drawer {
+  display: grid;
+  grid-template-rows: 64px minmax(0, 1fr);
+  background: #f2f2ef;
   font-family: 'Archivo Variable', sans-serif;
 }
-.atomix-sidebar-backdrop {
-  position: absolute;
-  inset: 0;
-  z-index: 47;
-  border: 0;
-  background: rgba(8, 8, 8, 0.34);
-  opacity: 0;
-  pointer-events: none;
-  cursor: default;
-  transition: opacity 0.22s ease;
+.motus-lab-workspace:fullscreen {
+  height: 100vh;
 }
-.atomix-sidebar-backdrop.visible {
-  opacity: 1;
-  pointer-events: auto;
-}
-.atomix-sidebar-toggle {
-  position: absolute;
-  left: 18px;
-  top: 18px;
-  z-index: 42;
-  width: 44px;
-  height: 44px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 13px;
-  background: #111;
-  color: #f5f5f5;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
-}
-.atomix-sidebar-toggle:hover {
-  background: #242424;
-  transform: translateY(-1px);
-}
-.atomix-controls {
-  position: absolute;
-  right: 16px;
-  top: 16px;
-  z-index: 42;
-  display: flex;
-  gap: 2px;
-  padding: 4px;
-  border-radius: 15px;
-  background: #111;
-  color: #aaa;
-  box-shadow: 0 12px 34px rgba(0, 0, 0, 0.18);
-}
-.atomix-controls button {
-  width: 42px;
-  height: 42px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 11px;
-  background: transparent;
-  color: inherit;
-  cursor: pointer;
-  transition:
-    background 0.18s ease,
-    color 0.18s ease;
-}
-.atomix-controls button:hover,
-.atomix-controls button.active {
-  background: #292929;
-  color: #fff;
-}
-.atomix-variant-picker {
+.motus-lab-header {
   position: relative;
+  z-index: 70;
+  display: grid;
+  grid-template-columns: 180px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 18px;
+  padding: 0 16px 0 20px;
+  border-bottom: 1px solid #d8d8d3;
+  background: rgba(248, 248, 245, 0.94);
+  backdrop-filter: blur(20px);
 }
-.atomix-controls .atomix-variant-trigger {
-  width: auto;
-  min-width: 170px;
-  gap: 9px;
-  padding: 0 9px 0 12px;
-  color: #fff;
+.motus-lab-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  justify-self: start;
+  background: transparent;
+  color: #111;
+  font-size: 15px;
+  font-weight: 740;
+  cursor: pointer;
 }
-.atomix-variant-copy {
+.motus-lab-brand .mark {
+  transform: scale(0.76);
+}
+.motus-lab-identity {
   min-width: 0;
   display: flex;
-  flex: 1;
   align-items: center;
-  justify-content: space-between;
-  gap: 9px;
-  text-align: left;
-}
-.atomix-variant-copy strong {
+  gap: 10px;
+  color: #999993;
   font-size: 11px;
-  font-weight: 700;
 }
-.atomix-variant-copy small {
+.motus-lab-identity i {
+  color: #c4c4bf;
+  font-style: normal;
+}
+.motus-lab-identity strong {
   overflow: hidden;
-  padding: 5px 8px;
-  border: 1px solid #383838;
-  border-radius: 8px;
-  background: #262626;
-  color: #b7b7b7;
-  font-size: 9px;
-  font-weight: 600;
+  color: #282826;
+  font-weight: 650;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.atomix-variant-trigger > svg:last-child {
-  color: #6f6f6f;
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+.motus-lab-tools {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }
-.atomix-variant-trigger > svg:last-child.open {
+.motus-lab-tool,
+.motus-lab-variant-trigger {
+  height: 36px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  padding: 0 11px;
+  border: 1px solid transparent;
+  border-radius: 9px;
+  background: transparent;
+  color: #6f6f6a;
+  cursor: pointer;
+  font-size: 10px;
+  font-weight: 650;
+  transition:
+    background 0.14s ease,
+    color 0.14s ease,
+    border-color 0.14s ease;
+}
+.motus-lab-tool:hover,
+.motus-lab-tool.active,
+.motus-lab-variant-trigger:hover {
+  border-color: #d8d8d3;
+  background: #fff;
+  color: #111;
+}
+.motus-lab-tool.icon-only {
+  width: 36px;
+  padding: 0;
+}
+.motus-lab-code {
+  border-color: #20201f;
+  background: #20201f;
+  color: #f7f7f4;
+}
+.motus-lab-code:hover,
+.motus-lab-code.active {
+  border-color: #000;
+  background: #000;
+  color: #fff;
+}
+.motus-lab-divider {
+  width: 1px;
+  height: 20px;
+  margin: 0 3px;
+  background: #dadad5;
+}
+.motus-lab-variant {
+  position: relative;
+}
+.motus-lab-variant-trigger {
+  min-width: 90px;
+  justify-content: space-between;
+  border-color: #deded9;
+  background: #fff;
+  color: #333;
+}
+.motus-lab-variant-trigger svg {
+  color: #999;
+  transition: transform 0.2s ease;
+}
+.motus-lab-variant-trigger svg.open {
   transform: rotate(180deg);
 }
-.atomix-variant-menu {
-  --scrollbar-thumb: rgba(46, 46, 43, 0.25);
-  --scrollbar-thumb-hover: rgba(46, 46, 43, 0.48);
+.motus-lab-variant-menu {
   position: absolute;
   right: 0;
   top: calc(100% + 9px);
-  width: 238px;
-  max-height: min(520px, calc(100dvh - 92px));
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 2px;
+  width: 226px;
+  max-height: min(520px, calc(100dvh - 82px));
   overflow-y: auto;
   padding: 7px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  border-radius: 17px;
-  background: rgba(248, 248, 247, 0.96);
-  color: #111;
-  box-shadow:
-    0 28px 70px rgba(0, 0, 0, 0.2),
-    0 2px 8px rgba(0, 0, 0, 0.08);
-  backdrop-filter: blur(24px) saturate(130%);
-  transform: translateY(-5px) scale(0.95);
-  transform-origin: top right;
+  border: 1px solid #d6d6d0;
+  border-radius: 14px;
+  background: rgba(251, 251, 248, 0.98);
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.16);
+  transform: translateY(-5px);
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 0.3s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.2s ease;
+    transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.14s ease;
 }
-.atomix-variant-menu.open {
-  transform: translateY(0) scale(1);
+.motus-lab-variant-menu.open {
+  transform: translateY(0);
   opacity: 1;
   pointer-events: auto;
 }
-.atomix-variant-menu-head {
+.motus-lab-variant-menu header {
   display: flex;
-  align-items: center;
   justify-content: space-between;
-  margin-bottom: 3px;
-  padding: 8px 10px 10px;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-  color: #111;
+  padding: 7px 8px 10px;
+  border-bottom: 1px solid #e2e2dc;
+  font-size: 9px;
 }
-.atomix-variant-menu-head strong {
-  font-size: 10px;
-  font-weight: 700;
-}
-.atomix-variant-menu-head span {
-  color: #8b8b8b;
+.motus-lab-variant-menu header span {
+  color: #999;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 8px;
 }
-.atomix-controls .atomix-variant-menu button {
+.motus-lab-variant-menu button {
   width: 100%;
-  height: 36px;
+  height: 34px;
   display: grid;
-  grid-template-columns: 28px 1fr 22px;
-  justify-content: initial;
+  grid-template-columns: 28px 1fr 18px;
+  align-items: center;
   padding: 0 8px;
-  color: #6c6c6c;
+  border-radius: 8px;
+  background: transparent;
+  color: #777;
   font-size: 10px;
   text-align: left;
+  cursor: pointer;
 }
-.atomix-variant-menu button > small {
+.motus-lab-variant-menu button:hover {
+  background: #efefeb;
+  color: #111;
+}
+.motus-lab-variant-menu button[aria-selected='true'] {
+  background: #171717;
+  color: #fff;
+}
+.motus-lab-variant-menu small {
   color: #aaa;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 8px;
 }
-.atomix-variant-menu button > span {
-  font-weight: 600;
+.motus-lab-body {
+  --panel-space: 0px;
+  position: relative;
+  min-height: 0;
+  overflow: hidden;
 }
-.atomix-variant-menu button > i {
-  width: 18px;
-  height: 18px;
+.motus-lab-workspace.catalog-is-open .motus-lab-body {
+  --panel-space: 324px;
+}
+.motus-lab-workspace.docs-is-open .motus-lab-body {
+  --panel-space: min(54vw, 720px);
+}
+.motus-lab-stage {
+  position: absolute;
+  inset: 0 var(--panel-space) 0 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 50%;
-  background: #fff;
-  color: #111;
+  overflow: auto;
+  padding: clamp(54px, 7vw, 104px);
+  background-color: #eeeeea;
+  background-image:
+    radial-gradient(circle at 50% 42%, rgba(255, 255, 255, 0.92), rgba(255, 255, 255, 0) 54%),
+    linear-gradient(rgba(18, 18, 18, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(18, 18, 18, 0.025) 1px, transparent 1px);
+  background-size:
+    auto,
+    28px 28px,
+    28px 28px;
+  transition: right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.motus-lab-preview-piece {
+  width: min(100%, 960px);
+  container-type: inline-size;
+}
+.motus-lab-preview-piece:has(.showcase-fullbleed) {
+  width: 100%;
+  height: 100%;
+}
+.motus-lab-preview-piece:has(.showcase-fullbleed) .showcase-fullbleed {
+  height: 100%;
+  min-height: 100%;
+}
+.motus-lab-stage:has(.showcase-fullbleed) {
+  padding: 0;
+}
+.motus-lab-stage-meta {
+  position: fixed;
+  z-index: 2;
+  color: #898983;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
   font-style: normal;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  pointer-events: none;
 }
-.atomix-controls .atomix-variant-menu button:hover {
-  background: #ececeb;
-  color: #111;
+.motus-lab-stage-meta.top-left {
+  left: 22px;
+  top: 84px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
 }
-.atomix-controls .atomix-variant-menu button[aria-selected='true'] {
-  background: #111;
-  color: #fff;
+.motus-lab-stage-meta.top-left i {
+  width: 26px;
+  height: 1px;
+  background: #b8b8b2;
 }
-.atomix-controls .atomix-variant-menu button[aria-selected='true'] > small {
-  color: #777;
+.motus-lab-stage-meta.top-right {
+  right: calc(var(--panel-space) + 22px);
+  top: 84px;
+  transition: right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
-.atomix-sidebar {
+.motus-lab-stage-meta.bottom-left {
+  left: 22px;
+  bottom: 19px;
+}
+.motus-lab-stage-meta.bottom-right {
+  right: calc(var(--panel-space) + 22px);
+  bottom: 19px;
+  transition: right 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.motus-lab-backdrop {
+  display: none;
+}
+.motus-lab-panel {
   position: absolute;
-  left: 8px;
-  top: 8px;
-  bottom: 8px;
-  z-index: 50;
-  width: 304px;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 30;
   display: grid;
-  grid-template-rows: auto auto minmax(0, 1fr) auto;
   overflow: hidden;
-  border: 1px solid #29292b;
-  border-radius: 20px;
-  background: #0d0d0e;
-  color: #f5f5f5;
-  box-shadow:
-    24px 0 70px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05);
-  transform: translateX(calc(-100% - 20px));
+  border-left: 1px solid #292927;
+  background: #131312;
+  color: #f5f5f1;
+  transform: translateX(100%);
   opacity: 0;
   pointer-events: none;
   transition:
-    transform 0.48s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.25s ease;
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.16s ease;
 }
-.atomix-sidebar.open {
+.motus-lab-panel.open {
   transform: translateX(0);
   opacity: 1;
   pointer-events: auto;
 }
-.atomix-sidebar-head {
-  height: 64px;
+.motus-lab-catalog {
+  width: 324px;
+  grid-template-rows: 70px 46px minmax(0, 1fr) auto;
+}
+.motus-lab-docs {
+  width: min(54vw, 720px);
+  grid-template-rows: 70px 45px minmax(0, 1fr);
+  background: #0b0c0f;
+}
+.motus-lab-panel-head {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 12px 0 16px;
-  border-bottom: 1px solid #242426;
+  gap: 12px;
+  padding: 0 15px 0 19px;
+  border-bottom: 1px solid #292927;
 }
-.atomix-brand {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  background: transparent;
-  color: #fff;
-  font-size: 16px;
-  font-weight: 720;
-  cursor: pointer;
+.motus-lab-panel-head > div:first-child {
+  min-width: 0;
+  display: grid;
+  gap: 5px;
 }
-.atomix-brand .mark {
-  transform: scale(0.78);
+.motus-lab-panel-head span {
+  color: #6f6f6b;
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
 }
-.atomix-sidebar-head > button:last-child {
+.motus-lab-panel-head strong {
+  overflow: hidden;
+  font-size: 13px;
+  font-weight: 650;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.motus-lab-panel-head button {
   width: 34px;
   height: 34px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
+  display: grid;
+  place-items: center;
+  border-radius: 9px;
   background: transparent;
-  color: #777;
+  color: #767672;
   cursor: pointer;
 }
-.atomix-sidebar-head > button:last-child:hover {
-  background: #202020;
+.motus-lab-panel-head button:hover {
+  background: #242422;
   color: #fff;
 }
-.atomix-group-toggle {
-  height: 48px;
+.motus-lab-panel-actions {
+  display: flex !important;
+  grid-auto-flow: column;
+  gap: 2px !important;
+}
+.motus-lab-group-toggle {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0 15px;
-  border-bottom: 1px solid #242426;
+  padding: 0 18px;
+  border-bottom: 1px solid #292927;
   background: transparent;
-  color: #777;
+  color: #696966;
   cursor: pointer;
   font-size: 9px;
 }
-.atomix-group-toggle > span {
+.motus-lab-group-toggle > span {
   font-family: 'IBM Plex Mono', monospace;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-.atomix-group-toggle > i {
+.motus-lab-group-toggle i {
   display: flex;
   align-items: center;
   gap: 7px;
-  color: #d6d6d8;
-  font-size: 10px;
+  color: #d0d0cc;
   font-style: normal;
   font-weight: 600;
 }
-.atomix-group-toggle svg {
-  color: #666;
-}
-.atomix-group-toggle:hover {
-  background: #121213;
-}
-.atomix-group-toggle:hover > i {
-  color: #fff;
-}
-.atomix-component-nav {
+.motus-lab-component-nav {
   min-height: 0;
   overflow-y: auto;
-  overscroll-behavior: contain;
-  padding: 19px 11px 28px;
+  padding: 19px 13px 28px;
 }
-.atomix-component-nav section {
-  position: relative;
-}
-.atomix-component-nav section + section {
+.motus-lab-component-nav section + section {
   margin-top: 18px;
 }
-.rail-section-head {
+.motus-lab-component-nav .rail-section-head {
   height: 26px;
   display: flex;
   align-items: flex-start;
   gap: 10px;
   padding: 0 10px;
 }
-.atomix-component-nav h2 {
+.motus-lab-component-nav h2 {
   margin: 0;
-  color: #66666b;
+  color: #62625f;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 8px;
   font-weight: 600;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
-.rail-section-head > span {
+.motus-lab-component-nav .rail-section-head > span {
   height: 1px;
   flex: 1;
   margin-top: 4px;
-  background: #242426;
+  background: #292927;
 }
-.atomix-component-nav button {
-  position: relative;
+.motus-lab-component-nav button {
   width: 100%;
   min-height: 42px;
   display: grid;
-  grid-template-columns: 16px minmax(0, 1fr) 16px;
-  gap: 8px;
+  grid-template-columns: 13px minmax(0, 1fr) 16px;
   align-items: center;
-  padding: 4px 9px;
-  border: 1px solid transparent;
-  border-radius: 11px;
+  gap: 8px;
+  padding: 4px 10px;
+  border-radius: 9px;
   background: transparent;
-  color: #929296;
+  color: #92928e;
   text-align: left;
   cursor: pointer;
   transition:
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    background 0.09s ease,
-    color 0.09s ease,
-    border-color 0.09s ease;
+    background 0.12s ease,
+    color 0.12s ease;
 }
-.atomix-component-nav button:hover {
-  transform: translateX(2px);
-  background: #151516;
-  color: #e9e9ea;
+.motus-lab-component-nav button:hover {
+  background: #1e1e1c;
+  color: #eee;
 }
-.atomix-component-nav button.active {
-  border-color: #d8dce8;
-  background: #dfe3f1;
-  color: #101012;
-  box-shadow: 0 8px 22px rgba(0, 0, 0, 0.22);
+.motus-lab-component-nav button.active {
+  background: #f0f0eb;
+  color: #111;
 }
-.rail-copy {
-  min-width: 0;
-}
-.atomix-component-nav strong {
+.motus-lab-component-nav strong {
   display: block;
   overflow: hidden;
   font-size: 11px;
@@ -2862,520 +2863,361 @@ body,
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-.rail-tick {
-  width: 5px;
-  height: 5px;
+.motus-lab-component-nav .rail-tick {
+  width: 4px;
+  height: 4px;
   border-radius: 50%;
-  background: #414146;
-  transition:
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1),
-    background 0.09s ease;
+  background: #4a4a47;
 }
-.atomix-component-nav button:hover .rail-tick {
-  background: #92929a;
+.motus-lab-component-nav button.active .rail-tick {
+  background: #111;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.1);
 }
-.atomix-component-nav button.active .rail-tick {
-  background: #6774ad;
-  box-shadow: 0 0 0 3px rgba(103, 116, 173, 0.16);
-  transform: scale(1.08);
-}
-.rail-arrow {
+.motus-lab-component-nav .rail-arrow {
   justify-self: end;
   opacity: 0;
-  transform: translateX(-3px);
-  transition:
-    opacity 0.12s ease,
-    transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
-.atomix-component-nav button:hover .rail-arrow,
-.atomix-component-nav button.active .rail-arrow {
+.motus-lab-component-nav button:hover .rail-arrow,
+.motus-lab-component-nav button.active .rail-arrow {
   opacity: 0.7;
-  transform: translateX(0);
 }
-.atomix-sidebar-foot {
-  padding: 12px;
-  border-top: 1px solid #242426;
-  background: #0a0a0b;
+.motus-lab-install {
+  padding: 13px;
+  border-top: 1px solid #292927;
 }
-.atomix-sidebar-foot > span {
+.motus-lab-install > span {
   display: block;
-  overflow: hidden;
-  margin: 0 3px 8px;
-  color: #68686d;
+  margin: 0 4px 8px;
+  color: #686864;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 7px;
-  text-overflow: ellipsis;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
-  letter-spacing: 0.09em;
-  white-space: nowrap;
 }
-.atomix-sidebar-foot button {
+.motus-lab-install button {
   width: 100%;
-  height: 44px;
+  height: 43px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 10px;
   padding: 0 11px;
-  border: 1px solid #2c2c2c;
-  border-radius: 10px;
-  background: #171717;
+  border: 1px solid #30302e;
+  border-radius: 9px;
+  background: #1c1c1a;
   color: #aaa;
   cursor: pointer;
 }
-.atomix-sidebar-foot code {
+.motus-lab-install code {
   min-width: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.atomix-source-drawer {
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  z-index: 46;
-  width: var(--source-drawer-width);
-  display: grid;
-  grid-template-rows: 64px 46px minmax(0, 1fr);
-  overflow: hidden;
-  border-right: 1px solid #282b36;
-  border-radius: 0 20px 20px 0;
-  background: #07080d;
-  color: #dfe7ff;
-  box-shadow: 30px 0 70px rgba(0, 0, 0, 0.28);
-  transform: translateX(calc(-100% - 24px));
-  opacity: 0;
-  pointer-events: none;
-  transition:
-    transform 0.5s cubic-bezier(0.16, 1, 0.3, 1),
-    opacity 0.25s ease;
-}
-.atomix-source-drawer.open {
-  transform: translateX(0);
-  opacity: 1;
-  pointer-events: auto;
-}
-.atomix-source-drawer > header {
-  display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  align-items: center;
-  padding: 0 12px;
-  border-bottom: 1px solid #20232e;
-  background: #0b0d13;
-}
-.atomix-source-drawer > header > button {
-  justify-self: start;
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  padding: 9px;
-  border-radius: 9px;
-  background: transparent;
-  color: #9ca3b4;
-  cursor: pointer;
-  font-size: 12px;
-}
-.atomix-source-drawer > header > button:hover,
-.atomix-source-drawer > header > div button:hover {
-  background: #181b24;
-  color: #fff;
-}
-.atomix-source-drawer > header > strong {
-  font-family: 'IBM Plex Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  color: #b9c0ce;
-}
-.atomix-source-drawer > header > div {
-  justify-self: end;
-  display: flex;
-  gap: 2px;
-}
-.atomix-source-drawer > header > div button {
-  width: 38px;
-  height: 38px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 9px;
-  background: transparent;
-  color: #727a8d;
-  cursor: pointer;
-}
-.atomix-source-tabs {
+.motus-lab-doc-tabs {
   display: flex;
   align-items: end;
-  gap: 2px;
-  padding: 0 14px;
-  border-bottom: 1px solid #20232e;
-  background: #0b0d13;
+  gap: 18px;
+  padding: 0 20px;
+  border-bottom: 1px solid #24262d;
 }
-.atomix-source-tabs button {
+.motus-lab-doc-tabs button {
   position: relative;
-  height: 45px;
-  padding: 0 13px;
+  height: 44px;
   background: transparent;
-  color: #6f7686;
-  font-size: 11px;
+  color: #6f7480;
+  font-size: 10px;
   font-weight: 650;
   cursor: pointer;
-  transition: color 0.18s ease;
 }
-.atomix-source-tabs button:hover {
-  color: #c9cfda;
-}
-.atomix-source-tabs button[aria-selected='true'] {
+.motus-lab-doc-tabs button[aria-selected='true'] {
   color: #fff;
 }
-.atomix-source-tabs button[aria-selected='true']:after {
+.motus-lab-doc-tabs button[aria-selected='true']::after {
   content: '';
   position: absolute;
-  left: 13px;
-  right: 13px;
+  left: 0;
+  right: 0;
   bottom: -1px;
   height: 2px;
-  border-radius: 2px;
-  background: #fff;
+  background: #c9ff6a;
 }
-.atomix-source-code {
+.motus-lab-source,
+.motus-lab-usage {
   min-height: 0;
   overflow: auto;
 }
-.atomix-source-code pre {
+.motus-lab-source pre {
   min-width: max-content;
   margin: 0;
-  padding: 28px 24px 70px;
+  padding: 28px 24px 72px;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 12px;
   line-height: 1.75;
 }
-.atomix-source-code .source-line {
+.motus-lab-source .source-line,
+.motus-lab-usage .source-line {
   display: grid;
-  grid-template-columns: 42px 1fr;
+  grid-template-columns: 40px 1fr;
 }
-.atomix-source-code .source-line > i {
+.motus-lab-source .source-line > i,
+.motus-lab-usage .source-line > i {
   color: #3f4554;
   font-style: normal;
   user-select: none;
 }
-.atomix-usage {
-  min-height: 0;
-  overflow: auto;
+.motus-lab-usage {
   padding: 30px 24px 60px;
 }
-.atomix-usage > header {
-  display: block;
-  padding: 0 0 27px;
-  border-bottom: 1px solid #20232e;
+.motus-lab-usage > header {
+  padding-bottom: 27px;
+  border-bottom: 1px solid #24262d;
 }
-.atomix-usage > header span {
-  color: #747c8d;
+.motus-lab-usage > header span {
+  color: #727784;
   font-family: 'IBM Plex Mono', monospace;
-  font-size: 9px;
-  letter-spacing: 0.11em;
+  font-size: 8px;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
 }
-.atomix-usage > header h2 {
+.motus-lab-usage > header h2 {
   margin: 10px 0 8px;
   color: #fff;
   font-size: 28px;
   letter-spacing: -0.035em;
 }
-.atomix-usage > header p {
+.motus-lab-usage > header p {
   max-width: 540px;
   margin: 0;
-  color: #8f96a6;
+  color: #8e939f;
   font-size: 12px;
   line-height: 1.6;
 }
-.atomix-usage > section {
+.motus-lab-usage > section {
   padding: 24px 0;
-  border-bottom: 1px solid #20232e;
+  border-bottom: 1px solid #24262d;
 }
-.atomix-usage > section > div {
+.motus-lab-usage > section > div {
   display: flex;
-  align-items: flex-start;
   gap: 12px;
   margin-bottom: 13px;
 }
-.atomix-usage > section > div > i {
-  padding-top: 2px;
-  color: #515869;
+.motus-lab-usage > section > div > i {
+  color: #555b67;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 9px;
   font-style: normal;
 }
-.atomix-usage > section > div > span {
+.motus-lab-usage > section > div > span {
   display: grid;
   gap: 3px;
 }
-.atomix-usage > section > div strong {
+.motus-lab-usage > section strong {
   color: #eef1f7;
   font-size: 12px;
 }
-.atomix-usage > section > div small {
-  color: #757d8e;
+.motus-lab-usage > section small {
+  color: #757b87;
   font-size: 10px;
 }
-.atomix-usage > section > button {
+.motus-lab-usage > section > button {
   width: 100%;
-  min-height: 48px;
+  min-height: 47px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
   padding: 11px 13px;
-  border: 1px solid #252936;
-  border-radius: 10px;
-  background: #0d1017;
-  color: #aeb6c7;
+  border: 1px solid #292c34;
+  border-radius: 9px;
+  background: #111318;
+  color: #b6bbc5;
   cursor: pointer;
-  text-align: left;
 }
-.atomix-usage > section > button:hover {
-  border-color: #393f50;
-  background: #11151e;
-}
-.atomix-usage > section > button code {
+.motus-lab-usage > section > button code {
   min-width: 0;
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 10px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
-.atomix-usage pre {
+.motus-lab-usage pre {
   min-width: max-content;
   margin: 0;
   padding: 18px;
-  border: 1px solid #202532;
-  border-radius: 12px;
-  background: #0b0d13 !important;
+  border: 1px solid #292c34;
+  border-radius: 10px;
+  background: #101116 !important;
   font-family: 'IBM Plex Mono', monospace;
   font-size: 11px;
   line-height: 1.7;
 }
-.atomix-usage pre code {
-  display: grid;
-}
-.atomix-usage .source-line {
-  display: grid;
-  grid-template-columns: 34px 1fr;
-}
-.atomix-usage .source-line > i {
-  color: #3f4554;
-  font-style: normal;
-  user-select: none;
-}
-.atomix-status {
+.motus-lab-status {
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   margin: -1px;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
-  border: 0;
 }
 
-@media (min-width: 901px) {
-  .atomix-sidebar.open ~ .atomix-source-drawer {
-    left: 0;
-  }
-  .atomix-workspace.sidebar-is-open:not(.source-is-open) .atomix-preview-piece {
-    width: min(calc(100% - 320px), 900px);
-    transform: translateX(160px);
-  }
-  .atomix-workspace.source-is-open .atomix-preview {
-    padding-left: var(--source-drawer-width);
-  }
-  .atomix-workspace.source-is-open .atomix-preview-piece {
-    transform: none;
-  }
-}
-@media (min-width: 901px) {
-  .atomix-workspace.sidebar-is-open:not(.source-is-open) .atomix-preview-piece:has(.showcase-fullbleed) {
-    width: calc(100% - 320px);
-    height: 100%;
-    margin-left: 320px;
-    transform: none;
-  }
-}
 @media (max-width: 900px) {
-  .atomix-sidebar {
-    width: min(360px, calc(100% - 16px));
+  .motus-lab-workspace {
+    grid-template-rows: 60px minmax(0, 1fr);
   }
-  .atomix-source-drawer {
-    width: 100%;
-    border-radius: 0;
+  .motus-lab-header {
+    grid-template-columns: auto minmax(0, 1fr) auto;
+    gap: 10px;
+    padding: 0 10px 0 14px;
   }
-  .atomix-preview {
-    padding: 70px 20px 28px;
+  .motus-lab-identity span,
+  .motus-lab-identity i,
+  .motus-lab-tool span,
+  .motus-lab-divider {
+    display: none;
   }
-  .atomix-workspace.sidebar-is-open .atomix-mobile-toolbar,
-  .atomix-workspace.sidebar-is-open .atomix-mobile-toolbar > .atomix-sidebar-toggle,
-  .atomix-workspace.sidebar-is-open .atomix-mobile-toolbar > .atomix-controls {
+  .motus-lab-tool {
+    width: 36px;
+    padding: 0;
+  }
+  .motus-lab-stage {
+    inset: 0;
+    padding: 54px 20px 42px;
+  }
+  .motus-lab-stage-meta.top-left {
+    top: 78px;
+    left: 16px;
+  }
+  .motus-lab-stage-meta.top-right {
+    top: 78px;
+    right: 16px;
+  }
+  .motus-lab-stage-meta.bottom-left {
+    left: 16px;
+    bottom: 16px;
+  }
+  .motus-lab-stage-meta.bottom-right {
+    right: 16px;
+    bottom: 16px;
+  }
+  .motus-lab-backdrop {
+    position: absolute;
+    inset: 0;
+    z-index: 35;
+    display: block;
+    border: 0;
+    background: rgba(12, 12, 12, 0.42);
     opacity: 0;
     pointer-events: none;
+    transition: opacity 0.18s ease;
   }
-}
-@media (max-width: 560px) {
-  .atomix-shell {
-    min-height: 100dvh;
-    padding: 0;
-    background: #f3f3f5;
-  }
-  .atomix-workspace {
-    height: 100dvh;
-    min-height: 0;
-    border-radius: 0;
-    box-shadow: none;
-  }
-  .atomix-mobile-toolbar {
-    position: absolute;
-    left: max(12px, env(safe-area-inset-left));
-    right: max(12px, env(safe-area-inset-right));
-    top: max(12px, env(safe-area-inset-top));
-    z-index: 42;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    min-width: 0;
-    pointer-events: none;
-    transition: opacity 0.2s ease;
-  }
-  .atomix-mobile-toolbar > * {
+  .motus-lab-backdrop.visible {
+    opacity: 1;
     pointer-events: auto;
   }
-  .atomix-sidebar-toggle,
-  .atomix-controls {
-    position: static;
-    inset: auto;
+  .motus-lab-panel,
+  .motus-lab-catalog,
+  .motus-lab-docs {
+    left: 0;
+    right: 0;
+    top: auto;
+    bottom: 0;
+    width: 100%;
+    height: min(76dvh, 690px);
+    border-top: 1px solid #30302d;
+    border-left: 0;
+    border-radius: 18px 18px 0 0;
+    transform: translateY(100%);
   }
-  .atomix-sidebar-toggle {
-    width: 40px;
-    height: 40px;
-    flex: 0 0 40px;
-    border-radius: 12px;
+  .motus-lab-panel.open {
+    transform: translateY(0);
   }
-  .atomix-controls {
-    max-width: calc(100% - 50px);
-    flex: 0 0 auto;
-    margin-left: auto;
+}
+
+@media (max-width: 560px) {
+  .motus-lab {
+    min-height: 100dvh;
   }
-  .atomix-controls button {
-    width: 38px;
-    height: 38px;
-  }
-  .atomix-controls .atomix-variant-trigger {
-    width: auto;
-    min-width: 88px;
-    padding: 0 8px 0 10px;
-    gap: 5px;
-  }
-  .atomix-variant-copy {
-    display: block;
-  }
-  .atomix-variant-copy strong {
+  .motus-lab-brand span {
     display: none;
   }
-  .atomix-variant-copy small {
-    display: block;
-    max-width: 68px;
-    padding: 0;
-    border: 0;
-    background: transparent;
-    color: #fff;
+  .motus-lab-brand .mark {
+    transform: scale(0.72);
+  }
+  .motus-lab-identity {
     font-size: 10px;
   }
-  .atomix-variant-menu {
-    right: -2px;
-    width: min(238px, calc(100vw - 24px));
-    max-height: calc(100dvh - 74px);
+  .motus-lab-tools {
+    gap: 1px;
   }
-  .atomix-mobile-title {
-    min-width: 0;
-    display: block;
-    overflow: hidden;
-    color: #777;
-    font-size: 11px;
-    font-weight: 650;
-    text-overflow: ellipsis;
-    white-space: nowrap;
+  .motus-lab-tool,
+  .motus-lab-tool.icon-only {
+    width: 34px;
+    height: 34px;
   }
-  .atomix-mobile-toolbar.has-variant .atomix-mobile-title {
+  .motus-lab-code {
+    border-color: transparent;
+    background: transparent;
+    color: #666;
+  }
+  .motus-lab-code.active {
+    background: #111;
+  }
+  .fullscreen-tool {
     display: none;
   }
-  .atomix-fullscreen-button {
-    display: none !important;
+  .motus-lab-variant-trigger {
+    min-width: 70px;
+    height: 34px;
+    padding: 0 8px;
   }
-  .atomix-sidebar {
-    left: 0;
-    top: 0;
-    bottom: 0;
-    width: min(360px, 100%);
-    border-left: 0;
-    border-block: 0;
-    border-radius: 0 20px 20px 0;
+  .motus-lab-variant-menu {
+    position: fixed;
+    right: 8px;
+    top: 58px;
+    width: min(226px, calc(100vw - 16px));
+    max-height: calc(100dvh - 66px);
   }
-  .atomix-preview {
+  .motus-lab-stage {
     align-items: safe center;
-    overflow-y: auto;
-    padding: 68px 16px 24px;
+    padding: 50px 12px 38px;
   }
-  .atomix-preview-piece {
+  .motus-lab-preview-piece {
     width: 100%;
   }
-  .atomix-preview-piece[data-piece='text-motion'] [data-variant] {
+  .motus-lab-preview-piece[data-piece='text-motion'] [data-variant] {
     font-size: clamp(1.75rem, 8cqw, 4rem);
   }
-  .atomix-source-drawer > header {
-    grid-template-columns: 1fr auto;
-  }
-  .atomix-source-drawer > header > strong {
+  .motus-lab-stage-meta.top-left span,
+  .motus-lab-stage-meta.bottom-right {
     display: none;
   }
-  .atomix-source-drawer > header > div {
-    grid-column: 2;
+  .motus-lab-panel {
+    height: calc(100dvh - 60px);
+    border-radius: 14px 14px 0 0;
   }
-  .atomix-source-code pre {
+  .motus-lab-docs {
+    grid-template-rows: 64px 43px minmax(0, 1fr);
+  }
+  .motus-lab-source pre {
     padding: 22px 14px 60px;
     font-size: 10px;
   }
-  .atomix-source-code .source-line {
+  .motus-lab-source .source-line {
     grid-template-columns: 32px 1fr;
   }
 }
 
-@media (max-width: 340px) {
-  .atomix-controls {
-    gap: 0;
-    padding: 3px;
-  }
-  .atomix-controls button {
-    width: 36px;
-    height: 36px;
-  }
-  .atomix-controls .atomix-variant-trigger {
-    min-width: 82px;
-  }
-  .atomix-sidebar-toggle {
-    width: 38px;
-    height: 38px;
-  }
-}
-
-@media (max-width: 900px) and (max-height: 600px) {
-  .atomix-shell,
-  .atomix-workspace {
-    min-height: 0;
-  }
-  .atomix-preview {
-    overflow-y: auto;
+@media (prefers-reduced-motion: reduce) {
+  .motus-lab-stage,
+  .motus-lab-panel,
+  .motus-lab-backdrop,
+  .motus-lab-variant-menu {
+    transition-duration: 0.01ms !important;
   }
 }
 
@@ -4576,10 +4418,6 @@ body,
   font-size: 13px;
   line-height: 1.55;
 }
-.home-showcase-foot > span {
-  display: flex;
-  gap: 9px;
-}
 .home-showcase-foot button {
   height: 47px;
   display: inline-flex;
@@ -4599,18 +4437,11 @@ body,
   transform: translateY(-2px);
 }
 .home-showcase-open {
-  border: 1px solid #c9c9c5;
-  background: transparent;
-  color: #20201e;
-}
-.home-showcase-open:hover {
-  background: #fff;
-}
-.home-showcase-all {
+  border: 0;
   background: #10100f;
   color: #fff;
 }
-.home-showcase-all:hover {
+.home-showcase-open:hover {
   background: #292927;
 }
 .home-footer {
@@ -4841,10 +4672,6 @@ body,
     align-items: stretch;
     flex-direction: column;
     padding: 24px 2px 0;
-  }
-  .home-showcase-foot > span {
-    display: grid;
-    grid-template-columns: 1fr;
   }
   .home-showcase-foot button {
     width: 100%;

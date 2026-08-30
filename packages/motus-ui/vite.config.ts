@@ -9,7 +9,6 @@ const external = [
   'motion/react',
   'react',
   'react/jsx-runtime',
-  'react-use-measure',
 ];
 
 export default defineConfig({
