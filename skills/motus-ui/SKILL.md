@@ -115,7 +115,7 @@ The native download starts after the transfer animation. Do not add a second art
 
 ### Preset portfolio pieces
 
-`PortfolioNav`, `ExpandableTab`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a vertical motion index and editorial content panel. Their current content is built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
+`PortfolioNav`, `ExpandableTab`, `ProjectCard`, `ProjectList`, `SkillsList`, `ContactCard`, `TechStack`, and `RouteLens` are complete interactive presets with no required props. `ExpandableTab` renders a responsive accordion gallery with expanding tab panels. Their current content is built in. Use them directly only when that preset matches the requested result; do not promise content props that the package does not expose.
 
 ### Background effects
 

@@ -123,7 +123,7 @@ export function Portfolio() {
 }
 ```
 
-Additional pieces include `ExpandableTab`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`. `ExpandableTab` presents an accessible vertical motion index with a coordinated editorial panel.
+Additional pieces include `ExpandableTab`, `ContactCard`, `TechStack`, `LiquidGlassCard`, and `RouteLens`. `ExpandableTab` presents an accessible accordion gallery where the selected tab expands into focus.
 
 ### Background effects
 

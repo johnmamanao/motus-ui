@@ -106,7 +106,7 @@ import { ClickKey } from 'motus-ui';
 import { ContactCard, ExpandableTab, PortfolioNav, ProjectCard, ProjectList, SkillsList, TechStack } from 'motus-ui';
 ```
 
-These pieces can be rendered directly without required props. `ExpandableTab` is an accessible vertical motion index with a coordinated editorial panel. `LiquidGlassCard` and `RouteLens` are also exported for composed layouts.
+These pieces can be rendered directly without required props. `ExpandableTab` is an accessible accordion gallery where the selected tab expands into focus. `LiquidGlassCard` and `RouteLens` are also exported for composed layouts.
 
 ### Background effects
 

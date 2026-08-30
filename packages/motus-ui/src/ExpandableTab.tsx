@@ -1,196 +1,254 @@
-import { ArrowUpRight, CircleDot, Layers3, ScanLine, Sparkles } from 'lucide-react';
-import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
+import { ArrowUpRight, CircleDot, Gauge, Layers3, Sparkles } from 'lucide-react';
+import { motion, useReducedMotion } from 'motion/react';
 import { type KeyboardEvent, useId, useState } from 'react';
 
-const views = [
+const panels = [
   {
-    id: 'signal',
-    label: 'Signal',
-    eyebrow: 'Live direction',
-    title: 'Make the change legible.',
-    description: 'A focused motion study for interfaces that explain where attention should move next.',
-    accent: '#c7ff64',
+    id: 'focus',
+    label: 'Focus',
+    eyebrow: 'Attention',
+    title: 'Direct the eye.',
+    description: 'Let one clear movement establish hierarchy before the rest of the interface responds.',
+    accent: '#c9ff67',
+    wash: '#efffd1',
     icon: CircleDot,
     metric: '120 ms',
     metricLabel: 'response',
   },
   {
-    id: 'layers',
-    label: 'Layers',
-    eyebrow: 'Spatial rhythm',
-    title: 'Depth without distraction.',
-    description: 'A restrained composition that separates context, action, and feedback into readable layers.',
-    accent: '#9ac8ff',
-    icon: Layers3,
-    metric: '03',
-    metricLabel: 'planes',
-  },
-  {
-    id: 'tempo',
-    label: 'Tempo',
-    eyebrow: 'Timing study',
-    title: 'Fast enough to feel direct.',
-    description: 'Short transitions keep the interface responsive while preserving continuity between states.',
-    accent: '#ffb88c',
-    icon: ScanLine,
+    id: 'rhythm',
+    label: 'Rhythm',
+    eyebrow: 'Timing',
+    title: 'Move with intent.',
+    description: 'A measured tempo keeps interaction feedback immediate without making the interface feel abrupt.',
+    accent: '#8bc5ff',
+    wash: '#dceeff',
+    icon: Gauge,
     metric: '0.24 s',
     metricLabel: 'transition',
   },
   {
+    id: 'depth',
+    label: 'Depth',
+    eyebrow: 'Structure',
+    title: 'Separate, don’t clutter.',
+    description: 'Layering gives context to the active state while the surrounding choices remain close at hand.',
+    accent: '#ffad7d',
+    wash: '#ffe6d7',
+    icon: Layers3,
+    metric: '03',
+    metricLabel: 'layers',
+  },
+  {
     id: 'finish',
     label: 'Finish',
-    eyebrow: 'Interaction polish',
-    title: 'Quiet details, clear result.',
-    description: 'Each state earns its place through contrast, hierarchy, and a single purposeful movement.',
-    accent: '#d8b4ff',
+    eyebrow: 'Polish',
+    title: 'Close the loop.',
+    description: 'The final details confirm what changed and leave the interface ready for the next decision.',
+    accent: '#d8b1ff',
+    wash: '#efe0ff',
     icon: Sparkles,
     metric: 'AA',
     metricLabel: 'contrast',
   },
 ] as const;
 
+type PanelId = (typeof panels)[number]['id'];
+
 export function ExpandableTab() {
-  const [activeId, setActiveId] = useState<(typeof views)[number]['id']>('signal');
+  const [activeId, setActiveId] = useState<PanelId>('focus');
   const reduceMotion = useReducedMotion();
   const tabsetId = useId();
-  const activeIndex = views.findIndex((view) => view.id === activeId);
-  const active = views[activeIndex];
+  const activeIndex = panels.findIndex((panel) => panel.id === activeId);
+  const transition = reduceMotion ? { duration: 0 } : { duration: 0.28, ease: [0.2, 0.8, 0.2, 1] as const };
 
-  const selectByKey = (event: KeyboardEvent<HTMLButtonElement>, index: number) => {
-    if (!['ArrowDown', 'ArrowUp', 'Home', 'End'].includes(event.key)) return;
+  const selectByKey = (
+    event: KeyboardEvent<HTMLButtonElement>,
+    index: number,
+    orientation: 'horizontal' | 'vertical',
+    surface: 'desktop' | 'mobile',
+  ) => {
+    const nextKey = orientation === 'horizontal' ? 'ArrowRight' : 'ArrowDown';
+    const previousKey = orientation === 'horizontal' ? 'ArrowLeft' : 'ArrowUp';
+    if (![nextKey, previousKey, 'Home', 'End'].includes(event.key)) return;
     event.preventDefault();
     const nextIndex =
       event.key === 'Home'
         ? 0
         : event.key === 'End'
-          ? views.length - 1
-          : (index + (event.key === 'ArrowDown' ? 1 : -1) + views.length) % views.length;
-    const next = views[nextIndex];
+          ? panels.length - 1
+          : (index + (event.key === nextKey ? 1 : -1) + panels.length) % panels.length;
+    const next = panels[nextIndex];
     setActiveId(next.id);
-    document.getElementById(`${tabsetId}-${next.id}-tab`)?.focus();
+    document.getElementById(tabsetId + '-' + surface + '-' + next.id + '-tab')?.focus();
   };
 
-  return (
-    <div className="flex min-h-[430px] w-full items-center justify-center px-4 py-8 text-zinc-950">
-      <section className="grid w-full max-w-[720px] overflow-hidden rounded-[30px] border border-zinc-200 bg-[#f5f5f2] shadow-[0_28px_80px_rgba(24,24,27,0.10)] md:grid-cols-[168px_1fr]">
-        <div className="flex flex-col border-b border-zinc-200 bg-white p-3 md:border-b-0 md:border-r">
-          <div className="flex items-center justify-between px-2 py-2 md:block">
-            <div className="flex items-center gap-2">
-              <span className="grid size-7 place-items-center rounded-full bg-zinc-950 text-[10px] font-semibold text-white">
-                M
-              </span>
-              <span className="text-xs font-semibold tracking-[-0.01em]">Motion index</span>
-            </div>
-            <span className="text-[10px] font-medium uppercase tracking-[0.16em] text-zinc-400 md:mt-5 md:block">
-              Studies / 04
-            </span>
-          </div>
+  const content = (panel: (typeof panels)[number], surface: 'desktop' | 'mobile') => (
+    <motion.div
+      key={surface + '-' + panel.id + '-' + activeId}
+      id={tabsetId + '-' + surface + '-' + panel.id + '-panel'}
+      role="tabpanel"
+      aria-labelledby={tabsetId + '-' + surface + '-' + panel.id + '-tab'}
+      className="relative flex h-full flex-col overflow-hidden px-5 pb-5 pt-[72px] sm:px-6 sm:pb-6"
+      initial={reduceMotion ? false : { opacity: 0, y: 12 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: reduceMotion ? 0 : 0.24, ease: [0.2, 0.8, 0.2, 1] }}
+    >
+      <motion.span
+        className="pointer-events-none absolute -right-12 -top-8 size-44 rounded-full opacity-70 blur-2xl"
+        style={{ backgroundColor: panel.wash }}
+        initial={reduceMotion ? false : { scale: 0.78, opacity: 0 }}
+        animate={{ scale: 1, opacity: 0.7 }}
+        transition={{ duration: reduceMotion ? 0 : 0.4, ease: [0.2, 0.8, 0.2, 1] }}
+        aria-hidden="true"
+      />
+      <span className="relative text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
+        {panel.eyebrow}
+      </span>
+      <h2 className="relative mt-auto max-w-[390px] text-[clamp(2.25rem,6vw,4rem)] font-semibold leading-[0.9] tracking-[-0.065em] text-zinc-950">
+        {panel.title}
+      </h2>
+      <p className="relative mt-4 max-w-[390px] text-sm leading-6 text-zinc-500">{panel.description}</p>
+      <div className="relative mt-5 flex items-end justify-between border-t border-zinc-300/80 pt-4">
+        <div>
+          <strong className="block text-xl font-semibold tracking-[-0.04em] text-zinc-950">{panel.metric}</strong>
+          <span className="mt-1 block text-[9px] font-semibold uppercase tracking-[0.14em] text-zinc-400">
+            {panel.metricLabel}
+          </span>
+        </div>
+        <span
+          className="flex size-9 items-center justify-center rounded-full text-zinc-950"
+          style={{ backgroundColor: panel.accent }}
+          aria-hidden="true"
+        >
+          <ArrowUpRight className="size-4" />
+        </span>
+      </div>
+    </motion.div>
+  );
 
-          <div
-            className="mt-2 grid grid-cols-4 gap-1 md:mt-6 md:grid-cols-1"
-            role="tablist"
-            aria-label="Motion studies"
-          >
-            {views.map((view, index) => {
-              const selected = view.id === activeId;
-              const Icon = view.icon;
-              return (
+  return (
+    <div className="flex min-h-[440px] w-full items-center justify-center px-3 py-7 text-zinc-950">
+      <section className="w-full max-w-[780px] overflow-hidden rounded-[30px] bg-[#111110] p-3 shadow-[0_30px_90px_rgba(0,0,0,0.24)]">
+        <header className="flex items-center justify-between px-3 pb-3 pt-1 text-white">
+          <div className="flex items-center gap-2.5">
+            <span className="grid size-7 place-items-center rounded-full border border-white/15 bg-white/5 text-[10px] font-semibold">
+              M
+            </span>
+            <div>
+              <strong className="block text-xs font-semibold tracking-[-0.01em]">Expandable studies</strong>
+              <span className="mt-0.5 block text-[8px] font-medium uppercase tracking-[0.15em] text-white/35">
+                Select a perspective
+              </span>
+            </div>
+          </div>
+          <span className="font-mono text-[9px] text-white/35">0{activeIndex + 1} / 04</span>
+        </header>
+
+        <div
+          className="hidden h-[370px] gap-2 md:flex"
+          role="tablist"
+          aria-label="Expandable motion studies"
+          aria-orientation="horizontal"
+        >
+          {panels.map((panel, index) => {
+            const selected = panel.id === activeId;
+            const Icon = panel.icon;
+            return (
+              <motion.article
+                key={panel.id}
+                layout
+                className="relative min-w-0 overflow-hidden rounded-[22px] border"
+                style={{
+                  backgroundColor: selected ? '#f5f4ef' : '#1c1c1a',
+                  borderColor: selected ? '#f5f4ef' : '#30302d',
+                  width: selected ? 'calc(100% - 210px)' : '62px',
+                  flex: '0 0 auto',
+                }}
+                transition={transition}
+              >
                 <button
-                  key={view.id}
-                  id={`${tabsetId}-${view.id}-tab`}
+                  id={tabsetId + '-desktop-' + panel.id + '-tab'}
                   role="tab"
+                  aria-label={panel.label}
                   aria-selected={selected}
-                  aria-controls={`${tabsetId}-${view.id}-panel`}
+                  aria-controls={tabsetId + '-desktop-' + panel.id + '-panel'}
                   tabIndex={selected ? 0 : -1}
-                  onClick={() => setActiveId(view.id)}
-                  onKeyDown={(event) => selectByKey(event, index)}
-                  className={`group relative flex min-h-12 items-center gap-2 overflow-hidden rounded-xl px-2.5 text-left text-xs font-semibold outline-none transition-colors duration-150 focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2 md:px-3 ${selected ? 'text-zinc-950' : 'text-zinc-400 hover:bg-zinc-50 hover:text-zinc-700'}`}
-                  style={{ color: selected ? '#18181b' : '#71717a', fontSize: '0.75rem' }}
+                  onClick={() => setActiveId(panel.id)}
+                  onKeyDown={(event) => selectByKey(event, index, 'horizontal', 'desktop')}
+                  className="absolute inset-x-0 top-0 z-10 flex h-14 items-center gap-2 px-4 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white"
+                  style={{ color: selected ? '#18181b' : '#d4d4d0', fontSize: '0.75rem' }}
                 >
-                  {selected && (
-                    <motion.span
-                      layoutId={`${tabsetId}-selection`}
-                      className="absolute inset-0 rounded-xl bg-[#eeeeea]"
-                      transition={reduceMotion ? { duration: 0 } : { duration: 0.22, ease: [0.2, 0.8, 0.2, 1] }}
-                    />
-                  )}
-                  <span className="relative grid size-6 shrink-0 place-items-center rounded-lg border border-current/10 bg-white/60">
+                  <span
+                    className="grid size-7 shrink-0 place-items-center rounded-full"
+                    style={{ backgroundColor: selected ? panel.accent : '#2a2a27' }}
+                  >
                     <Icon className="size-3.5" aria-hidden="true" />
                   </span>
-                  <span className="relative hidden md:block">{view.label}</span>
-                  <span className="relative ml-auto hidden text-[9px] font-medium tabular-nums text-zinc-400 md:block">
+                  {selected && <span className="whitespace-nowrap font-semibold">{panel.label}</span>}
+                  {selected && <span className="ml-auto font-mono text-[9px] text-zinc-400">0{index + 1}</span>}
+                </button>
+                {!selected && (
+                  <span
+                    className="pointer-events-none absolute bottom-5 left-1/2 text-[10px] font-semibold uppercase tracking-[0.16em] text-white/45"
+                    style={{ writingMode: 'vertical-rl', transform: 'translateX(-50%) rotate(180deg)' }}
+                    aria-hidden="true"
+                  >
+                    {panel.label}
+                  </span>
+                )}
+                {selected && content(panel, 'desktop')}
+              </motion.article>
+            );
+          })}
+        </div>
+
+        <div
+          className="flex flex-col gap-2 md:hidden"
+          role="tablist"
+          aria-label="Expandable motion studies"
+          aria-orientation="vertical"
+        >
+          {panels.map((panel, index) => {
+            const selected = panel.id === activeId;
+            const Icon = panel.icon;
+            return (
+              <motion.article
+                key={panel.id}
+                className="relative overflow-hidden rounded-[20px] border"
+                style={{
+                  backgroundColor: selected ? '#f5f4ef' : '#1c1c1a',
+                  borderColor: selected ? '#f5f4ef' : '#30302d',
+                }}
+                animate={{ height: selected ? 300 : 54 }}
+                transition={transition}
+              >
+                <button
+                  id={tabsetId + '-mobile-' + panel.id + '-tab'}
+                  role="tab"
+                  aria-selected={selected}
+                  aria-controls={tabsetId + '-mobile-' + panel.id + '-panel'}
+                  tabIndex={selected ? 0 : -1}
+                  onClick={() => setActiveId(panel.id)}
+                  onKeyDown={(event) => selectByKey(event, index, 'vertical', 'mobile')}
+                  className="absolute inset-x-0 top-0 z-10 flex h-[54px] items-center gap-2.5 px-3.5 outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-white"
+                  style={{ color: selected ? '#18181b' : '#d4d4d0', fontSize: '0.75rem' }}
+                >
+                  <span
+                    className="grid size-7 shrink-0 place-items-center rounded-full"
+                    style={{ backgroundColor: selected ? panel.accent : '#2a2a27' }}
+                  >
+                    <Icon className="size-3.5" aria-hidden="true" />
+                  </span>
+                  <span className="font-semibold">{panel.label}</span>
+                  <span className="ml-auto font-mono text-[9px]" style={{ color: selected ? '#a1a1aa' : '#666662' }}>
                     0{index + 1}
                   </span>
                 </button>
-              );
-            })}
-          </div>
-          <p className="mt-auto hidden px-2 pb-1 pt-8 text-[10px] leading-4 text-zinc-400 md:block">
-            Select a study to inspect its rhythm and intent.
-          </p>
-        </div>
-
-        <div className="relative min-h-[350px] overflow-hidden p-5 sm:p-7 md:min-h-[430px] md:p-9">
-          <div className="pointer-events-none absolute inset-0 opacity-[0.035] [background-image:linear-gradient(to_right,#000_1px,transparent_1px),linear-gradient(to_bottom,#000_1px,transparent_1px)] [background-size:32px_32px]" />
-          <div className="relative flex h-full flex-col">
-            <div className="flex items-center justify-between">
-              <span className="flex items-center gap-2 text-[10px] font-semibold uppercase tracking-[0.16em] text-zinc-500">
-                <motion.i
-                  className="block size-2 rounded-full"
-                  animate={{ backgroundColor: active.accent }}
-                  transition={{ duration: reduceMotion ? 0 : 0.18 }}
-                />
-                {active.eyebrow}
-              </span>
-              <span className="text-[10px] font-medium tabular-nums text-zinc-400">0{activeIndex + 1} / 04</span>
-            </div>
-
-            <div className="my-auto py-8">
-              <AnimatePresence mode="wait" initial={false}>
-                <motion.div
-                  key={active.id}
-                  id={`${tabsetId}-${active.id}-panel`}
-                  role="tabpanel"
-                  aria-labelledby={`${tabsetId}-${active.id}-tab`}
-                  initial={reduceMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={reduceMotion ? { opacity: 0 } : { opacity: 0, y: -8 }}
-                  transition={{ duration: reduceMotion ? 0.01 : 0.24, ease: [0.2, 0.8, 0.2, 1] }}
-                >
-                  <h2 className="max-w-[430px] text-[clamp(2.15rem,7vw,4.1rem)] font-semibold leading-[0.92] tracking-[-0.065em]">
-                    {active.title}
-                  </h2>
-                  <p className="mt-5 max-w-[390px] text-sm leading-6 text-zinc-500">{active.description}</p>
-                </motion.div>
-              </AnimatePresence>
-            </div>
-
-            <div className="flex items-end justify-between border-t border-zinc-300/70 pt-5">
-              <div>
-                <motion.strong
-                  key={`${active.id}-metric`}
-                  className="block text-2xl font-semibold tracking-[-0.04em]"
-                  initial={reduceMotion ? false : { opacity: 0, y: 5 }}
-                  animate={{ opacity: 1, y: 0 }}
-                >
-                  {active.metric}
-                </motion.strong>
-                <span className="mt-1 block text-[10px] font-medium uppercase tracking-[0.14em] text-zinc-400">
-                  {active.metricLabel}
-                </span>
-              </div>
-              <button
-                className="group flex items-center gap-2 rounded-full bg-zinc-950 px-4 py-2.5 text-xs font-semibold text-white outline-none transition-colors duration-150 hover:bg-zinc-800 focus-visible:ring-2 focus-visible:ring-zinc-950 focus-visible:ring-offset-2"
-                style={{ color: '#ffffff', fontSize: '0.75rem' }}
-              >
-                Inspect study
-                <ArrowUpRight
-                  className="size-3.5 transition-transform duration-200 group-hover:-translate-y-0.5 group-hover:translate-x-0.5"
-                  aria-hidden="true"
-                />
-              </button>
-            </div>
-          </div>
+                {selected && content(panel, 'mobile')}
+              </motion.article>
+            );
+          })}
         </div>
       </section>
     </div>

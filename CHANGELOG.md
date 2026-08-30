@@ -8,7 +8,7 @@ The project follows [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
-- Rebuilt `ExpandableTab` as an original accessible motion index and editorial content panel.
+- Rebuilt `ExpandableTab` as an original accessible accordion gallery with expanding tab panels.
 - Redesigned `ClickKey` as a signal-style project action with focused visual and audio feedback.
 - Replaced the component showcase shell with a full-height studio and responsive inspector.
 - Simplified the landing-page calls to action and refined the header and footer hierarchy.

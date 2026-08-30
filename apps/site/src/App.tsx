@@ -174,7 +174,7 @@ const PIECES: Piece[] = [
     name: 'Expandable Tabs',
     category: 'Navigation',
     gesture: 'Select',
-    description: 'A vertical motion index paired with an editorial content canvas.',
+    description: 'An accordion gallery where the selected tab expands into focus.',
     useCase: 'Section navigation',
     functionName: 'ExpandableTab',
     runtime: 'Motion · Accessible tabs',
