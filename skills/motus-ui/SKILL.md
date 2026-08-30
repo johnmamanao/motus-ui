@@ -107,7 +107,7 @@ The native download starts after the transfer animation. Do not add a second art
 | `onAction` | `() => void \| Promise<void>` | `undefined` | Run the project-opening action |
 | `disabled` | `boolean`                     | `false`     | Disable action and sound       |
 
-`ClickKey` has a fixed "Open project" label, a visual signal pulse, and a short activation cue. Use it for that intent; do not present it as a generic text button.
+`ClickKey` has a fixed "Open project" label, a split-flap scanning state, and a short activation cue. Use it for that intent; do not present it as a generic text button.
 
 ### `LiquidGlassCard`
 

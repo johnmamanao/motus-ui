@@ -98,7 +98,7 @@ import { ClickKey } from 'motus-ui';
 <ClickKey onAction={() => console.log('Open project')} />;
 ```
 
-`ClickKey` uses a focused visual pulse and short audio cue to confirm activation. Audio begins only after user interaction.
+`ClickKey` uses a split-flap information panel, scanning activation state, and short audio cue to confirm activation. Audio begins only after user interaction.
 
 ### Portfolio components
 

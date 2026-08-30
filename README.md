@@ -94,7 +94,7 @@ import { ResumeDownloadButton } from 'motus-ui';
 
 ### Press button
 
-`ClickKey` is a signal-style project action with a short visual pulse and audio cue.
+`ClickKey` is a split-flap project control with an indexed information panel, scanning activation state, and short audio cue.
 
 ```tsx
 import { ClickKey } from 'motus-ui';

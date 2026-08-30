@@ -96,7 +96,7 @@ const PIECES: Piece[] = [
     name: 'Press Button',
     category: 'Buttons',
     gesture: 'Activate',
-    description: 'A signal-style action with focused motion and a short audio cue.',
+    description: 'A split-flap project control with a scanning activation state.',
     useCase: 'Primary action',
     functionName: 'ClickKey',
     runtime: 'Motion · Web Audio',
